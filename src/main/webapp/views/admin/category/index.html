@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<style>
+    /* Add your custom CSS styles here */
+
+    /* Style the "+Add Category" button */
+    .btn-success {
+        background-color: green;
+        color: white;
+    }
+
+    /* Style the table headers */
+    .table th {
+        background-color: lightgreen;
+    }
+
+    /* Style the table rows */
+    .table tbody tr:nth-child(even) {
+        background-color: #f2f2f2;
+    }
+
+    /* Style the "Sửa" and "Xóa" buttons in the table */
+    .table .btn-success {
+        background-color: #5cb85c;
+        color: white;
+    }
+
+    .table .btn-danger {
+        background-color: #d9534f;
+        color: white;
+    }
+
+</style>
+
+<th:block th:insert="admin/layout/head.html"></th:block>
+
+<body class="hold-transition skin-blue sidebar-mini">
+<!-- Site wrapper -->
+<div class="wrapper">
+
+    <th:block th:insert="admin/layout/header.html"></th:block>
+
+    <!-- sidebar -->
+    <th:block th:insert="admin/layout/sidebar.html"></th:block>
+    <!-- =============================================== -->
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="content-wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <h1>
+                Category Page
+                <small>it all starts here</small>
+            </h1>
+            <ol class="breadcrumb">
+                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                <li><a href="#">Examples</a></li>
+                <li class="active">Category Page</li>
+            </ol>
+        </section>
+        <div class="box-header">
+            <a th:href="@{/admin/add-category}" class="btn btn-success">+Add Category</a>
+
+            <div class="box-tools">
+                <div class="input-group input-group-sm" style="width: 150px;">
+                    <input type="text" name="table_search" class="form-control pull-right" placeholder="Search">
+
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-default"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Main content -->
+        <section class="content">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Category ID</th>
+                    <th>Category Name</th>
+                    <th>Category Status</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item: ${category_list}">
+                    <td th:text="${item.categoryId}"></td>
+                    <td th:text="${item.categoryName}"></td>
+                    <td><span class="label" th:classappend="${!item.categoryStatus ? 'label-danger':'label-success'}"
+                              th:text="${item.categoryStatus?'Open':'Close'}"></span></td>
+                    <td>
+                        <a href="edit-menu.html" class="btn btn-success">Edit</a>
+                        <a href="" class="btn btn-danger">Delete</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </section>
+    </div>
+    <th:block th:insert="admin/layout/footer.html"></th:block>
+</div>
+<th:block th:insert="admin/layout/script.html"></th:block>
+</body>
+</html>
