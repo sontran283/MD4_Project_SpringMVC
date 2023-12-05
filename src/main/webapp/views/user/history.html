@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<th:block th:insert="user/layout/head.html"></th:block>
+<body>
+<th:block th:insert="user/layout/header.html"></th:block>
+
+
+<!-- comming-soon-area-start -->
+<section class="commoing-soon-area grey-bg pt-75 pb-75">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-5 col-md-6">
+                <div class="tpsoon">
+                    <h4 class="tpsoon__sub-title mb-15">Coming soon</h4>
+                    <h2 class="tpsoon__title mb-30">Our New Website <br> Will Be Available Soon</h2>
+                    <p>We are currently working on an awesome new site. Your personal details <br>
+                        are strictly for our use, and you can unsubscribe at any time.</p>
+                    <div class="tpsoon__submit-form  mb-50">
+                        <form action="#">
+                            <div class="tpsoon__submit-wrapper">
+                                <div class="tpsoon__input mb-10 mr-10">
+                                    <input type="email" placeholder="Your email address...">
+                                    <span><img th:src="@{assets2/img/shape/message-1.svg}" alt=""></span>
+                                </div>
+                                <div class="tpsoon__submit">
+                                    <button class="tp-btn-3">Subscribe</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="rainbow__social mb-15">
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a class="rainbow__facebook" href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a class="rainbow__pin" href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a class="rainbow__skype" href="#"><i class="fab fa-skype"></i></a>
+                        <a class="rainbow__youtube" href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                    <div class="tpsoon__copyright">
+                        <span>Copyright <a href="index.html">© ORFARM</a> all rights reserved. Powered by <a href="#">Theme_pure</a>.</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7 col-md-6">
+                <div class="tpsoon__thumb p-relative w-img">
+                    <img th:src="@{assets2/img/banner/comming-soon-banner.png}" alt="">
+                    <div class="tpsoon__shape d-none d-md-block">
+                        <div class="tpsoon__shape-one">
+                            <img th:src="@{assets2/img/shape/comming-shae-1.png}" alt="">
+                        </div>
+                        <div class="tpsoon__shape-two">
+                            <img th:src="@{assets2/img/shape/comming-shae-2.png}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- comming-soon-area-end -->
+
+<th:block th:insert="user/layout/footer.html"></th:block>
+<th:block th:insert="user/layout/script.html"></th:block>
+</body>
+</html>

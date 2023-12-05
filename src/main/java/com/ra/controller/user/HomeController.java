@@ -4,7 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/")
 public class HomeController {
     @RequestMapping("/")
     public String home() {
@@ -49,5 +49,20 @@ public class HomeController {
     @RequestMapping("/wishlist")
     public String wishlist() {
         return "user/wishlist";
+    }
+
+    @RequestMapping("/detail")
+    public String detail() {
+        return "user/detail";
+    }
+
+    @RequestMapping("/checkout")
+    public String checkout() {
+        return "user/checkout";
+    }
+
+    @RequestMapping("/history")
+    public String history() {
+        return "user/history";
     }
 }
