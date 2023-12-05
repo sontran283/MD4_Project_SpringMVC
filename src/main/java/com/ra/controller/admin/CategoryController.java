@@ -27,13 +27,13 @@ public class CategoryController {
     public String add(Model model) {
         Category category = new Category();
         model.addAttribute("category", category);
-        return "admin/category/add";
+        return "add-category";
     }
 
     @PostMapping("/add-category")
     public String create(@ModelAttribute("category") Category category) {
         System.out.println(category.getCategoryName());
         System.out.println(category.isCategoryStatus());
-        return "admin/category/add";
+        return "add-category";
     }
 }
