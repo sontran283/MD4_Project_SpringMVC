@@ -1,49 +1,2060 @@
-<!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
 
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org/" lang="en" data-layout="vertical" data-sidebar="dark" data-sidebar-size="lg" data-preloader="disable" data-theme="default" data-topbar="light" data-bs-theme="light">
 <th:block th:insert="admin/layout/head.html"></th:block>
-<body class="hold-transition skin-blue sidebar-mini">
-<div class="wrapper">
-    <th:block th:insert="admin/layout/header.html"></th:block>
-    <th:block th:insert="admin/layout/sidebar.html"></th:block>
 
-    <div class="content-wrapper">
-        <section class="content-header">
-            <h1>
-                Blank page
-                <small>it all starts here</small>
-            </h1>
-            <ol class="breadcrumb">
-                <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                <li><a href="#">Examples</a></li>
-                <li class="active">Blank page</li>
-            </ol>
-        </section>
+<body>
 
-        <!-- Main content -->
-        <section class="content">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">Title</h3>
-                    <div class="box-tools pull-right">
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip"
-                                title="Collapse">
-                            <i class="fa fa-minus"></i></button>
-                        <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip"
-                                title="Remove">
-                            <i class="fa fa-times"></i></button>
+<!-- Begin page -->
+<div id="layout-wrapper">
+
+    <!-- ========== App Menu ========== -->
+    <div class="app-menu navbar-menu">
+<!-- side bar-->
+        <th:block th:insert="admin/layout/sidebar.html"></th:block>
+        <th:block th:insert="admin/layout/header.html"></th:block>
+
+
+    </div>
+    <!-- Left Sidebar End -->
+    <!-- Vertical Overlay-->
+    <div class="vertical-overlay"></div>
+
+    <!-- removeNotificationModal -->
+    <div id="removeNotificationModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="NotificationModalbtn-close"></button>
+                </div>
+                <div class="modal-body p-md-5">
+                    <div class="text-center">
+                        <div class="text-danger">
+                            <i class="bi bi-trash display-4"></i>
+                        </div>
+                        <div class="mt-4 fs-base">
+                            <h4 class="mb-1">Are you sure ?</h4>
+                            <p class="text-muted mx-4 mb-0">Are you sure you want to remove this Notification ?</p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
+                        <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn w-sm btn-danger" id="delete-notification">Yes, Delete It!</button>
                     </div>
                 </div>
-                <div class="box-body">
-                    Start creating your amazing application!
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- removeCartModal -->
+    <div id="removeCartModal" class="modal fade zoomIn" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-cartmodal"></button>
                 </div>
-                <div class="box-footer">
-                    Footer
+                <div class="modal-body p-md-5">
+                    <div class="text-center">
+                        <div class="text-danger">
+                            <i class="bi bi-trash display-5"></i>
+                        </div>
+                        <div class="mt-4">
+                            <h4>Are you sure ?</h4>
+                            <p class="text-muted mx-4 mb-0">Are you sure you want to remove this product ?</p>
+                        </div>
+                    </div>
+                    <div class="d-flex gap-2 justify-content-center mt-4 mb-2">
+                        <button type="button" class="btn w-sm btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="button" class="btn w-sm btn-danger" id="remove-cartproduct">Yes, Delete It!</button>
+                    </div>
+                </div>
+
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+
+    <!-- ============================================================== -->
+    <!-- Start right Content here -->
+    <!-- ============================================================== -->
+
+
+    <div class="main-content">
+
+        <div class="page-content">
+            <div class="container-fluid">
+
+                <div class="row">
+                    <div class="col-xl-4">
+                        <div class="card card-height-100 border-0 overflow-hidden">
+                            <div class="card-body p-0">
+                                <div class="row g-0">
+                                    <div class="col-md-6">
+                                        <!-- card -->
+                                        <div class="card shadow-none border-end-md border-bottom rounded-0 mb-0">
+                                            <div class="card-body">
+                                                <div class="dropdown float-end">
+                                                    <a class="text-reset dropdown-btn" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <span class="text-muted fs-lg"><i class="mdi mdi-dots-vertical align-middle"></i></span>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#">Today</a>
+                                                        <a class="dropdown-item" href="#">Last Week</a>
+                                                        <a class="dropdown-item" href="#">Last Month</a>
+                                                        <a class="dropdown-item" href="#">Current Year</a>
+                                                    </div>
+                                                </div>
+                                                <div class="avatar-sm">
+                                                            <span class="avatar-title bg-primary-subtle text-primary rounded-circle fs-3">
+                                                                <i class="ph-wallet"></i>
+                                                            </span>
+                                                </div>
+                                                <div class="mt-4">
+                                                    <p class="text-uppercase fw-medium text-muted text-truncate fs-sm">Total Revenue</p>
+                                                    <h4 class="fw-semibold mb-3">$<span class="counter-value" data-target="750.36">0</span>M </h4>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <h5 class="text-success fs-xs mb-0">
+                                                            <i class="ri-arrow-right-up-line fs-sm align-middle"></i> +19.07 %
+                                                        </h5>
+                                                        <p class="text-muted mb-0">than last week</p>
+                                                    </div>
+                                                </div>
+                                            </div><!-- end card body -->
+                                        </div><!-- end card -->
+                                    </div><!-- end col -->
+                                    <div class="col-md-6">
+                                        <!-- card -->
+                                        <div class="card shadow-none border-bottom rounded-0 mb-0">
+                                            <div class="card-body">
+                                                <div class="dropdown float-end">
+                                                    <a class="text-reset dropdown-btn" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <span class="text-muted fs-lg"><i class="mdi mdi-dots-vertical align-middle"></i></span>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#">Today</a>
+                                                        <a class="dropdown-item" href="#">Last Week</a>
+                                                        <a class="dropdown-item" href="#">Last Month</a>
+                                                        <a class="dropdown-item" href="#">Current Year</a>
+                                                    </div>
+                                                </div>
+                                                <div class="avatar-sm">
+                                                            <span class="avatar-title bg-dark-subtle text-dark rounded-circle fs-3">
+                                                                <i class="ph-bag"></i>
+                                                            </span>
+                                                </div>
+                                                <div class="mt-4">
+                                                    <p class="text-uppercase fw-medium text-muted text-truncate fs-sm">Orders</p>
+                                                    <h4 class="fw-semibold mb-3"><span class="counter-value" data-target="684">0</span></h4>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <h5 class="text-success fs-xs mb-0">
+                                                            <i class="ri-arrow-right-up-line fs-sm align-middle"></i> +8.13 %
+                                                        </h5>
+                                                        <p class="text-muted mb-0">than last week</p>
+                                                    </div>
+                                                </div>
+                                            </div><!-- end card body -->
+                                        </div><!-- end card -->
+                                    </div><!-- end col -->
+                                    <div class="col-md-6">
+                                        <!-- card -->
+                                        <div class="card shadow-none border-end-md rounded-0 mb-0">
+                                            <div class="card-body">
+                                                <div class="dropdown float-end">
+                                                    <a class="text-reset dropdown-btn" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <span class="text-muted fs-lg"><i class="mdi mdi-dots-vertical align-middle"></i></span>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#">Today</a>
+                                                        <a class="dropdown-item" href="#">Last Week</a>
+                                                        <a class="dropdown-item" href="#">Last Month</a>
+                                                        <a class="dropdown-item" href="#">Current Year</a>
+                                                    </div>
+                                                </div>
+                                                <div class="avatar-sm">
+                                                            <span class="avatar-title bg-light text-body rounded-circle fs-3">
+                                                                <i class="ph-eye"></i>
+                                                            </span>
+                                                </div>
+                                                <div class="mt-4">
+                                                    <p class="text-uppercase fw-medium text-muted text-truncate fs-sm">Product Views</p>
+                                                    <h4 class="fw-semibold mb-3"><span class="counter-value" data-target="113870">0</span></h4>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <h5 class="text-danger fs-xs mb-0">
+                                                            <i class="ri-arrow-right-down-line fs-sm align-middle"></i> +2.01 %
+                                                        </h5>
+                                                        <p class="text-muted mb-0">than last week</p>
+                                                    </div>
+                                                </div>
+                                            </div><!-- end card body -->
+                                        </div><!-- end card -->
+                                    </div><!-- end col -->
+                                    <div class="col-md-6">
+                                        <!-- card -->
+                                        <div class="card shadow-none border-top border-top-md-0 rounded-0 mb-0">
+                                            <div class="card-body">
+                                                <div class="dropdown float-end">
+                                                    <a class="text-reset dropdown-btn" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                        <span class="text-muted fs-lg"><i class="mdi mdi-dots-vertical align-middle"></i></span>
+                                                    </a>
+                                                    <div class="dropdown-menu dropdown-menu-end">
+                                                        <a class="dropdown-item" href="#">Today</a>
+                                                        <a class="dropdown-item" href="#">Last Week</a>
+                                                        <a class="dropdown-item" href="#">Last Month</a>
+                                                        <a class="dropdown-item" href="#">Current Year</a>
+                                                    </div>
+                                                </div>
+                                                <div class="avatar-sm">
+                                                            <span class="avatar-title bg-info-subtle text-info rounded-circle fs-3">
+                                                                <i class="ph-users-three"></i>
+                                                            </span>
+                                                </div>
+                                                <div class="mt-4">
+                                                    <p class="text-uppercase fw-medium text-muted text-truncate fs-sm">Customers</p>
+                                                    <h4 class="fw-semibold mb-3"><span class="counter-value" data-target="2500">0</span>k </h4>
+                                                    <div class="d-flex align-items-center gap-2">
+                                                        <h5 class="text-success fs-xs mb-0">
+                                                            <i class="ri-arrow-right-up-line fs-sm align-middle"></i> +10.42 %
+                                                        </h5>
+                                                        <p class="text-muted mb-0">than last week</p>
+                                                    </div>
+                                                </div>
+                                            </div><!-- end card body -->
+                                        </div><!-- end card -->
+                                    </div><!-- end col -->
+                                </div> <!-- end row-->
+                            </div>
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-xl-8">
+                        <div class="card">
+                            <div class="row g-0">
+                                <div class="col-xl-9">
+                                    <div class="card-header border-0 align-items-center d-flex">
+                                        <h4 class="card-title mb-0 flex-grow-1">Revenue</h4>
+                                        <div>
+                                            <button type="button" class="btn btn-subtle-secondary btn-sm">
+                                                ALL
+                                            </button>
+                                            <button type="button" class="btn btn-subtle-secondary btn-sm">
+                                                1M
+                                            </button>
+                                            <button type="button" class="btn btn-subtle-secondary btn-sm">
+                                                6M
+                                            </button>
+                                            <button type="button" class="btn btn-subtle-primary btn-sm">
+                                                1Y
+                                            </button>
+                                        </div>
+                                    </div><!-- end card header -->
+                                    <div class="card-body ps-0">
+                                        <div class="w-100">
+                                            <div id="market-overview" data-colors='["--tb-primary", "--tb-secondary"]' class="apex-charts" dir="ltr"></div>
+                                        </div>
+                                    </div><!-- end card body -->
+                                </div>
+                                <div class="col-xl-3">
+                                    <div class="card-body border-start-xl border-top border-top-xl-0 border-2 h-100">
+                                        <div>
+                                            <p class="text-muted mb-2">Budget (USD)</p>
+                                            <h4>$750.36M <small class="text-success fs-sm fw-normal"><i class="ph-arrow-up align-baseline"></i> 2.17%</small></h4>
+                                            <p class="text-muted">Budget in than last years</p>
+                                            <div class="mx-3">
+                                                <div id="mini-chart-6" data-colors='["--tb-primary"]' class="apex-charts" dir="ltr"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-4">
+                                            <p class="text-muted mb-2">Payouts (USD)</p>
+                                            <h4>$7,45,123 <small class="text-danger fs-sm fw-normal"><i class="ph-arrow-down align-baseline"></i> -1.36%</small></h4>
+                                            <p class="text-muted">Payouts in than last years</p>
+                                            <div class="mx-3">
+                                                <div id="mini-chart-7" data-colors='["--tb-info"]' class="apex-charts" dir="ltr"></div>
+                                            </div>
+                                        </div>
+                                        <div class="mt-4">
+                                            <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#addAmount">Add Amount</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!-- end card -->
+                    </div><!-- end col -->
+                </div><!--end row-->
+
+                <div class="row">
+                    <div class="col-xl-6">
+                        <!-- card -->
+                        <div class="card">
+                            <div class="card-header align-items-center d-flex">
+                                <h4 class="card-title mb-0 flex-grow-1">Sales by Countries</h4>
+                                <div class="flex-shrink-0">
+                                    <button type="button" class="btn btn-subtle-primary btn-sm">
+                                        Export Report
+                                    </button>
+                                </div>
+                            </div><!-- end card header -->
+
+                            <!-- card body -->
+                            <div class="card-body">
+
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <div id="world-map-line-markers" data-colors='["--tb-light"]' style="height: 340px"></div>
+                                    </div>
+                                    <div class="col-lg-4">
+                                        <div class="mb-4">
+                                            <h6 class="text-muted mb-3 fw-medium fs-xs text-uppercase">Compared to last month</h6>
+                                            <h3><span class="counter-value" data-target="53736"></span> <small class="text-muted fw-normal fs-sm">Sales</small></h3>
+                                        </div>
+                                        <div>
+                                            <ul class="list-unstyled vstack gap-2">
+                                                <li class="p-2 rounded">
+                                                    <i class="ri-checkbox-blank-circle-fill text-primary align-bottom me-1"></i> United States <span class="float-end">15,364</span>
+                                                </li>
+                                                <li class="bg-light-subtle p-2 rounded">
+                                                    <i class="ri-checkbox-blank-circle-fill text-secondary align-bottom me-1"></i> Greenland <span class="float-end">12,387</span>
+                                                </li>
+                                                <li class="p-2 rounded">
+                                                    <i class="ri-checkbox-blank-circle-fill text-info align-bottom me-1"></i> Serbia <span class="float-end">9,123</span>
+                                                </li>
+                                                <li class="bg-light-subtle p-2 rounded">
+                                                    <i class="ri-checkbox-blank-circle-fill text-success align-bottom me-1"></i> Russia <span class="float-end">7,108</span>
+                                                </li>
+                                                <li class="p-2 rounded">
+                                                    <i class="ri-checkbox-blank-circle-fill text-danger align-bottom me-1"></i> Brazil <span class="float-end">6,731</span>
+                                                </li>
+                                                <li class="bg-light-subtle p-2 rounded">
+                                                    <i class="ri-checkbox-blank-circle-fill text-warning align-bottom me-1"></i> Sydney <span class="float-end">3,023</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- end card body -->
+                        </div>
+                        <!-- end card -->
+                    </div>
+                    <!-- end col -->
+
+                    <div class="col-xl-3 col-lg-6">
+                        <div class="card card-height-100">
+                            <div class="card-header d-flex">
+                                <h4 class="card-title mb-0 flex-grow-1">Traffic Source</h4>
+                                <div class="dropdown card-header-dropdown float-end">
+                                    <a class="text-reset dropdown-btn" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="ph-dots-three-outline-vertical"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end">
+                                        <a class="dropdown-item" href="#">Today</a>
+                                        <a class="dropdown-item" href="#">Last Week</a>
+                                        <a class="dropdown-item" href="#">Last Month</a>
+                                        <a class="dropdown-item" href="#">Current Year</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div id="column_chart" data-colors='["--tb-primary", "--tb-light"]' class="apex-charts" dir="ltr"></div>
+                            </div>
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-xl-3 col-lg-6">
+                        <div class="card card-height-100">
+                            <div class="card-header d-flex">
+                                <h4 class="card-title mb-0 flex-grow-1">Recent Sales</h4>
+                                <a href="#!" class="text-muted">View All <i class="ph-caret-right align-middle"></i></a>
+                            </div>
+                            <div class="card-body px-0">
+                                <div data-simplebar class="px-3" style="max-height: 360px;">
+                                    <table class="table mb-0">
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-1">
+                                                    <div class="flex-shrink-0">
+                                                        <img th:src="@{assets3/images/users/48/avatar-2.jpg}" alt="" class="avatar-sm rounded-circle p-1">
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <h6 class="fs-md mb-1">Bethany Nienow</h6>
+                                                        <p class="text-muted mb-0">03 Feb, 2023</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-end">
+                                                <h6 class="fs-md">$630.73</h6>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-1">
+                                                    <div class="flex-shrink-0">
+                                                        <img th:src="@{assets3/images/users/48/avatar-7.jpg}" alt="" class="avatar-sm rounded-circle p-1">
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <h6 class="fs-md mb-1">Sonia Conn</h6>
+                                                        <p class="text-muted mb-0">03 Feb, 2023</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-end">
+                                                <h6 class="fs-md">$1,452.64</h6>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-1">
+                                                    <div class="flex-shrink-0">
+                                                        <img th:src="@{assets3/images/users/48/avatar-4.jpg}" alt="" class="avatar-sm rounded-circle p-1">
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <h6 class="fs-md mb-1">Talon Bradtke</h6>
+                                                        <p class="text-muted mb-0">03 Feb, 2023</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-end">
+                                                <h6 class="fs-md">$478.87</h6>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-1">
+                                                    <div class="flex-shrink-0">
+                                                        <img th:src="@{assets3/images/users/48/avatar-5.jpg}" alt="" class="avatar-sm rounded-circle p-1">
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <h6 class="fs-md mb-1">Tyrell Kerluke</h6>
+                                                        <p class="text-muted mb-0">03 Feb, 2023</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-end">
+                                                <h6 class="fs-md">$82.14</h6>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-1">
+                                                    <div class="flex-shrink-0">
+                                                        <img th:src="@{assets3/images/users/48/avatar-6.jpg}" alt="" class="avatar-sm rounded-circle p-1">
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <h6 class="fs-md mb-1">Ross Zieme</h6>
+                                                        <p class="text-muted mb-0">03 Feb, 2023</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-end">
+                                                <h6 class="fs-md">$79.00</h6>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-1">
+                                                    <div class="flex-shrink-0">
+                                                        <img th:src="@{assets3/images/users/48/avatar-1.jpg}" alt="" class="avatar-sm rounded-circle p-1">
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <h6 class="fs-md mb-1">Hollis Spencer</h6>
+                                                        <p class="text-muted mb-0">03 Feb, 2023</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-end">
+                                                <h6 class="fs-md">$849.05</h6>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center gap-1">
+                                                    <div class="flex-shrink-0">
+                                                        <img th:src="@{assets3/images/users/48/avatar-8.jpg}" alt="" class="avatar-sm rounded-circle p-1">
+                                                    </div>
+                                                    <div class="flex-grow-1">
+                                                        <h6 class="fs-md mb-1">Cordia Grady</h6>
+                                                        <p class="text-muted mb-0">03 Feb, 2023</p>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="text-end">
+                                                <h6 class="fs-md">$254.32</h6>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--end col-->
+                </div><!--end row-->
+
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card" id="contactList">
+                            <div class="card-header align-items-center d-flex">
+                                <h4 class="card-title mb-0 flex-grow-1">Latest Orders</h4>
+                                <div class="flex-shrink-0">
+                                    <div class="dropdown card-header-dropdown sortble-dropdown">
+                                        <a class="text-reset dropdown-btn" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <span class="fw-semibold text-uppercase fs-12">Sort by:
+                                                    </span><span class="text-muted dropdown-title">Order Date</span> <i class="mdi mdi-chevron-down ms-1"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <button class="dropdown-item sort" data-sort="order_date">Order Date</button>
+                                            <button class="dropdown-item sort" data-sort="order_id">Order ID</button>
+                                            <button class="dropdown-item sort" data-sort="amount">Amount</button>
+                                            <button class="dropdown-item sort" data-sort="status">Status</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="table-responsive">
+                                    <table class="table table-borderless table-centered align-middle table-nowrap mb-0">
+                                        <thead class="text-muted table-light">
+                                        <tr>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="order_date">Order Date</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="order_id">Order ID</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="shop">Shop</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="customer">Customers</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="products">Products</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="amount">Amount</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="status">Status</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="rating">Rating</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="list">
+                                        <tr>
+                                            <td class="order_date">
+                                                15 Feb, 2023
+                                            </td>
+                                            <td class="order_id">
+                                                <a href="apps-ecommerce-order-overview.html" class="fw-medium link-primary">#TBS250011</a>
+                                            </td>
+                                            <td class="shop">
+                                                <img th:src="@{assets3/images/companies/img-7.png}" alt="" class="avatar-xxs rounded-circle">
+                                            </td>
+                                            <td class="customer">
+                                                Alex Smith
+                                            </td>
+                                            <td class="products">Clothes</td>
+                                            <td class="amount">
+                                                <span class="fw-medium">$109.00</span>
+                                            </td>
+                                            <td class="status">
+                                                <span class="badge bg-secondary-subtle text-secondary">New</span>
+                                            </td>
+                                            <td class="rating">
+                                                <h5 class="fs-md fw-medium mb-0">-</h5>
+                                            </td>
+                                        </tr><!-- end tr -->
+                                        <tr>
+                                            <td class="order_date">
+                                                14 Feb, 2023
+                                            </td>
+                                            <td class="order_id">
+                                                <a href="apps-ecommerce-order-overview.html" class="fw-medium link-primary">#TBS250010</a>
+                                            </td>
+                                            <td class="shop">
+                                                <img th:src="@{assets3/images/companies/img-1.png}" alt="" class="avatar-xxs rounded-circle">
+                                            </td>
+                                            <td class="customer">
+                                                Jansh Brown
+                                            </td>
+                                            <td class="products">Kitchen Storage</td>
+                                            <td class="amount">
+                                                <span class="fw-medium">$149.00</span>
+                                            </td>
+                                            <td class="status">
+                                                <span class="badge bg-warning-subtle text-warning">Pending</span>
+                                            </td>
+                                            <td class="rating">
+                                                <h5 class="fs-md fw-medium mb-0"><i class="ph-star align-baseline text-warning"></i> 4.5</h5>
+                                            </td>
+                                        </tr><!-- end tr -->
+                                        <tr>
+                                            <td class="order_date">
+                                                30 Jan, 2023
+                                            </td>
+                                            <td class="order_id">
+                                                <a href="apps-ecommerce-order-overview.html" class="fw-medium link-primary">#TBS250009</a>
+                                            </td>
+                                            <td class="shop">
+                                                <img th:src="@{assets3/images/companies/img-2.png}" alt="" class="avatar-xxs rounded-circle">
+                                            </td>
+                                            <td class="customer">
+                                                Ayaan Bowen
+                                            </td>
+                                            <td class="products">Bike Accessories</td>
+                                            <td class="amount">
+                                                <span class="fw-medium">$215.00</span>
+                                            </td>
+                                            <td class="status">
+                                                <span class="badge bg-danger-subtle text-danger">Out of Delivered</span>
+                                            </td>
+                                            <td class="rating">
+                                                <h5 class="fs-md fw-medium mb-0"><i class="ph-star align-baseline text-warning"></i> 4.9</h5>
+                                            </td>
+                                        </tr><!-- end tr -->
+                                        <tr>
+                                            <td class="order_date">
+                                                25 Jan, 2023
+                                            </td>
+                                            <td class="order_id">
+                                                <a href="apps-ecommerce-order-overview.html" class="fw-medium link-primary">#TBS250008</a>
+                                            </td>
+                                            <td class="shop">
+                                                <img th:src="@{assets3/images/companies/img-3.png}" alt="" class="avatar-xxs rounded-circle">
+                                            </td>
+                                            <td class="customer">
+                                                Prezy Mark
+                                            </td>
+                                            <td class="products">Furniture</td>
+                                            <td class="amount">
+                                                <span class="fw-medium">$199.00</span>
+                                            </td>
+                                            <td class="status">
+                                                <span class="badge bg-primary-subtle text-primary">Shipping</span>
+                                            </td>
+                                            <td class="rating">
+                                                <h5 class="fs-md fw-medium mb-0"><i class="ph-star align-baseline text-warning"></i> 4.3</h5>
+                                            </td>
+                                        </tr><!-- end tr -->
+                                        <tr>
+                                            <td class="order_date">
+                                                19 Jan, 2023
+                                            </td>
+                                            <td class="order_id">
+                                                <a href="apps-ecommerce-order-overview.html" class="fw-medium link-primary">#TBS250007</a>
+                                            </td>
+                                            <td class="shop">
+                                                <img th:src="@{assets3/images/companies/img-4.png}" alt="" class="avatar-xxs rounded-circle">
+                                            </td>
+                                            <td class="customer">
+                                                Vihan Hudda
+                                            </td>
+                                            <td class="products">Bags and Wallets</td>
+                                            <td class="amount">
+                                                <span class="fw-medium">$330.00</span>
+                                            </td>
+                                            <td class="status">
+                                                <span class="badge bg-success-subtle text-success">Delivered</span>
+                                            </td>
+                                            <td class="rating">
+                                                <h5 class="fs-md fw-medium mb-0"><i class="ph-star align-baseline text-warning"></i> 4.7</h5>
+                                            </td>
+                                        </tr><!-- end tr -->
+                                        <tr>
+                                            <td class="order_date">
+                                                16 Jan, 2023
+                                            </td>
+                                            <td class="order_id">
+                                                <a href="apps-ecommerce-order-overview.html" class="fw-medium link-primary">#TBS250006</a>
+                                            </td>
+                                            <td class="shop">
+                                                <img th:src="@{assets3/images/companies/img-5.png}" alt="" class="avatar-xxs rounded-circle">
+                                            </td>
+                                            <td class="customer">
+                                                Vihan Hudda
+                                            </td>
+                                            <td class="products">Bags and Wallets</td>
+                                            <td class="amount">
+                                                <span class="fw-medium">$745.11</span>
+                                            </td>
+                                            <td class="status">
+                                                <span class="badge bg-warning-subtle text-warning">Pending</span>
+                                            </td>
+                                            <td class="rating">
+                                                <h5 class="fs-md fw-medium mb-0"><i class="ph-star align-baseline text-warning"></i> 4.6</h5>
+                                            </td>
+                                        </tr><!-- end tr -->
+                                        </tbody><!-- end tbody -->
+                                    </table><!-- end table -->
+                                    <div class="noresult" style="display: none">
+                                        <div class="text-center">
+                                            <lord-icon src="https://cdn.lordicon.com/msoeawqm.json" trigger="loop" colors="primary:#405189,secondary:#0ab39c" style="width:75px;height:75px"></lord-icon>
+                                            <h5 class="mt-2">Sorry! No Result Found</h5>
+                                            <p class="text-muted mb-0">We've searched more than 150+ transactions We did not find any transactions for you search.</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-lg-4">
+                        <div class="card">
+                            <div class="card-header d-flex align-items-center">
+                                <h4 class="card-title mb-0 flex-grow-1">Popular Products</h4>
+                                <div class="flex-shrink-0">
+                                    <div class="dropdown card-header-dropdown">
+                                        <a class="text-reset dropdown-btn" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <span class="fw-semibold text-uppercase">Sort by:
+                                                    </span><span class="text-muted">Today<i class="mdi mdi-chevron-down ms-1"></i></span>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a class="dropdown-item" href="#">Today</a>
+                                            <a class="dropdown-item" href="#">Yesterday</a>
+                                            <a class="dropdown-item" href="#">Last 7 Days</a>
+                                            <a class="dropdown-item" href="#">Last 30 Days</a>
+                                            <a class="dropdown-item" href="#">This Month</a>
+                                            <a class="dropdown-item" href="#">Last Month</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body px-0">
+                                <div data-simplebar class="px-3" style="max-height: 333px;">
+                                    <div class="vstack gap-2">
+                                        <div class="p-2 border border-dashed">
+                                            <div class="d-flex align-items-center gap-2">
+                                                <div class="avatar-sm flex-shrink-0">
+                                                    <div class="avatar-title bg-light rounded">
+                                                        <img th:src="@{assets3/images/products/32/img-1.png}" alt="" class="avatar-xs">
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <a href="#!">
+                                                        <h6 class="fs-md mb-2">Craft Women Black Sling Bag</h6>
+                                                    </a>
+                                                    <ul class="hstack list-unstyled gap-2 mb-0 fs-sm fw-medium text-muted">
+                                                        <li>
+                                                            <i class="ph-star align-baseline"></i> 487
+                                                        </li>
+                                                        <li>
+                                                            <i class="ph-shopping-cart align-baseline"></i> 936
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="text-end">
+                                                    <h5 class="fs-md text-primary mb-0">$15.99</h5>
+                                                </div>
+                                                <div class="flex-shrink-0">
+                                                    <button class="btn btn-secondary btn-icon btn-sm" data-bs-toggle="modal" data-bs-target="#productModal"><i class="ph-arrow-right"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="p-2 border border-dashed">
+                                            <div class="d-flex align-items-center gap-2">
+                                                <div class="avatar-sm flex-shrink-0">
+                                                    <div class="avatar-title bg-light rounded">
+                                                        <img th:src="@{assets3/images/products/32/img-2.png}" alt="" class="avatar-xs">
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <a href="#!">
+                                                        <h6 class="fs-md mb-2">Unique Men's Wrist Watch</h6>
+                                                    </a>
+                                                    <ul class="hstack list-unstyled gap-2 mb-0 fs-sm fw-medium text-muted">
+                                                        <li>
+                                                            <i class="ph-star align-baseline"></i> 452
+                                                        </li>
+                                                        <li>
+                                                            <i class="ph-shopping-cart align-baseline"></i> 1420
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="text-end">
+                                                    <h5 class="fs-md text-primary mb-0">$84.99</h5>
+                                                </div>
+                                                <div class="flex-shrink-0">
+                                                    <button class="btn btn-secondary btn-icon btn-sm" data-bs-toggle="modal" data-bs-target="#productModal"><i class="ph-arrow-right"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="p-2 border border-dashed">
+                                            <div class="d-flex align-items-center gap-2">
+                                                <div class="avatar-sm flex-shrink-0">
+                                                    <div class="avatar-title bg-light rounded">
+                                                        <img th:src="@{assets3/images/products/32/img-3.png}" alt="" class="avatar-xs">
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <a href="#!">
+                                                        <h6 class="fs-md mb-2">Twiala Floral Dress</h6>
+                                                    </a>
+                                                    <ul class="hstack list-unstyled gap-2 mb-0 fs-sm fw-medium text-muted">
+                                                        <li>
+                                                            <i class="ph-star align-baseline"></i> 562
+                                                        </li>
+                                                        <li>
+                                                            <i class="ph-shopping-cart align-baseline"></i> 1348
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="text-end">
+                                                    <h5 class="fs-md text-primary mb-0">$149.99</h5>
+                                                </div>
+                                                <div class="flex-shrink-0">
+                                                    <button class="btn btn-secondary btn-icon btn-sm" data-bs-toggle="modal" data-bs-target="#productModal"><i class="ph-arrow-right"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="p-2 border border-dashed">
+                                            <div class="d-flex align-items-center gap-2">
+                                                <div class="avatar-sm flex-shrink-0">
+                                                    <div class="avatar-title bg-light rounded">
+                                                        <img th:src="@{assets3/images/products/32/img-4.png}" alt="" class="avatar-xs">
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <a href="#!">
+                                                        <h6 class="fs-md mb-2">Tokyo Fancy Bomber Jacket</h6>
+                                                    </a>
+                                                    <ul class="hstack list-unstyled gap-2 mb-0 fs-sm fw-medium text-muted">
+                                                        <li>
+                                                            <i class="ph-star align-baseline"></i> 644
+                                                        </li>
+                                                        <li>
+                                                            <i class="ph-shopping-cart align-baseline"></i> 1540
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="text-end">
+                                                    <h5 class="fs-md text-primary mb-0">$245.00</h5>
+                                                </div>
+                                                <div class="flex-shrink-0">
+                                                    <button class="btn btn-secondary btn-icon btn-sm" data-bs-toggle="modal" data-bs-target="#productModal"><i class="ph-arrow-right"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="p-2 border border-dashed">
+                                            <div class="d-flex align-items-center gap-2">
+                                                <div class="avatar-sm flex-shrink-0">
+                                                    <div class="avatar-title bg-light rounded">
+                                                        <img th:src="@{assets3/images/products/32/img-5.png}" alt="" class="avatar-xs">
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <a href="#!">
+                                                        <h6 class="fs-md mb-2">Aster Dress 2XL / Royal Blue</h6>
+                                                    </a>
+                                                    <ul class="hstack list-unstyled gap-2 mb-0 fs-sm fw-medium text-muted">
+                                                        <li>
+                                                            <i class="ph-star align-baseline"></i> 841
+                                                        </li>
+                                                        <li>
+                                                            <i class="ph-shopping-cart align-baseline"></i> 985
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="text-end">
+                                                    <h5 class="fs-md text-primary mb-0">$74.63</h5>
+                                                </div>
+                                                <div class="flex-shrink-0">
+                                                    <button class="btn btn-secondary btn-icon btn-sm" data-bs-toggle="modal" data-bs-target="#productModal"><i class="ph-arrow-right"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="p-2 border border-dashed">
+                                            <div class="d-flex align-items-center gap-2">
+                                                <div class="avatar-sm flex-shrink-0">
+                                                    <div class="avatar-title bg-light rounded">
+                                                        <img th:src="@{assets3/images/products/32/img-6.png}" alt="" class="avatar-xs">
+                                                    </div>
+                                                </div>
+                                                <div class="flex-grow-1">
+                                                    <a href="#!">
+                                                        <h6 class="fs-md mb-2">Craft Women Black Sling Bag</h6>
+                                                    </a>
+                                                    <ul class="hstack list-unstyled gap-2 mb-0 fs-sm fw-medium text-muted">
+                                                        <li>
+                                                            <i class="ph-star align-baseline"></i> 763
+                                                        </li>
+                                                        <li>
+                                                            <i class="ph-shopping-cart align-baseline"></i> 763
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                                <div class="text-end">
+                                                    <h5 class="fs-md text-primary mb-0">$245.74</h5>
+                                                </div>
+                                                <div class="flex-shrink-0">
+                                                    <button class="btn btn-secondary btn-icon btn-sm" data-bs-toggle="modal" data-bs-target="#productModal"><i class="ph-arrow-right"></i></button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--end col-->
+                </div><!--end row-->
+
+                <div class="row">
+                    <div class="col-xl-4">
+                        <div class="card">
+                            <div class="card-header d-flex align-items-center">
+                                <h5 class="card-title mb-0 flex-grow-1">Orders Status</h5>
+                                <div class="dropdown card-header-dropdown">
+                                    <a class="text-reset dropdown-btn" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="ph-dots-three-outline-vertical"></i>
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-end">
+                                        <a class="dropdown-item" href="#">Current Years</a>
+                                        <a class="dropdown-item" href="#">Last Years</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-3 pb-1 text-center">
+                                    <h6 class="mb-0">01 Jan, 2022 - 01 Jan, 2023</h6>
+                                </div>
+
+                                <div class="row align-items-center mb-3">
+                                    <div class="col-lg-4">
+                                        <div class="hstack gap-2">
+                                            <p class="mb-0 flex-grow-1">New</p>
+                                            <h6 class="mb-0">307</h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div class="progress animated-progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-primary" style="width: 50%"></div>
+                                        </div>
+                                    </div><!--end col-->
+                                </div><!--end row-->
+
+                                <div class="row align-items-center mb-3">
+                                    <div class="col-lg-4">
+                                        <div class="hstack gap-2">
+                                            <p class="mb-0 flex-grow-1">Pending</p>
+                                            <h6 class="mb-0">177</h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div class="progress animated-progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-warning" style="width: 37%"></div>
+                                        </div>
+                                    </div><!--end col-->
+                                </div><!--end row-->
+
+                                <div class="row align-items-center mb-3">
+                                    <div class="col-lg-4">
+                                        <div class="hstack gap-2">
+                                            <p class="mb-0 flex-grow-1">Rejected</p>
+                                            <h6 class="mb-0">39</h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div class="progress animated-progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-secondary" style="width: 12%"></div>
+                                        </div>
+                                    </div><!--end col-->
+                                </div><!--end row-->
+
+                                <div class="row align-items-center mb-3">
+                                    <div class="col-lg-4">
+                                        <div class="hstack gap-2">
+                                            <p class="mb-0 flex-grow-1">Returns</p>
+                                            <h6 class="mb-0">17</h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div class="progress animated-progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger bg-opacity-75" style="width: 3%"></div>
+                                        </div>
+                                    </div><!--end col-->
+                                </div><!--end row-->
+
+                                <div class="row align-items-center mb-3">
+                                    <div class="col-lg-4">
+                                        <div class="hstack gap-2">
+                                            <p class="mb-0 flex-grow-1">Dispatched</p>
+                                            <h6 class="mb-0">661</h6>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <div class="progress animated-progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-info" style="width: 57%"></div>
+                                        </div>
+                                    </div><!--end col-->
+                                </div><!--end row-->
+
+                                <div class="row align-items-center mb-3">
+                                    <div class="col-lg-4">
+                                        <div class="hstack gap-2">
+                                            <p class="mb-0 flex-grow-1">Delivered</p>
+                                            <h6 class="mb-0">1320</h6>
+                                        </div>
+                                    </div><!--end col-->
+                                    <div class="col-lg-8">
+                                        <div class="progress animated-progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" style="width: 86%"></div>
+                                        </div>
+                                    </div><!--end col-->
+                                </div><!--end row-->
+
+                                <div class="row align-items-center">
+                                    <div class="col-lg-4">
+                                        <div class="hstack gap-2">
+                                            <p class="mb-0 flex-grow-1">Cancelled</p>
+                                            <h6 class="mb-0">74</h6>
+                                        </div>
+                                    </div><!--end col-->
+                                    <div class="col-lg-8">
+                                        <div class="progress animated-progress" role="progressbar" aria-label="Basic example" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+                                            <div class="progress-bar progress-bar-striped progress-bar-animated bg-danger" style="width: 13%"></div>
+                                        </div>
+                                    </div><!--end col-->
+                                </div><!--end row-->
+                            </div>
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-xl-4 col-lg-6">
+                        <div class="card card-height-100">
+                            <div class="card-header d-flex">
+                                <h5 class="card-title flex-grow-1 mb-0">Recent Activity</h5>
+                                <div class="flex-shrink-0">
+                                    <a href="#!" class="btn btn-subtle-info btn-sm">View More <i class="ph-caret-right align-middle"></i></a>
+                                </div>
+                            </div>
+                            <div class="card-body px-0">
+                                <div data-simplebar class="px-3" style="max-height: 258px;">
+                                    <div class="acitivity-timeline acitivity-main">
+                                        <div class="acitivity-item d-flex">
+                                            <div class="flex-shrink-0 avatar-xs acitivity-avatar">
+                                                <div class="avatar-title bg-success-subtle text-success rounded-circle">
+                                                    <i class="ph-shopping-cart"></i>
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <h6 class="mb-1 lh-base">Purchased by James Price</h6>
+                                                <p class="text-muted mb-2">Product noise evolve smartwatch </p>
+                                                <small class="mb-0 text-muted">05:57 AM Today</small>
+                                            </div>
+                                        </div>
+                                        <div class="acitivity-item py-3 d-flex">
+                                            <div class="flex-shrink-0">
+                                                <img th:src="@{assets3/images/users/32/avatar-2.jpg}" alt="" class="avatar-xs rounded-circle acitivity-avatar">
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <h6 class="mb-1 lh-base">Natasha Carey have liked the products</h6>
+                                                <p class="text-muted mb-2">Allow users to like products in your WooCommerce store.</p>
+                                                <small class="mb-0 text-muted">25 Dec, 2022</small>
+                                            </div>
+                                        </div>
+                                        <div class="acitivity-item py-3 d-flex">
+                                            <div class="flex-shrink-0">
+                                                <div class="avatar-xs acitivity-avatar">
+                                                    <div class="avatar-title rounded-circle bg-secondary-subtle text-secondary">
+                                                        <i class="mdi mdi-sale fs-14"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <h6 class="mb-1 lh-base">Today offers by <a href="apps-ecommerce-seller-details.html" class="link-secondary">Digitech Galaxy</a></h6>
+                                                <p class="text-muted mb-2">Offer is valid on orders of $230 Or above for selected products only.</p>
+                                                <small class="mb-0 text-muted">12 Dec, 2022</small>
+                                            </div>
+                                        </div>
+                                        <div class="acitivity-item py-3 d-flex">
+                                            <div class="flex-shrink-0">
+                                                <div class="avatar-xs acitivity-avatar">
+                                                    <div class="avatar-title rounded-circle bg-warning-subtle text-warning">
+                                                        <i class="ri-bookmark-fill"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <h6 class="mb-1 lh-base">Favoried Product</h6>
+                                                <p class="text-muted mb-2">Esther James have favorited product.</p>
+                                                <small class="mb-0 text-muted">25 Nov, 2022</small>
+                                            </div>
+                                        </div>
+                                        <div class="acitivity-item py-3 d-flex">
+                                            <div class="flex-shrink-0">
+                                                <div class="avatar-xs acitivity-avatar">
+                                                    <div class="avatar-title rounded-circle bg-secondary-subtle text-secondary">
+                                                        <i class="mdi mdi-sale fs-14"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <h6 class="mb-1 lh-base">Flash sale starting <span class="text-primary">Tomorrow.</span></h6>
+                                                <p class="text-muted mb-2">Flash sale by <a href="javascript:void(0);" class="link-secondary fw-medium">Zoetic Fashion</a></p>
+                                                <small class="mb-0 text-muted">22 Oct, 2022</small>
+                                            </div>
+                                        </div>
+                                        <div class="acitivity-item d-flex">
+                                            <div class="flex-shrink-0">
+                                                <div class="avatar-xs acitivity-avatar">
+                                                    <div class="avatar-title rounded-circle bg-info-subtle text-info">
+                                                        <i class="ri-line-chart-line"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="flex-grow-1 ms-3">
+                                                <h6 class="mb-1 lh-base">Monthly sales report</h6>
+                                                <p class="text-muted mb-2"><span class="text-danger">2 days left</span> notification to submit the monthly sales report. <a href="javascript:void(0);" class="link-warning text-decoration-underline">Reports Builder</a></p>
+                                                <small class="mb-0 text-muted">15 Oct, 2022</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-xl-4 col-lg-6">
+                        <div class="card card-height-100">
+                            <div class="card-header d-flex align-items-center">
+                                <h5 class="card-title flex-grow-1 mb-0">Insight</h5>
+                                <div class="flex-shrink-0">
+                                    <div class="dropdown card-header-dropdown">
+                                        <a class="text-reset dropdown-btn" href="#" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <span class="text-muted">This Month<i class="mdi mdi-chevron-down ms-1"></i></span>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-end">
+                                            <a class="dropdown-item" href="#">This Month</a>
+                                            <a class="dropdown-item" href="#">Last Month</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="vstack gap-2">
+                                    <div class="border py-2 px-3 w-100 rounded d-flex align-items-center gap-2">
+                                        <i class="bi bi-check2-square text-primary"></i>
+                                        <h6 class="mb-0">The recognition that one has a mental illness</h6>
+                                    </div>
+                                    <div class="border py-2 px-3 w-100 rounded d-flex align-items-center gap-2">
+                                        <i class="bi bi-check2-square text-primary"></i>
+                                        <h6 class="mb-0">Review market characteristics and trends</h6>
+                                    </div>
+                                    <div class="border py-2 px-3 w-100 rounded d-flex align-items-center gap-2">
+                                        <i class="bi bi-check2-square text-primary"></i>
+                                        <h6 class="mb-0">Digital analytics data including site analytics</h6>
+                                    </div>
+                                    <div class="border py-2 px-3 w-100 rounded d-flex align-items-center gap-2">
+                                        <i class="bi bi-check2-square text-primary"></i>
+                                        <h6 class="mb-0">Check uikings theme and give customer support</h6>
+                                    </div>
+                                    <div class="border py-2 px-3 w-100 rounded d-flex align-items-center gap-2">
+                                        <i class="bi bi-check2-square text-primary"></i>
+                                        <h6 class="mb-0">Success stories and case studies</h6>
+                                    </div>
+                                    <div class="border py-2 px-3 w-100 rounded d-flex align-items-center gap-2">
+                                        <i class="bi bi-check2-square text-primary"></i>
+                                        <h6 class="mb-0">Preferences & purchase activity</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!--end col-->
+                </div><!--end row-->
+
+            </div>
+            <!-- container-fluid -->
+        </div>
+    </div>
+
+
+        <!-- End Page-content -->
+
+        <footer class="footer">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <script>document.write(new Date().getFullYear())</script> © Steex.
+                    </div>
+                    <div class="col-sm-6">
+                        <div class="text-sm-end d-none d-sm-block">
+                            Design & Develop by Themesbrand
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
+        </footer>
+    </div>
+    <!-- end main content-->
+
+</div>
+<!-- END layout-wrapper -->
+
+<!-- Modal -->
+<div class="modal fade" id="addAmount" tabindex="-1" aria-labelledby="addAmountLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title" id="addAmountLabel">Add Amount</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form action="#!">
+                    <div class="row g-3">
+                        <div class="col-lg-12">
+                            <div>
+                                <label for="AmountInput" class="form-label">Amount</label>
+                                <input type="number" class="form-control" id="AmountInput" placeholder="$000.00">
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <label class="form-label">Select Method</label>
+                            <div class="row g-3">
+                                <div class="col-lg-4">
+                                    <label class="border rounded w-100 form-label p-2">
+                                        <input class="form-check-input me-1" name="exampleRadios" type="radio" value="" checked>
+                                        Visa
+                                    </label>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label class="border rounded w-100 form-label p-2">
+                                        <input class="form-check-input me-1" name="exampleRadios" type="radio" value="">
+                                        Mastercard
+                                    </label>
+                                </div>
+                                <div class="col-lg-4">
+                                    <label class="border rounded w-100 form-label p-2">
+                                        <input class="form-check-input me-1" name="exampleRadios" type="radio" value="">
+                                        Credit Card
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div>
+                                <label for="cardNumber" class="form-label">Card Number</label>
+                                <input type="number" class="form-control" id="cardNumber" placeholder="xxxx xxxx xxxx xxxx">
+                            </div>
+                        </div>
+                        <div class="col-lg-8">
+                            <div>
+                                <label for="month" class="form-label">Expiry Date</label>
+                                <div class="row g-3">
+                                    <div class="col-lg-6">
+                                        <input type="number" class="form-control" id="month" placeholder="MM">
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <input type="number" class="form-control" id="years" placeholder="YYYY">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div>
+                                <label for="cvv/cvc" class="form-label">CVV/CVC</label>
+                                <input type="number" class="form-control" id="cvv/cvc" placeholder="***">
+                            </div>
+                        </div>
+                        <div class="col-lg-12">
+                            <div>
+                                <label for="cardHoldersName" class="form-label">Cardholders Name</label>
+                                <input type="text" class="form-control" id="cardHoldersName" placeholder="Enter name">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-ghost-danger" data-bs-dismiss="modal"><i class="ph-x align-middle"></i> Close</button>
+                <button type="button" class="btn btn-primary">Add Amount</button>
+            </div>
+        </div>
     </div>
 </div>
+<!-- end Modal -->
+
+<!-- Product Modal -->
+<div class="modal fade" id="productModal" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content border-0 overflow-hidden">
+            <div class="modal-body p-0 ribbon-box">
+                <div class="ribbon ribbon-danger ribbon-shape trending-ribbon">
+                    <span class="trending-ribbon-text">Trending</span> <i class="ri-flashlight-fill text-white align-bottom float-end ms-1"></i>
+                </div>
+                <div class="row g-0">
+                    <div class="col-lg-5">
+                        <div class="bg-primary-subtle p-5 h-100">
+                            <div class="p-lg-4">
+                                <img src="assets/images/products/img-3.png" alt="" class="img-fluid">
+                            </div>
+                        </div>
+                    </div><!--end col-->
+                    <div class="col-lg-7">
+                        <div class="p-4 h-100">
+                            <button type="button" class="btn-close float-end" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <a href="#!"><h5 class="mb-1">Craft Women Black Sling Bag</h5></a>
+                            <p class="text-muted">Fashion & Clothing</p>
+
+                            <h5 class="mb-3">$199.99 <del class="text-muted fs-sm fw-normal">$299.99</del></h5>
+
+                            <ul class="list-unstyled hstack gap-2 mb-4">
+                                <li>
+                                    Available Colors
+                                </li>
+                                <li>
+                                    <div class="avatar-xxs">
+                                        <div class="avatar-title rounded bg-primary-subtle"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="avatar-xxs">
+                                        <div class="avatar-title rounded bg-success-subtle"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="avatar-xxs">
+                                        <div class="avatar-title rounded bg-danger-subtle"></div>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="avatar-xxs">
+                                        <div class="avatar-title rounded bg-dark-subtle"></div>
+                                    </div>
+                                </li>
+                            </ul>
+
+                            <ul class="list-unstyled vstack gap-2 mb-4">
+                                <li class=""><i class="bi bi-check2-circle me-2 align-middle text-success"></i>In stock</li>
+                                <li class=""><i class="bi bi-check2-circle me-2 align-middle text-success"></i>Free delivery available</li>
+                                <li class=""><i class="bi bi-check2-circle me-2 align-middle text-success"></i>Sales 10% Off Use Code: <b>STEEX10</b></li>
+                            </ul>
+
+                            <div class="hstack gap-2 justify-content-end">
+                                <button class="btn btn-primary"><i class="bi bi-cart align-baseline me-1"></i> Add To Cart</button>
+                                <button class="btn btn-subtle-secondary">View Details <i class="bi bi-arrow-right align-baseline ms-1"></i></button>
+                            </div>
+                        </div>
+                    </div><!--end col-->
+                </div><!--end row-->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Product Modal -->
+
+
+<!--start back-to-top-->
+<button class="btn btn-dark btn-icon" id="back-to-top">
+    <i class="bi bi-caret-up fs-3xl"></i>
+</button>
+<!--end back-to-top-->
+
+<!--preloader-->
+<div id="preloader">
+    <div id="status">
+        <div class="spinner-border text-primary avatar-sm" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+</div>
+
+<div class="customizer-setting d-none d-md-block">
+    <div class="btn btn-info p-2 text-uppercase rounded-end-0 shadow-lg" data-bs-toggle="offcanvas" data-bs-target="#theme-settings-offcanvas" aria-controls="theme-settings-offcanvas">
+        <i class="bi bi-gear mb-1"></i> Customizer
+    </div>
+</div>
+
+<!-- Theme Settings -->
+<div class="offcanvas offcanvas-end border-0" tabindex="-1" id="theme-settings-offcanvas">
+    <div class="d-flex align-items-center bg-primary bg-gradient p-3 offcanvas-header">
+        <div class="me-2">
+            <h5 class="mb-1 text-white">Steex Builder</h5>
+            <p class="text-white text-opacity-75 mb-0">Choose your themes & layouts etc.</p>
+        </div>
+
+        <button type="button" class="btn-close btn-close-white ms-auto" id="customizerclose-btn" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body p-0">
+        <div data-simplebar class="h-100">
+            <div class="p-4">
+                <h6 class="fs-md mb-1">Layout</h6>
+                <p class="text-muted fs-sm">Choose your layout</p>
+
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-check card-radio">
+                            <input id="customizer-layout01" name="data-layout" type="radio" value="vertical" class="form-check-input">
+                            <label class="form-check-label p-0 avatar-md w-100" for="customizer-layout01">
+                                        <span class="d-flex gap-1 h-100">
+                                            <span class="flex-shrink-0">
+                                                <span class="bg-light d-flex h-100 flex-column gap-1 p-1">
+                                                    <span class="d-block p-1 px-2 bg-primary-subtle rounded mb-2"></span>
+                                                    <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                    <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                    <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                </span>
+                                            </span>
+                                            <span class="flex-grow-1">
+                                                <span class="d-flex h-100 flex-column">
+                                                    <span class="bg-light d-block p-1"></span>
+                                                    <span class="bg-light d-block p-1 mt-auto"></span>
+                                                </span>
+                                            </span>
+                                        </span>
+                            </label>
+                        </div>
+                        <h5 class="fs-sm text-center fw-medium mt-2">Vertical</h5>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-check card-radio">
+                            <input id="customizer-layout02" name="data-layout" type="radio" value="horizontal" class="form-check-input">
+                            <label class="form-check-label p-0 avatar-md w-100" for="customizer-layout02">
+                                        <span class="d-flex h-100 flex-column gap-1">
+                                            <span class="bg-light d-flex p-1 gap-1 align-items-center">
+                                                <span class="d-block p-1 bg-primary-subtle rounded me-1"></span>
+                                                <span class="d-block p-1 pb-0 px-2 bg-primary-subtle ms-auto"></span>
+                                                <span class="d-block p-1 pb-0 px-2 bg-primary-subtle"></span>
+                                            </span>
+                                            <span class="bg-light d-block p-1"></span>
+                                            <span class="bg-light d-block p-1 mt-auto"></span>
+                                        </span>
+                            </label>
+                        </div>
+                        <h5 class="fs-sm text-center fw-medium mt-2">Horizontal</h5>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-check card-radio">
+                            <input id="customizer-layout03" name="data-layout" type="radio" value="twocolumn" class="form-check-input">
+                            <label class="form-check-label p-0 avatar-md w-100" for="customizer-layout03">
+                                        <span class="d-flex gap-1 h-100">
+                                            <span class="flex-shrink-0">
+                                                <span class="bg-light d-flex h-100 flex-column gap-1">
+                                                    <span class="d-block p-1 bg-primary-subtle mb-2"></span>
+                                                    <span class="d-block p-1 pb-0 bg-primary-subtle"></span>
+                                                    <span class="d-block p-1 pb-0 bg-primary-subtle"></span>
+                                                    <span class="d-block p-1 pb-0 bg-primary-subtle"></span>
+                                                </span>
+                                            </span>
+                                            <span class="flex-shrink-0">
+                                                <span class="bg-light d-flex h-100 flex-column gap-1 p-1">
+                                                    <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                    <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                    <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                    <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                </span>
+                                            </span>
+                                            <span class="flex-grow-1">
+                                                <span class="d-flex h-100 flex-column">
+                                                    <span class="bg-light d-block p-1"></span>
+                                                    <span class="bg-light d-block p-1 mt-auto"></span>
+                                                </span>
+                                            </span>
+                                        </span>
+                            </label>
+                        </div>
+                        <h5 class="fs-sm text-center fw-medium mt-2">Two Column</h5>
+                    </div>
+                    <!-- end col -->
+                </div>
+
+                <h6 class="mt-4 fs-md mb-1">Theme</h6>
+                <p class="text-muted fs-sm">Choose your suitable Theme.</p>
+
+                <div class="row">
+                    <div class="col-6">
+                        <div class="form-check card-radio">
+                            <input id="customizer-theme01" name="data-theme" type="radio" value="default" class="form-check-input">
+                            <label class="form-check-label p-0" for="customizer-theme01">
+                                <img src="assets/images/custom-theme/light-mode.png" alt="" class="img-fluid">
+                            </label>
+                        </div>
+                        <h5 class="fs-sm text-center fw-medium mt-2">Default</h5>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-check card-radio">
+                            <input id="customizer-theme02" name="data-theme" type="radio" value="material" class="form-check-input">
+                            <label class="form-check-label p-0" for="customizer-theme02">
+                                <img src="assets/images/custom-theme/material.png" alt="" class="img-fluid">
+                            </label>
+                        </div>
+                        <h5 class="fs-sm text-center fw-medium mt-2">Material</h5>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-check card-radio">
+                            <input id="customizer-theme03" name="data-theme" type="radio" value="creative" class="form-check-input">
+                            <label class="form-check-label p-0" for="customizer-theme03">
+                                <img src="assets/images/custom-theme/creative.png" alt="" class="img-fluid">
+                            </label>
+                        </div>
+                        <h5 class="fs-sm text-center fw-medium mt-2">Creative</h5>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-check card-radio">
+                            <input id="customizer-theme04" name="data-theme" type="radio" value="minimal" class="form-check-input">
+                            <label class="form-check-label p-0" for="customizer-theme04">
+                                <img src="assets/images/custom-theme/minimal.png" alt="" class="img-fluid">
+                            </label>
+                        </div>
+                        <h5 class="fs-sm text-center fw-medium mt-2">Minimal</h5>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-check card-radio">
+                            <input id="customizer-theme05" name="data-theme" type="radio" value="modern" class="form-check-input">
+                            <label class="form-check-label p-0" for="customizer-theme05">
+                                <img src="assets/images/custom-theme/modern.png" alt="" class="img-fluid">
+                            </label>
+                        </div>
+                        <h5 class="fs-sm text-center fw-medium mt-2">Modern</h5>
+                    </div>
+                    <!-- end col -->
+                    <div class="col-6">
+                        <div class="form-check card-radio">
+                            <input id="customizer-theme06" name="data-theme" type="radio" value="interaction" class="form-check-input">
+                            <label class="form-check-label p-0" for="customizer-theme06">
+                                <img src="assets/images/custom-theme/interaction.png" alt="" class="img-fluid">
+                            </label>
+                        </div>
+                        <h5 class="fs-sm text-center fw-medium mt-2">Interaction</h5>
+                    </div><!-- end col -->
+                </div>
+
+                <h6 class="mt-4 fs-md mb-1">Color Scheme</h6>
+                <p class="text-muted fs-sm">Choose Light or Dark Scheme.</p>
+
+                <div class="colorscheme-cardradio">
+                    <div class="row g-3">
+                        <div class="col-6">
+                            <div class="form-check card-radio">
+                                <input class="form-check-input" type="radio" name="data-bs-theme" id="layout-mode-light" value="light">
+                                <label class="form-check-label p-0 bg-transparent" for="layout-mode-light">
+                                    <img src="assets/images/custom-theme/light-mode.png" alt="" class="img-fluid">
+                                </label>
+                            </div>
+                            <h5 class="fs-sm text-center fw-medium mt-2">Light</h5>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-check card-radio dark">
+                                <input class="form-check-input" type="radio" name="data-bs-theme" id="layout-mode-dark" value="dark">
+                                <label class="form-check-label p-0 bg-transparent" for="layout-mode-dark">
+                                    <img src="assets/images/custom-theme/dark-mode.png" alt="" class="img-fluid">
+                                </label>
+                            </div>
+                            <h5 class="fs-sm text-center fw-medium mt-2">Dark</h5>
+                        </div>
+
+                        <div class="col-6">
+                            <div class="form-check card-radio brand">
+                                <input class="form-check-input" type="radio" name="data-bs-theme" id="layout-mode-brand" value="brand" disabled>
+                                <h6 class="text-danger fs-18 lh-base text-center position-absolute top-50 start-50 translate-middle z-1 mb-0">Coming Soon</h6>
+                                <label class="form-check-label cursor-none p-0 bg-transparent opacity-75" for="layout-mode-brand">
+                                    <img src="assets/images/custom-theme/brand-mode.png" alt="" class="img-fluid">
+                                </label>
+                            </div>
+                            <h5 class="fs-sm text-center fw-medium mt-2">Brand</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="layout-width">
+                    <h6 class="mt-4 fs-md mb-1">Layout Width</h6>
+                    <p class="text-muted fs-sm">Choose Fluid or Boxed layout.</p>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-check card-radio">
+                                <input class="form-check-input" type="radio" name="data-layout-width" id="layout-width-fluid" value="fluid">
+                                <label class="form-check-label p-0 avatar-md w-100" for="layout-width-fluid">
+                                            <span class="d-flex gap-1 h-100">
+                                                <span class="flex-shrink-0">
+                                                    <span class="bg-light d-flex h-100 flex-column gap-1 p-1">
+                                                        <span class="d-block p-1 px-2 bg-primary-subtle rounded mb-2"></span>
+                                                        <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                        <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                        <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                    </span>
+                                                </span>
+                                                <span class="flex-grow-1">
+                                                    <span class="d-flex h-100 flex-column">
+                                                        <span class="bg-light d-block p-1"></span>
+                                                        <span class="bg-light d-block p-1 mt-auto"></span>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                </label>
+                            </div>
+                            <h5 class="fs-sm text-center fw-medium mt-2">Fluid</h5>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-check card-radio">
+                                <input class="form-check-input" type="radio" name="data-layout-width" id="layout-width-boxed" value="boxed">
+                                <label class="form-check-label p-0 avatar-md w-100 px-2" for="layout-width-boxed">
+                                            <span class="d-flex gap-1 h-100 border-start border-end">
+                                                <span class="flex-shrink-0">
+                                                    <span class="bg-light d-flex h-100 flex-column gap-1 p-1">
+                                                        <span class="d-block p-1 px-2 bg-primary-subtle rounded mb-2"></span>
+                                                        <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                        <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                        <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                    </span>
+                                                </span>
+                                                <span class="flex-grow-1">
+                                                    <span class="d-flex h-100 flex-column">
+                                                        <span class="bg-light d-block p-1"></span>
+                                                        <span class="bg-light d-block p-1 mt-auto"></span>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                </label>
+                            </div>
+                            <h5 class="fs-sm text-center fw-medium mt-2">Boxed</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="layout-position">
+                    <h6 class="mt-4 fs-md mb-1">Layout Position</h6>
+                    <p class="text-muted fs-sm">Choose Fixed or Scrollable Layout Position.</p>
+
+                    <div class="btn-group radio" role="group">
+                        <input type="radio" class="btn-check" name="data-layout-position" id="layout-position-fixed" value="fixed">
+                        <label class="btn btn-light w-sm" for="layout-position-fixed">Fixed</label>
+
+                        <input type="radio" class="btn-check" name="data-layout-position" id="layout-position-scrollable" value="scrollable">
+                        <label class="btn btn-light w-sm ms-0" for="layout-position-scrollable">Scrollable</label>
+                    </div>
+                </div>
+
+                <h6 class="mt-4 fs-md mb-1">Topbar Color</h6>
+                <p class="text-muted fs-sm">Choose Light or Dark Topbar Color.</p>
+
+                <div class="row">
+                    <div class="col-4">
+                        <div class="form-check card-radio">
+                            <input class="form-check-input" type="radio" name="data-topbar" id="topbar-color-light" value="light">
+                            <label class="form-check-label p-0 avatar-md w-100" for="topbar-color-light">
+                                        <span class="d-flex gap-1 h-100">
+                                            <span class="flex-shrink-0">
+                                                <span class="bg-light d-flex h-100 flex-column gap-1 p-1">
+                                                    <span class="d-block p-1 px-2 bg-primary-subtle rounded mb-2"></span>
+                                                    <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                    <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                    <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                </span>
+                                            </span>
+                                            <span class="flex-grow-1">
+                                                <span class="d-flex h-100 flex-column">
+                                                    <span class="bg-light d-block p-1"></span>
+                                                    <span class="bg-light d-block p-1 mt-auto"></span>
+                                                </span>
+                                            </span>
+                                        </span>
+                            </label>
+                        </div>
+                        <h5 class="fs-sm text-center fw-medium mt-2">Light</h5>
+                    </div>
+                    <div class="col-4">
+                        <div class="form-check card-radio">
+                            <input class="form-check-input" type="radio" name="data-topbar" id="topbar-color-dark" value="dark">
+                            <label class="form-check-label p-0 avatar-md w-100" for="topbar-color-dark">
+                                        <span class="d-flex gap-1 h-100">
+                                            <span class="flex-shrink-0">
+                                                <span class="bg-light d-flex h-100 flex-column gap-1 p-1">
+                                                    <span class="d-block p-1 px-2 bg-primary-subtle rounded mb-2"></span>
+                                                    <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                    <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                    <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                </span>
+                                            </span>
+                                            <span class="flex-grow-1">
+                                                <span class="d-flex h-100 flex-column">
+                                                    <span class="bg-primary d-block p-1"></span>
+                                                    <span class="bg-light d-block p-1 mt-auto"></span>
+                                                </span>
+                                            </span>
+                                        </span>
+                            </label>
+                        </div>
+                        <h5 class="fs-sm text-center fw-medium mt-2">Dark</h5>
+                    </div>
+                </div>
+
+                <div id="sidebar-size">
+                    <h6 class="mt-4 fs-md mb-1">Sidebar Size</h6>
+                    <p class="text-muted fs-sm">Choose a size of Sidebar.</p>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-check sidebar-setting card-radio">
+                                <input class="form-check-input" type="radio" name="data-sidebar-size" id="sidebar-size-default" value="lg">
+                                <label class="form-check-label p-0 avatar-md w-100" for="sidebar-size-default">
+                                            <span class="d-flex gap-1 h-100">
+                                                <span class="flex-shrink-0">
+                                                    <span class="bg-light d-flex h-100 flex-column gap-1 p-1">
+                                                        <span class="d-block p-1 px-2 bg-primary-subtle rounded mb-2"></span>
+                                                        <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                        <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                        <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                    </span>
+                                                </span>
+                                                <span class="flex-grow-1">
+                                                    <span class="d-flex h-100 flex-column">
+                                                        <span class="bg-light d-block p-1"></span>
+                                                        <span class="bg-light d-block p-1 mt-auto"></span>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                </label>
+                            </div>
+                            <h5 class="fs-sm text-center fw-medium mt-2">Default</h5>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="form-check sidebar-setting card-radio">
+                                <input class="form-check-input" type="radio" name="data-sidebar-size" id="sidebar-size-compact" value="md">
+                                <label class="form-check-label p-0 avatar-md w-100" for="sidebar-size-compact">
+                                            <span class="d-flex gap-1 h-100">
+                                                <span class="flex-shrink-0">
+                                                    <span class="bg-light d-flex h-100 flex-column gap-1 p-1">
+                                                        <span class="d-block p-1 bg-primary-subtle rounded mb-2"></span>
+                                                        <span class="d-block p-1 pb-0 bg-primary-subtle"></span>
+                                                        <span class="d-block p-1 pb-0 bg-primary-subtle"></span>
+                                                        <span class="d-block p-1 pb-0 bg-primary-subtle"></span>
+                                                    </span>
+                                                </span>
+                                                <span class="flex-grow-1">
+                                                    <span class="d-flex h-100 flex-column">
+                                                        <span class="bg-light d-block p-1"></span>
+                                                        <span class="bg-light d-block p-1 mt-auto"></span>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                </label>
+                            </div>
+                            <h5 class="fs-sm text-center fw-medium mt-2">Compact</h5>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="form-check sidebar-setting card-radio">
+                                <input class="form-check-input" type="radio" name="data-sidebar-size" id="sidebar-size-small" value="sm">
+                                <label class="form-check-label p-0 avatar-md w-100" for="sidebar-size-small">
+                                            <span class="d-flex gap-1 h-100">
+                                                <span class="flex-shrink-0">
+                                                    <span class="bg-light d-flex h-100 flex-column gap-1">
+                                                        <span class="d-block p-1 bg-primary-subtle mb-2"></span>
+                                                        <span class="d-block p-1 pb-0 bg-primary-subtle"></span>
+                                                        <span class="d-block p-1 pb-0 bg-primary-subtle"></span>
+                                                        <span class="d-block p-1 pb-0 bg-primary-subtle"></span>
+                                                    </span>
+                                                </span>
+                                                <span class="flex-grow-1">
+                                                    <span class="d-flex h-100 flex-column">
+                                                        <span class="bg-light d-block p-1"></span>
+                                                        <span class="bg-light d-block p-1 mt-auto"></span>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                </label>
+                            </div>
+                            <h5 class="fs-sm text-center fw-medium mt-2">Small (Icon View)</h5>
+                        </div>
+
+                        <div class="col-4">
+                            <div class="form-check sidebar-setting card-radio">
+                                <input class="form-check-input" type="radio" name="data-sidebar-size" id="sidebar-size-small-hover" value="sm-hover">
+                                <label class="form-check-label p-0 avatar-md w-100" for="sidebar-size-small-hover">
+                                            <span class="d-flex gap-1 h-100">
+                                                <span class="flex-shrink-0">
+                                                    <span class="bg-light d-flex h-100 flex-column gap-1">
+                                                        <span class="d-block p-1 bg-primary-subtle mb-2"></span>
+                                                        <span class="d-block p-1 pb-0 bg-primary-subtle"></span>
+                                                        <span class="d-block p-1 pb-0 bg-primary-subtle"></span>
+                                                        <span class="d-block p-1 pb-0 bg-primary-subtle"></span>
+                                                    </span>
+                                                </span>
+                                                <span class="flex-grow-1">
+                                                    <span class="d-flex h-100 flex-column">
+                                                        <span class="bg-light d-block p-1"></span>
+                                                        <span class="bg-light d-block p-1 mt-auto"></span>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                </label>
+                            </div>
+                            <h5 class="fs-sm text-center fw-medium mt-2">Small Hover View</h5>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="sidebar-view">
+                    <h6 class="mt-4 fs-md mb-1">Sidebar View</h6>
+                    <p class="text-muted fs-sm">Choose Default or Detached Sidebar view.</p>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-check sidebar-setting card-radio">
+                                <input class="form-check-input" type="radio" name="data-layout-style" id="sidebar-view-default" value="default">
+                                <label class="form-check-label p-0 avatar-md w-100" for="sidebar-view-default">
+                                            <span class="d-flex gap-1 h-100">
+                                                <span class="flex-shrink-0">
+                                                    <span class="bg-light d-flex h-100 flex-column gap-1 p-1">
+                                                        <span class="d-block p-1 px-2 bg-primary-subtle rounded mb-2"></span>
+                                                        <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                        <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                        <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                    </span>
+                                                </span>
+                                                <span class="flex-grow-1">
+                                                    <span class="d-flex h-100 flex-column">
+                                                        <span class="bg-light d-block p-1"></span>
+                                                        <span class="bg-light d-block p-1 mt-auto"></span>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                </label>
+                            </div>
+                            <h5 class="fs-sm text-center fw-medium mt-2">Default</h5>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-check sidebar-setting card-radio">
+                                <input class="form-check-input" type="radio" name="data-layout-style" id="sidebar-view-detached" value="detached">
+                                <label class="form-check-label p-0 avatar-md w-100" for="sidebar-view-detached">
+                                            <span class="d-flex h-100 flex-column">
+                                                <span class="bg-light d-flex p-1 gap-1 align-items-center px-2">
+                                                    <span class="d-block p-1 bg-primary-subtle rounded me-1"></span>
+                                                    <span class="d-block p-1 pb-0 px-2 bg-primary-subtle ms-auto"></span>
+                                                    <span class="d-block p-1 pb-0 px-2 bg-primary-subtle"></span>
+                                                </span>
+                                                <span class="d-flex gap-1 h-100 p-1 px-2">
+                                                    <span class="flex-shrink-0">
+                                                        <span class="bg-light d-flex h-100 flex-column gap-1 p-1">
+                                                            <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                            <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                            <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                        </span>
+                                                    </span>
+                                                </span>
+                                                <span class="bg-light d-block p-1 mt-auto px-2"></span>
+                                            </span>
+                                </label>
+                            </div>
+                            <h5 class="fs-sm text-center fw-medium mt-2">Detached</h5>
+                        </div>
+                    </div>
+                </div>
+                <div id="sidebar-color">
+                    <h6 class="mt-4 fs-md mb-1">Sidebar Color</h6>
+                    <p class="text-muted fs-sm">Choose a color of Sidebar.</p>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-check sidebar-setting card-radio" data-bs-toggle="collapse" data-bs-target="#collapseBgGradient.show">
+                                <input class="form-check-input" type="radio" name="data-sidebar" id="sidebar-color-light" value="light">
+                                <label class="form-check-label p-0 avatar-md w-100" for="sidebar-color-light">
+                                            <span class="d-flex gap-1 h-100">
+                                                <span class="flex-shrink-0">
+                                                    <span class="bg-white border-end d-flex h-100 flex-column gap-1 p-1">
+                                                        <span class="d-block p-1 px-2 bg-primary-subtle rounded mb-2"></span>
+                                                        <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                        <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                        <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                    </span>
+                                                </span>
+                                                <span class="flex-grow-1">
+                                                    <span class="d-flex h-100 flex-column">
+                                                        <span class="bg-light d-block p-1"></span>
+                                                        <span class="bg-light d-block p-1 mt-auto"></span>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                </label>
+                            </div>
+                            <h5 class="fs-sm text-center fw-medium mt-2">Light</h5>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-check sidebar-setting card-radio" data-bs-toggle="collapse" data-bs-target="#collapseBgGradient.show">
+                                <input class="form-check-input" type="radio" name="data-sidebar" id="sidebar-color-dark" value="dark">
+                                <label class="form-check-label p-0 avatar-md w-100" for="sidebar-color-dark">
+                                            <span class="d-flex gap-1 h-100">
+                                                <span class="flex-shrink-0">
+                                                    <span class="bg-primary d-flex h-100 flex-column gap-1 p-1">
+                                                        <span class="d-block p-1 px-2 bg-soft-light rounded mb-2"></span>
+                                                        <span class="d-block p-1 px-2 pb-0 bg-soft-light"></span>
+                                                        <span class="d-block p-1 px-2 pb-0 bg-soft-light"></span>
+                                                        <span class="d-block p-1 px-2 pb-0 bg-soft-light"></span>
+                                                    </span>
+                                                </span>
+                                                <span class="flex-grow-1">
+                                                    <span class="d-flex h-100 flex-column">
+                                                        <span class="bg-light d-block p-1"></span>
+                                                        <span class="bg-light d-block p-1 mt-auto"></span>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                </label>
+                            </div>
+                            <h5 class="fs-sm text-center fw-medium mt-2">Dark</h5>
+                        </div>
+                        <div class="col-4">
+                            <button class="btn btn-link avatar-md w-100 p-0 overflow-hidden border collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseBgGradient" aria-expanded="false" aria-controls="collapseBgGradient">
+                                        <span class="d-flex gap-1 h-100">
+                                            <span class="flex-shrink-0">
+                                                <span class="bg-vertical-gradient d-flex h-100 flex-column gap-1 p-1">
+                                                    <span class="d-block p-1 px-2 bg-soft-light rounded mb-2"></span>
+                                                    <span class="d-block p-1 px-2 pb-0 bg-soft-light"></span>
+                                                    <span class="d-block p-1 px-2 pb-0 bg-soft-light"></span>
+                                                    <span class="d-block p-1 px-2 pb-0 bg-soft-light"></span>
+                                                </span>
+                                            </span>
+                                            <span class="flex-grow-1">
+                                                <span class="d-flex h-100 flex-column">
+                                                    <span class="bg-light d-block p-1"></span>
+                                                    <span class="bg-light d-block p-1 mt-auto"></span>
+                                                </span>
+                                            </span>
+                                        </span>
+                            </button>
+                            <h5 class="fs-sm text-center fw-medium mt-2">Gradient</h5>
+                        </div>
+                    </div>
+                    <!-- end row -->
+
+                    <div class="collapse" id="collapseBgGradient">
+                        <div class="d-flex gap-2 flex-wrap img-switch p-2 px-3 bg-light rounded">
+
+                            <div class="form-check sidebar-setting card-radio">
+                                <input class="form-check-input" type="radio" name="data-sidebar" id="sidebar-color-gradient" value="gradient">
+                                <label class="form-check-label p-0 avatar-xs rounded-circle" for="sidebar-color-gradient">
+                                    <span class="avatar-title rounded-circle bg-vertical-gradient"></span>
+                                </label>
+                            </div>
+                            <div class="form-check sidebar-setting card-radio">
+                                <input class="form-check-input" type="radio" name="data-sidebar" id="sidebar-color-gradient-2" value="gradient-2">
+                                <label class="form-check-label p-0 avatar-xs rounded-circle" for="sidebar-color-gradient-2">
+                                    <span class="avatar-title rounded-circle bg-vertical-gradient-2"></span>
+                                </label>
+                            </div>
+                            <div class="form-check sidebar-setting card-radio">
+                                <input class="form-check-input" type="radio" name="data-sidebar" id="sidebar-color-gradient-3" value="gradient-3">
+                                <label class="form-check-label p-0 avatar-xs rounded-circle" for="sidebar-color-gradient-3">
+                                    <span class="avatar-title rounded-circle bg-vertical-gradient-3"></span>
+                                </label>
+                            </div>
+                            <div class="form-check sidebar-setting card-radio">
+                                <input class="form-check-input" type="radio" name="data-sidebar" id="sidebar-color-gradient-4" value="gradient-4">
+                                <label class="form-check-label p-0 avatar-xs rounded-circle" for="sidebar-color-gradient-4">
+                                    <span class="avatar-title rounded-circle bg-vertical-gradient-4"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="sidebar-img">
+                    <h6 class="mt-4 fw-semibold fs-base">Sidebar Images</h6>
+                    <p class="text-muted fs-sm">Choose a image of Sidebar.</p>
+
+                    <div class="d-flex gap-2 flex-wrap img-switch">
+                        <div class="form-check sidebar-setting card-radio">
+                            <input class="form-check-input" type="radio" name="data-sidebar-image" id="sidebarimg-none" value="none">
+                            <label class="form-check-label p-0 avatar-sm h-auto" for="sidebarimg-none">
+                                        <span class="avatar-md w-auto bg-light d-flex align-items-center justify-content-center">
+                                            <i class="ri-close-fill fs-3xl"></i>
+                                        </span>
+                            </label>
+                        </div>
+
+                        <div class="form-check sidebar-setting card-radio">
+                            <input class="form-check-input" type="radio" name="data-sidebar-image" id="sidebarimg-01" value="img-1">
+                            <label class="form-check-label p-0 avatar-sm h-auto" for="sidebarimg-01">
+                                <img src="assets/images/sidebar/img-sm-1.jpg" alt="" class="avatar-md w-auto object-cover">
+                            </label>
+                        </div>
+
+                        <div class="form-check sidebar-setting card-radio">
+                            <input class="form-check-input" type="radio" name="data-sidebar-image" id="sidebarimg-02" value="img-2">
+                            <label class="form-check-label p-0 avatar-sm h-auto" for="sidebarimg-02">
+                                <img src="assets/images/sidebar/img-sm-2.jpg" alt="" class="avatar-md w-auto object-cover">
+                            </label>
+                        </div>
+                        <div class="form-check sidebar-setting card-radio">
+                            <input class="form-check-input" type="radio" name="data-sidebar-image" id="sidebarimg-03" value="img-3">
+                            <label class="form-check-label p-0 avatar-sm h-auto" for="sidebarimg-03">
+                                <img src="assets/images/sidebar/img-sm-3.jpg" alt="" class="avatar-md w-auto object-cover">
+                            </label>
+                        </div>
+                        <div class="form-check sidebar-setting card-radio">
+                            <input class="form-check-input" type="radio" name="data-sidebar-image" id="sidebarimg-04" value="img-4">
+                            <label class="form-check-label p-0 avatar-sm h-auto" for="sidebarimg-04">
+                                <img src="assets/images/sidebar/img-sm-4.jpg" alt="" class="avatar-md w-auto object-cover">
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="preloader-menu">
+                    <h6 class="mt-4 fw-semibold fs-base">Preloader</h6>
+                    <p class="text-muted fs-sm">Choose a preloader.</p>
+
+                    <div class="row">
+                        <div class="col-4">
+                            <div class="form-check sidebar-setting card-radio">
+                                <input class="form-check-input" type="radio" name="data-preloader" id="preloader-view-custom" value="enable">
+                                <label class="form-check-label p-0 avatar-md w-100" for="preloader-view-custom">
+                                            <span class="d-flex gap-1 h-100">
+                                                <span class="flex-shrink-0">
+                                                    <span class="bg-light d-flex h-100 flex-column gap-1 p-1">
+                                                        <span class="d-block p-1 px-2 bg-primary-subtle rounded mb-2"></span>
+                                                        <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                        <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                        <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                    </span>
+                                                </span>
+                                                <span class="flex-grow-1">
+                                                    <span class="d-flex h-100 flex-column">
+                                                        <span class="bg-light d-block p-1"></span>
+                                                        <span class="bg-light d-block p-1 mt-auto"></span>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                    <!-- <div id="preloader"> -->
+                                    <span class="d-flex align-items-center justify-content-center">
+                                                <span class="spinner-border text-primary avatar-xxs m-auto" role="status">
+                                                    <span class="visually-hidden">Loading...</span>
+                                                </span>
+                                            </span>
+                                    <!-- </div> -->
+                                </label>
+                            </div>
+                            <h5 class="fs-sm text-center fw-medium mt-2">Enable</h5>
+                        </div>
+                        <div class="col-4">
+                            <div class="form-check sidebar-setting card-radio">
+                                <input class="form-check-input" type="radio" name="data-preloader" id="preloader-view-none" value="disable">
+                                <label class="form-check-label p-0 avatar-md w-100" for="preloader-view-none">
+                                            <span class="d-flex gap-1 h-100">
+                                                <span class="flex-shrink-0">
+                                                    <span class="bg-light d-flex h-100 flex-column gap-1 p-1">
+                                                        <span class="d-block p-1 px-2 bg-primary-subtle rounded mb-2"></span>
+                                                        <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                        <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                        <span class="d-block p-1 px-2 pb-0 bg-primary-subtle"></span>
+                                                    </span>
+                                                </span>
+                                                <span class="flex-grow-1">
+                                                    <span class="d-flex h-100 flex-column">
+                                                        <span class="bg-light d-block p-1"></span>
+                                                        <span class="bg-light d-block p-1 mt-auto"></span>
+                                                    </span>
+                                                </span>
+                                            </span>
+                                </label>
+                            </div>
+                            <h5 class="fs-sm text-center fw-medium mt-2">Disable</h5>
+                        </div>
+                    </div>
+
+                </div><!-- end preloader-menu -->
+            </div>
+        </div>
+
+    </div>
+    <div class="offcanvas-footer border-top p-3 text-center">
+        <div class="row">
+            <div class="col-6">
+                <button type="button" class="btn btn-light w-100" id="reset-layout">Reset</button>
+            </div>
+            <div class="col-6">
+                <a href="#!" target="_blank" class="btn btn-primary w-100">Buy Now</a>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- JAVASCRIPT -->
+
+<!--<script>
+
+</script>-->
 <th:block th:insert="admin/layout/footer.html"></th:block>
 <th:block th:insert="admin/layout/script.html"></th:block>
 </body>
