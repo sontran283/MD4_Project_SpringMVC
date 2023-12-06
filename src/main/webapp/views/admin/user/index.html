@@ -1,19 +1,13 @@
 <!doctype html>
 <html xmlns:th="http://www.thymeleaf.org/" lang="en" data-layout="vertical" data-sidebar="dark" data-sidebar-size="lg"
       data-preloader="disable" data-theme="default" data-topbar="light" data-bs-theme="light">
-
-<!doctype html>
-<html xmlns:th="http://www.thymeleaf.org/" lang="en" data-layout="vertical" data-sidebar="dark" data-sidebar-size="lg" data-preloader="disable" data-theme="default" data-topbar="light" data-bs-theme="light">
 <th:block th:insert="admin/layout/head.html"></th:block>
-
 <body>
 
-<!-- Begin page -->
 <div id="layout-wrapper">
 
     <!-- ========== App Menu ========== -->
     <div class="app-menu navbar-menu">
-        <!-- side bar-->
         <th:block th:insert="admin/layout/sidebar.html"></th:block>
         <th:block th:insert="admin/layout/header.html"></th:block>
 
@@ -54,32 +48,29 @@
                                     </div><!--end col-->
                                     <div class="col-lg-2">
                                         <div class="search-box">
-                                            <input type="text" class="form-control search"
-                                                   placeholder="Search for courses, price or something...">
+                                            <input type="text" class="form-control search" placeholder="Search...">
                                             <i class="ri-search-line search-icon"></i>
                                         </div>
-                                    </div><!--end col-->
+                                    </div>
                                     <div class="col-lg-auto">
                                         <div class="hstack flex-wrap gap-2">
                                             <button class="btn btn-subtle-danger d-none" id="remove-actions"
                                                     onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i>
                                             </button>
-                                            <a href="#addCourse" data-bs-toggle="modal" class="btn btn-secondary"><i
+                                            <a href="add-user.html" data-bs-toggle="modal" class="btn btn-secondary"><i
                                                     class="bi bi-plus-circle align-baseline me-1"></i> Add Course</a>
                                             <div>
                                                 <button type="button" class="btn btn-info" data-bs-toggle="offcanvas"
-                                                        data-bs-target="#courseFilters" aria-controls="courseFilters"><i
-                                                        class="bi bi-funnel align-baseline me-1"></i> Filter
+                                                        data-bs-target="#courseFilters" aria-controls="courseFilters">
+                                                    <i class="bi bi-funnel align-baseline me-1"></i> Filter
                                                 </button>
-                                                <a href="apps-learning-grid.html"
-                                                   class="btn btn-subtle-primary btn-icon"><i
+                                                <a href="#" class="btn btn-subtle-primary btn-icon"><i
                                                         class="bi bi-grid"></i></a>
-                                                <a href="apps-learning-list.html"
-                                                   class="btn btn-subtle-primary active btn-icon"><i
+                                                <a href="#" class="btn btn-subtle-primary active btn-icon"><i
                                                         class="bi bi-list-task"></i></a>
                                             </div>
                                         </div>
-                                    </div><!--end col-->
+                                    </div>
                                 </div>
                             </div>
                             <div class="card-body">
@@ -89,7 +80,8 @@
                                         <tr>
                                             <th>
                                                 <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="option" id="checkAll">
+                                                    <input class="form-check-input" type="checkbox" value="option"
+                                                           id="checkAll">
                                                     <label class="form-check-label" for="checkAll"></label>
                                                 </div>
                                             </th>

@@ -5,6 +5,7 @@
       <map>
         <entry key="file://$PROJECT_DIR$/src/main/webapp/views/admin/category/index.html" value="file://$PROJECT_DIR$/src/main/webapp/views/admin/category" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/views/admin/layout/sidebar.html" value="file://$PROJECT_DIR$/src/main/webapp/views/admin/layout" />
+        <entry key="file://$PROJECT_DIR$/src/main/webapp/views/admin/user/index.html" value="file://$PROJECT_DIR$/src/main/webapp/views/admin/user" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/views/user/layout/header.html" value="file://$PROJECT_DIR$/src/main/webapp/views/user/layout" />
         <entry key="file://$PROJECT_DIR$/src/main/webapp/views/user/layout/script.html" value="file://$PROJECT_DIR$/src/main/webapp/views/user/layout" />
       </map>

@@ -1,8 +1,4 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org/" lang="en" data-layout="vertical" data-sidebar="dark" data-sidebar-size="lg"
-      data-preloader="disable" data-theme="default" data-topbar="light" data-bs-theme="light">
-
-<!doctype html>
 <html xmlns:th="http://www.thymeleaf.org/" lang="en" data-layout="vertical" data-sidebar="dark" data-sidebar-size="lg" data-preloader="disable" data-theme="default" data-topbar="light" data-bs-theme="light">
 <th:block th:insert="admin/layout/head.html"></th:block>
 
@@ -16,8 +12,6 @@
         <!-- side bar-->
         <th:block th:insert="admin/layout/sidebar.html"></th:block>
         <th:block th:insert="admin/layout/header.html"></th:block>
-
-
     </div>
     <!-- Left Sidebar End -->
     <!-- Vertical Overlay-->
@@ -55,8 +49,7 @@
                                     </div><!--end col-->
                                     <div class="col-lg-2">
                                         <div class="search-box">
-                                            <input type="text" class="form-control search"
-                                                   placeholder="Search for courses, price or something...">
+                                            <input type="text" class="form-control search" placeholder="Search...">
                                             <i class="ri-search-line search-icon"></i>
                                         </div>
                                     </div><!--end col-->
@@ -65,7 +58,7 @@
                                             <button class="btn btn-subtle-danger d-none" id="remove-actions"
                                                     onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i>
                                             </button>
-                                            <a href="#addCourse" data-bs-toggle="modal" class="btn btn-secondary"><i
+                                            <a href="/admin/add-category"  class="btn btn-secondary"><i
                                                     class="bi bi-plus-circle align-baseline me-1"></i> Add Course</a>
                                             <div>
                                                 <button type="button" class="btn btn-info" data-bs-toggle="offcanvas"
