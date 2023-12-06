@@ -8,6 +8,75 @@
 </div>
 <!-- =============================================== -->
 
+<!-- showModal -->
+<div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-light p-3">
+                <h5 class="modal-title" id="exampleModalLabel">Add Order</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="close-ordermodal"></button>
+            </div>
+            <form class="tablelist-form" novalidate autocomplete="off">
+                <div class="modal-body">
+                    <div id="alert-error-msg" class="d-none alert alert-danger py-2"></div>
+                    <input type="hidden" id="id-field">
+
+                    <div class="text-center mb-3">
+                        <div class="position-relative d-inline-block">
+                            <div class="position-absolute top-100 start-100 translate-middle">
+                                <label for="customer-image-input" class="mb-0" data-bs-toggle="tooltip" data-bs-placement="right" title="Select customer photo">
+                                        <span class="avatar-xs d-inline-block">
+                                            <span class="avatar-title bg-light border rounded-circle text-muted cursor-pointer">
+                                                <i class="ri-image-fill"></i>
+                                            </span>
+                                        </span>
+                                </label>
+                                <input class="form-control d-none" id="customer-image-input" type="file" accept="image/png, image/gif, image/jpeg">
+                            </div>
+                            <div class="avatar-lg">
+                                <div class="avatar-title bg-light rounded-3">
+                                    <img th:src="@{/assets/images/users/user-dummy-img.jpg}" alt="" id="customer-img" class="avatar-md h-auto rounded-3 object-fit-cover">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <label for="customername-field" class="form-label">Customer Name</label>
+                        <input type="text" id="customername-field" class="form-control" placeholder="Enter customer name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="email-field" class="form-label">Email</label>
+                        <input type="email" id="email-field" class="form-control" placeholder="Enter email" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="contact-field" class="form-label">Contact no.</label>
+                        <input type="text" id="contact-field" class="form-control" placeholder="Enter contact no" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="date-field" class="form-label">Joining Date</label>
+                        <input type="date" id="date-field" class="form-control" required>
+                    </div>
+                    <div>
+                        <label for="status-field" class="form-label">Status</label>
+                        <select class="form-control" name="status-field" id="status-field"  required>
+                            <option value="">Status</option>
+                            <option value="Active">Active</option>
+                            <option value="Block">Block</option>
+                            <option value="Unactive">Unactive</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div class="hstack gap-2 justify-content-end">
+                        <button type="button" class="btn btn-light" data-bs-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-success" id="add-btn">Add Order</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- end showModal -->
 
 <!-- =============================================== -->
 <th:block th:insert="admin/layout/footer.html"></th:block>

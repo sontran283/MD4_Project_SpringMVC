@@ -7,14 +7,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequestMapping("/admin")
-public class CategoryController {
-    @GetMapping("category/index")
+public class OrderController {
+    @GetMapping("/order/index")
     public String index(Model model) {
-        return "admin/category/index";
-    }
-
-    @GetMapping("/add-category")
-    public String add(Model model) {
-        return "admin/category/add-category";
+        return "admin/order/index";
     }
 }

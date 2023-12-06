@@ -1,13 +1,14 @@
 package com.ra.controller.admin;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping("/admin")
 public class UserController {
-    @RequestMapping("")
+    @GetMapping("user/index")
     public String home() {
-        return "user/shop";
+        return "admin/user/index";
     }
 }

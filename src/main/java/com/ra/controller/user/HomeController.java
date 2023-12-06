@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/user")
 public class HomeController {
-    @RequestMapping("/")
+    @RequestMapping("")
     public String home() {
         return "user/home";
     }
@@ -16,9 +16,9 @@ public class HomeController {
         return "user/about";
     }
 
-    @RequestMapping("/block")
-    public String block() {
-        return "user/block";
+    @RequestMapping("/blog")
+    public String blog() {
+        return "user/blog";
     }
 
     @RequestMapping("/cart")

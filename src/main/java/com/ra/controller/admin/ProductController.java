@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin")
 public class ProductController {
-    @GetMapping("/product")
+    @GetMapping("/product/index")
     public String index(Model model) {
         return "admin/product/index";
     }
