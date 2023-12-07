@@ -12,4 +12,17 @@ public class ProductController {
     public String index(Model model) {
         return "admin/product/index";
     }
+    @GetMapping("/product/add-product")
+    public String add(Model model) {
+        return "admin/product/add-product";
+    }
+    @GetMapping("/product/edit-product")
+    public String edit(Model model) {
+        return "admin/product/edit-product";
+    }
+
+    @GetMapping("/product/delete-product")
+    public String delete(Model model) {
+        return "admin/product/delete-product";
+    }
 }

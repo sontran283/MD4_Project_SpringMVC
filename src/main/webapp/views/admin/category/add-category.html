@@ -1,152 +1,35 @@
-<!doctype html>
-<html xmlns:th="http://www.thymeleaf.org/" lang="en" data-layout="vertical" data-sidebar="dark" data-sidebar-size="lg"
-      data-preloader="disable" data-theme="default" data-topbar="light" data-bs-theme="light">
-<th:block th:insert="admin/layout/head.html"></th:block>
-
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
 <body>
-
-<!-- Begin page -->
-<div id="layout-wrapper">
-
-    <!-- ========== App Menu ========== -->
-    <div class="app-menu navbar-menu">
-        <th:block th:insert="admin/layout/sidebar.html"></th:block>
-        <th:block th:insert="admin/layout/header.html"></th:block>
-
-
-    </div>
-    <!-- Left Sidebar End -->
-    <!-- Vertical Overlay-->
-    <div class="vertical-overlay"></div>
-    <!-- =============================================== -->
-    <div class="modal fade" id="showModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header px-4 pt-4">
-                    <h5 class="modal-title" id="exampleModalLabel">Product</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
-                            id="close-modal"></button>
-                </div>
-
-                <form class="tablelist-form" novalidate autocomplete="off">
-                    <div class="modal-body p-4">
-                        <div id="alert-error-msg" class="d-none alert alert-danger py-2"></div>
-                        <input type="hidden" id="id-field">
-
-                        <input type="hidden" id="order-field">
-                        <input type="hidden" id="rating-field">
-                        <input type="hidden" id="discount-field">
-
-                        <div class="mb-3">
-                            <label for="product-title-input" class="form-label">Product title</label>
-                            <input type="text" id="product-title-input" class="form-control"
-                                   placeholder="Enter product title" required>
-                        </div>
-
-                        <div class="mb-3">
-                            <label class="form-label">Product Images</label>
-                            <div class="dropzone my-dropzone border border-1 border-dashed text-center"
-                                 style="min-height: 100px;">
-                                <div class="fallback">
-                                    <input name="file" type="file" multiple="multiple">
-                                </div>
-                                <div class="dz-message needsclick">
-                                    <div class="mb-3">
-                                        <i class="bi bi-cloud-download fs-1"></i>
-                                    </div>
-
-                                    <h5 class="fs-md mb-0">Drop files here or click to upload.</h5>
-                                </div>
-                            </div>
-
-                            <ul class="list-unstyled mb-0" id="dropzone-preview">
-                                <li class="mt-2" id="dropzone-preview-list">
-                                    <!-- This is used as the file preview template -->
-                                    <div class="border rounded">
-                                        <div class="d-flex flex-wrap gap-2 p-2">
-                                            <div class="flex-shrink-0 me-3">
-                                                <div class="avatar-sm bg-light rounded p-2">
-                                                    <img data-dz-thumbnail class="img-fluid rounded d-block"
-                                                         th:src="@{/assets3/images/new-document.png}"
-                                                         alt="Dropzone-Image">
-                                                </div>
-                                            </div>
-                                            <div class="flex-grow-1">
-                                                <div class="pt-1">
-                                                    <h5 class="fs-md mb-1" data-dz-name>&nbsp;</h5>
-                                                    <p class="fs-sm text-muted mb-0" data-dz-size></p>
-                                                    <strong class="error text-danger" data-dz-errormessage></strong>
-                                                </div>
-                                            </div>
-                                            <div class="flex-shrink-0 ms-3">
-                                                <button data-dz-remove class="btn btn-sm btn-danger">Delete</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                            <!-- end dropzon-preview -->
-                        </div>
-
-                        <div class="mb-3">
-                            <label for="product-category-input" class="form-label">Product category</label>
-
-                            <select class="form-select" id="product-category-input">
-                                <option value="">Select product category</option>
-                                <option value="Appliances">Appliances</option>
-                                <option value="Automotive Accessories">Automotive Accessories</option>
-                                <option value="Electronics">Electronics</option>
-                                <option value="Fashion">Fashion</option>
-                                <option value="Furniture">Furniture</option>
-                                <option value="Grocery">Grocery</option>
-                                <option value="Headphones">Headphones</option>
-                                <option value="Kids">Kids</option>
-                                <option value="Luggage">Luggage</option>
-                                <option value="Sports">Sports</option>
-                                <option value="Watches">Watches</option>
-                            </select>
-                        </div>
-
-                        <div class="row">
-                            <div class="col-lg-6">
-                                <div class="mb-3">
-                                    <label for="product-stock-input" class="form-label">Stocks</label>
-                                    <input type="number" id="product-stock-input" class="form-control"
-                                           placeholder="Enter product stocks" required>
-                                </div>
-                            </div>
-                            <div class="col-lg-6">
-                                <div class="mb-3">
-                                    <label for="product-price-input" class="form-label">Price</label>
-                                    <div class="input-group mb-3">
-                                        <span class="input-group-text">$</span>
-                                        <input type="number" class="form-control" id="product-price-input"
-                                               placeholder="Enter product price" required>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="modal-footer">
-                        <div class="hstack gap-2 justify-content-end">
-                            <button type="button" class="btn btn-ghost-danger" data-bs-dismiss="modal"><i
-                                    class="bi bi-x-lg align-baseline me-1"></i> Close
-                            </button>
-                            <button type="submit" class="btn btn-primary" id="add-btn">Add User</button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-            <!-- modal-content -->
-        </div>
-        <!-- modal-dialog -->
-    </div>
+<!-- Modal -->
+<div class="modal-header bg-danger p-3">
+    <h5 class="modal-title text-white" id="addCourseModalLabel">Add Category</h5>
+    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" id="close-addCourseModal"></button>
 </div>
-<!-- modal -->
-
-<!-- =============================================== -->
-<th:block th:insert="admin/layout/footer.html"></th:block>
-<th:block th:insert="admin/layout/script.html"></th:block>
+<form class="tablelist-form" novalidate autocomplete="off" th:action="@{/admin/add-category}" th:object="${category}" method="post">
+    <div class="modal-body">
+        <div id="alert-error-msg" class="d-none alert alert-danger py-2"></div>
+        <input type="hidden" id="id-field">
+        <input type="hidden" id="rating-field">
+        <div class="mb-3">
+            <label for="course-title-input" class="form-label">Category Name<span class="text-danger">*</span></label>
+            <input th:field="*{categoryName}" type="text" class="form-control" placeholder="Enter Name" required>
+        </div>
+        <div class="mb-3">
+            <label for="course-title-input" class="form-label">Category Description<span class="text-danger">*</span></label>
+            <input th:field="*{categoryDescription}" type="text"  class="form-control" placeholder="Enter Description">
+        </div>
+        <div class="mb-3">
+            <label for="course-title-input" class="form-label">Category Status<span class="text-danger">*</span></label>
+            <input th:field="*{categoryStatus}" type="text" id="course-title-input" class="form-control" placeholder="Enter Status">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="hstack gap-2 justify-content-end">
+            <button type="button" class="btn btn-ghost-danger" data-bs-dismiss="modal"><i class="bi bi-x-lg align-baseline me-1"></i> Close  </button>
+            <button type="submit" class="btn btn-primary" id="add-btn">Add Course</button>
+        </div>
+    </div>
+</form>
 </body>
 </html>

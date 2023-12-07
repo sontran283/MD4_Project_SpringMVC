@@ -12,4 +12,17 @@ public class OrderController {
     public String index(Model model) {
         return "admin/order/index";
     }
+    @GetMapping("/order/add-order")
+    public String add(Model model) {
+        return "admin/order/add-order";
+    }
+    @GetMapping("/order/edit-order")
+    public String edit(Model model) {
+        return "admin/order/edit-order";
+    }
+
+    @GetMapping("/order/delete-order")
+    public String delete(Model model) {
+        return "admin/order/delete-order";
+    }
 }

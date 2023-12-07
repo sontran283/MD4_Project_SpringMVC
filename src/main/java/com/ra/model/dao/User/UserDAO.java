@@ -1,4 +1,8 @@
 package com.ra.model.dao.User;
 
-public interface UserDAO {
+import com.ra.model.dao.IGenericDAO;
+import com.ra.model.entity.User;
+
+public interface UserDAO extends IGenericDAO<User, Integer> {
+
 }

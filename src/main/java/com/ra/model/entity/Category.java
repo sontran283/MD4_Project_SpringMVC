@@ -3,14 +3,16 @@ package com.ra.model.entity;
 public class Category {
     private int categoryId;
     private String categoryName;
+    private String categoryDescription;
     private boolean categoryStatus;
 
     public Category() {
     }
 
-    public Category(int categoryId, String categoryName, boolean categoryStatus) {
+    public Category(int categoryId, String categoryName, String categoryDescription, boolean categoryStatus) {
         this.categoryId = categoryId;
         this.categoryName = categoryName;
+        this.categoryDescription = categoryDescription;
         this.categoryStatus = categoryStatus;
     }
 
@@ -30,7 +32,15 @@ public class Category {
         this.categoryName = categoryName;
     }
 
-    public boolean isCategoryStatus() {
+    public String getCategoryDescription() {
+        return categoryDescription;
+    }
+
+    public void setCategoryDescription(String categoryDescription) {
+        this.categoryDescription = categoryDescription;
+    }
+
+    public boolean getCategoryStatus() {
         return categoryStatus;
     }
 
