@@ -68,6 +68,14 @@ public class ProductDAOImpl implements ProductDAO {
 
     @Override
     public void delete(Integer integer) {
-
+        Connection connection = null;
+        connection = ConnectionDataBase.openConnection();
+        try {
+            CallableStatement callableStatement = connection.prepareCall("{CALL PRODUCT_DELETE(?)}");
+            callableStatement.setInt(1, integer);
+            callableStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

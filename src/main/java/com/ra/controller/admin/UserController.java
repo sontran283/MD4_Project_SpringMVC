@@ -1,6 +1,7 @@
 package com.ra.controller.admin;
 
 import com.ra.model.entity.User;
+import com.ra.model.service.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +17,9 @@ import javax.servlet.http.HttpSession;
 public class UserController {
     @Autowired
     private HttpSession session;
+    @Autowired
+    private UserService userService;
+
     @GetMapping("/user/index")
     public String index(Model model) {
         return "admin/user/index";
@@ -36,24 +40,29 @@ public class UserController {
         return "admin/user/delete-user";
     }
 
-//    @GetMapping("login")
-//    public String login(Model model) {
-//        User user = new User();
-//        model.addAttribute("user",user);
-//
-//        return "login";
-//    }
-//    @PostMapping("/login")
-//    public String handleLogin(@ModelAttribute("user") User user, HttpSession session) {
-//        if (user.getUserEmail().equals("hello@gmail.com") && user.getUserPassword().equals("11111111")){
-//            session.setAttribute("user", user);
-//            return "redirect:/";
-//        }
-//        return "redirect:/login?err";
-//    }
-//    @GetMapping("/logout")
-//    public String logout(){
-//        session.removeAttribute("user");
-//        return "redirect:/";
-//    }
+    //--------------------------------
+    @GetMapping("/login")
+    public String login(Model model) {
+        User user = new User();
+        model.addAttribute("user", user);
+        return "admin/login";
+    }
+
+    @PostMapping("/login")
+    public String handleLogin(@ModelAttribute("user") User user, Model model) {
+        User authent = userService.checkLogin(user.getUserEmail(), user.getUserPassword());
+        if (authent != null) {
+            model.addAttribute("user", authent);
+            session.setAttribute("user", user);
+            return "redirect:/";
+        } else {
+            return "redirect:/login";
+        }
+    }
+
+    @GetMapping("/logout")
+    public String logout() {
+        session.removeAttribute("user");
+        return "redirect:/";
+    }
 }

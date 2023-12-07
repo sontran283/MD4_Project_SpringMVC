@@ -52,10 +52,10 @@
                                                     onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i>
                                             </button>
                                             <!--------------------------------------->
-                                            <a th:href="@{/admin/add-category}" class="btn btn-secondary " data-bs-toggle="modal"
-                                               data-bs-target="#addCategoryModal"><i
+                                            <a href="/admin/add-category" class="btn btn-secondary " data-bs-toggle="modal" data-bs-target="#addCategoryModal"><i
                                                     class="bi bi-plus-circle align-baseline me-1"></i> Add Category</a>
                                             <!--------------------------------------->
+                                            <a href="/admin/add">Thêm mới category</a> <br>
                                             <div>
                                             </div>
                                         </div>
@@ -84,15 +84,13 @@
                                                 <!-------------------------------->
                                                 <ul class="d-flex gap-2 list-unstyled mb-0">
                                                     <li>
-                                                        <a href="#" data-bs-toggle="modal"
-                                                           data-bs-target="#editCategoryModal"
+                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#editCategoryModal"
                                                            class="btn btn-subtle-secondary btn-icon btn-sm edit-item-btn">
                                                             <i class="ph-pencil"></i>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="#" data-bs-toggle="modal"
-                                                           data-bs-target="#deleteCategoryModal"
+                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#deleteCategoryModal"
                                                            class="btn btn-subtle-danger btn-icon btn-sm remove-item-btn">
                                                             <i class="ph-trash"></i>
                                                         </a>

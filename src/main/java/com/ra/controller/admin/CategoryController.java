@@ -27,20 +27,27 @@ public class CategoryController {
     public String add(Model model){
         Category category=new Category();
         model.addAttribute("category",category);
+        return "admin/category/add-category";
+    }
+
+    @GetMapping("/add")
+    public String addca(Model model) {
+        Category category = new Category();
+        model.addAttribute("category", category);
         return "admin/category/add";
     }
 
     @PostMapping("/add-category")
     public String create(@ModelAttribute("category") Category category){
         categoryService.saveOrUpDate(category);
-        return "redirect:/admin/category";
+        return "redirect:/admin/category/index";
     }
 
     @GetMapping("/category-edit/{id}")
     public String edit(@PathVariable("id") Integer id,Model model){
         Category category= categoryService.findById(id);
         model.addAttribute("category",category);
-        return "/admin/category/edit";
+        return "/admin/category/edit-category";
     }
     @PostMapping("/update-category")
     public String update(@ModelAttribute("category") Category category){

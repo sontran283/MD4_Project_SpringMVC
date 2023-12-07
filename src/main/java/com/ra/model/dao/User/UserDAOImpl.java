@@ -2,12 +2,10 @@ package com.ra.model.dao.User;
 
 import com.ra.model.entity.User;
 import com.ra.util.ConnectionDataBase;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.stereotype.Repository;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -165,6 +163,45 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public void delete(Integer integer) {
+        Connection connection = null;
+        connection = ConnectionDataBase.openConnection();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM CUSTOMER WHERE ID = ?");
+            preparedStatement.setInt(1, integer);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
+    @Override
+    public User checkEmail(String email) {
+        Connection connection= ConnectionDataBase.openConnection();
+        User user=new User();
+        try {
+            CallableStatement callableStatement=connection.prepareCall("CALL CUSTOMER_CHECK_EMAIL(?)");
+            callableStatement.setString(1,email);
+            ResultSet resultSet=callableStatement.executeQuery();
+            while (resultSet.next()){
+                user.setUserId(resultSet.getInt("id"));
+                user.setUserEmail(resultSet.getString("first_name"));
+                user.setUserEmail(resultSet.getString("email"));
+                user.setUserPassword(resultSet.getString("password"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            ConnectionDataBase.closeConnection(connection);
+        }
+        return user;
+    }
+
+    @Override
+    public User checkLogin(String email, String password) {
+        User user = checkEmail(email);
+        if (user != null && BCrypt.checkpw(password, user.getUserPassword())) {
+            return user;
+        }
+        return null;
     }
 }

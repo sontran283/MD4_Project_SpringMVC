@@ -1,13 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    /* Áp dụng một số kiểu chung cho toàn bộ trang */
+    body {
+        font-family: 'Arial', sans-serif;
+        background-color: #f8f9fa;
+    }
+
+    .container {
+        margin-top: 50px;
+    }
+
+    /* Stylize form */
+    .form-group {
+        margin-bottom: 20px;
+    }
+
+    label {
+        font-weight: bold;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 8px;
+        box-sizing: border-box;
+        border: 1px solid #ced4da;
+        border-radius: 4px;
+    }
+
+    .form-check {
+        margin-top: 8px;
+    }
+
+    button {
+        padding: 10px 20px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+    /* Optional: Add some spacing between form elements on smaller screens */
+    @media (max-width: 768px) {
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        button {
+            margin-top: 15px;
+        }
+    }
+
+</style>
+<body>
+
 <!-- Modal -->
-<div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCourseModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content border-0">
-            <div class="modal-header bg-danger p-3">
-                <h5 class="modal-title text-white" id="addCourseModalLabel">Add Category</h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close" id="close-addCourseModal"></button>
+<div style="margin: 0 auto" >
+    <div >
+        <div class=" border-0">
+            <div class=" bg-danger p-3">
+                <h5 class=" text-white" id="">Add Category</h5>
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="" aria-label="Close" id="close-addCourseModal"></button>
             </div>
             <form class="tablelist-form" novalidate autocomplete="off">
-                <div class="modal-body">
+                <div class="">
                     <div id="alert-error-msg" class="d-none alert alert-danger py-2"></div>
                     <input type="hidden" id="id-field">
 
@@ -126,3 +191,6 @@
         <!-- modal-content -->
     </div>
 </div><!--end add Property modal-->
+
+</body>
+</html>

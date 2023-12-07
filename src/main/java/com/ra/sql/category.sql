@@ -79,3 +79,10 @@ CREATE PROCEDURE CATEGORY_SORT_BY_NAME()
 BEGIN
 SELECT *FROM category ORDER BY name;
 END; //
+
+
+delimiter //
+create procedure CATEGORY_CHANGE_STATUS(in _id int)
+BEGIN
+    update category set status=status^1 where category_id=_id;
+END; //

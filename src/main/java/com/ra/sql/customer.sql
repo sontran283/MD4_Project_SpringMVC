@@ -3,6 +3,7 @@
 -- #   ---------------- customer  ----------------
 DELIMITER //
 CREATE PROCEDURE CUSTOMER_ADD(
+    IN cus_img VARCHAR(255),
     IN cus_name VARCHAR(255),
     IN cus_email VARCHAR(255),
     IN cus_address VARCHAR(255),
@@ -12,8 +13,8 @@ CREATE PROCEDURE CUSTOMER_ADD(
     IN cus_status BIT
 )
 BEGIN
-INSERT INTO customer (name, email, address, phone_number, password, role, status)
-VALUES (cus_name, cus_email, cus_address, cus_phone_number, cus_password, cus_role, cus_status);
+INSERT INTO customer (img,name, email, address, phone_number, password, role, status)
+VALUES (cus_img,cus_name, cus_email, cus_address, cus_phone_number, cus_password, cus_role, cus_status);
 END; //
 
 
@@ -21,6 +22,7 @@ END; //
 DELIMITER //
 CREATE PROCEDURE CUSTOMER_UPDATE(
     IN cus_id INT,
+    IN cus_img VARCHAR(255),
     IN cus_name VARCHAR(255),
     IN cus_email VARCHAR(255),
     IN cus_address VARCHAR(255),
@@ -28,7 +30,8 @@ CREATE PROCEDURE CUSTOMER_UPDATE(
 )
 BEGIN
 UPDATE customer
-SET name = cus_name,
+SET email = cus_img,
+    name = cus_name,
     email = cus_email,
     address = cus_address,
     phone_number = cus_phone_number
@@ -91,3 +94,11 @@ SELECT * FROM customer
 ORDER BY name;
 END //
 DELIMITER ;
+
+
+DELIMITER //
+CREATE PROCEDURE CUSTOMER_CHECK_EMAIL(in c_email varchar(255))
+BEGIN
+
+select * FROM customer where email = c_email;
+end; //

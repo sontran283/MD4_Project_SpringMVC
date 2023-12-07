@@ -144,7 +144,17 @@ public class CategoryDAOImpl implements CategoryDAO {
     }
 
     @Override
-    public void delete(Integer integer) {
-
+    public void delete(Integer categoryId) {
+        Connection connection = null;
+        connection = ConnectionDataBase.openConnection();
+        try {
+            CallableStatement callableStatement = connection.prepareCall("{CALL CATEGORY_DELETE(?)}");
+            callableStatement.setInt(1, categoryId);
+            callableStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            ConnectionDataBase.closeConnection(connection);
+        }
     }
 }
