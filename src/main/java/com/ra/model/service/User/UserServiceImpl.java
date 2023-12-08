@@ -2,6 +2,7 @@ package com.ra.model.service.User;
 
 import com.ra.model.dao.Category.CategoryDAO;
 import com.ra.model.dao.User.UserDAO;
+import com.ra.model.entity.Category;
 import com.ra.model.entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,5 +52,15 @@ public class UserServiceImpl implements UserService {
     @Override
     public User checkLogin(String email, String password) {
         return userDAO.checkLogin(email, password);
+    }
+
+    @Override
+    public List<Category> paginater(Integer noPage) {
+        return null;
+    }
+
+    @Override
+    public Integer getTotalPage() {
+        return null;
     }
 }

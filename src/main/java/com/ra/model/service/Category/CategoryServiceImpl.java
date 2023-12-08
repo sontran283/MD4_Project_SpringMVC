@@ -42,4 +42,14 @@ public class CategoryServiceImpl implements CategoryService {
     public void delete(Integer integer) {
         categoryDAO.delete(integer);
     }
+
+    @Override
+    public List<Category> paginater(Integer noPage) {
+        return categoryDAO.paginater(noPage);
+    }
+
+    @Override
+    public Integer getTotalPage() {
+        return categoryDAO.getTotalPage();
+    }
 }

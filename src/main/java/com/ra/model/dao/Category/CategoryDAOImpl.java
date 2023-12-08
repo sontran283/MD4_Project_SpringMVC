@@ -4,15 +4,14 @@ import com.ra.model.entity.Category;
 import com.ra.util.ConnectionDataBase;
 import org.springframework.stereotype.Repository;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
 @Repository
 public class CategoryDAOImpl implements CategoryDAO {
+    private int LIMIT = 3;
+    private int totalPage = 0;
 
     @Override
     public List<Category> findAll() {
@@ -144,17 +143,51 @@ public class CategoryDAOImpl implements CategoryDAO {
     }
 
     @Override
-    public void delete(Integer categoryId) {
+    public void delete(Integer id) {
         Connection connection = null;
         connection = ConnectionDataBase.openConnection();
         try {
-            CallableStatement callableStatement = connection.prepareCall("{CALL CATEGORY_DELETE(?)}");
-            callableStatement.setInt(1, categoryId);
+            CallableStatement callableStatement = connection.prepareCall("{CALL CATEGORY_CHANGE_STATUS(?)}");
+            callableStatement.setInt(1, id);
             callableStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
             ConnectionDataBase.closeConnection(connection);
         }
+    }
+
+
+    @Override
+    public List<Category> paginater(Integer noPage) {
+        Connection connection = null;
+        connection = ConnectionDataBase.openConnection();
+        List<Category> categoryList = new ArrayList<>();
+        try {
+            CallableStatement callableStatement = connection.prepareCall("{CALL CATEGORY_PAGINATION(?,?,?)}");
+            callableStatement.setInt(1,LIMIT);
+            callableStatement.setInt(2,noPage);
+            callableStatement.setInt(3, Types.INTEGER);
+            ResultSet resultSet = callableStatement.executeQuery();
+            while (resultSet.next()) {
+                Category category = new Category();
+                category.setCategoryId(resultSet.getInt("category_id"));
+                category.setCategoryName(resultSet.getString("name"));
+                category.setCategoryDescription(resultSet.getString("description"));
+                category.setCategoryStatus(resultSet.getBoolean("status"));
+                categoryList.add(category);
+            }
+            this.totalPage= callableStatement.getInt(3);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            ConnectionDataBase.closeConnection(connection);
+        }
+        return categoryList;
+    }
+
+    @Override
+    public Integer getTotalPage() {
+        return totalPage;
     }
 }

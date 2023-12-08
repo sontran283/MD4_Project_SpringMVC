@@ -52,10 +52,9 @@
                                                     onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i>
                                             </button>
                                             <!--------------------------------------->
-                                            <a href="/admin/add-category" class="btn btn-secondary " data-bs-toggle="modal" data-bs-target="#addCategoryModal"><i
+                                            <a href="/admin/add-category" class="btn btn-secondary " ><i
                                                     class="bi bi-plus-circle align-baseline me-1"></i> Add Category</a>
                                             <!--------------------------------------->
-                                            <a href="/admin/add">Thêm mới category</a> <br>
                                             <div>
                                             </div>
                                         </div>
@@ -75,22 +74,22 @@
                                         </tr>
                                         </thead>
                                         <tbody class="list form-check-all">
-<!--                                        <tr th:each="item : ${categoryList}">-->
-<!--                                            <td th:text="${item.categoryId}"></td>-->
-<!--                                            <td th:text="${item.categoryName}"></td>-->
-<!--                                            <td th:text="${item.categoryDescription}"></td>-->
-<!--                                            <td ><span class="label" th:classappend="${item.categoryStatus?'btn btn-success':'btn btn-danger'}" th:text="${item.categoryStatus?'Open':'Block'}"></span></td>-->
-<!--                                            <td>-->
+                                        <tr th:each="item : ${categoryList}">
+                                            <td th:text="${item.categoryId}"></td>
+                                            <td th:text="${item.categoryName}"></td>
+                                            <td th:text="${item.categoryDescription}"></td>
+                                            <td ><span class="label" th:classappend="${item.categoryStatus?'btn btn-success':'btn btn-danger'}" th:text="${item.categoryStatus?'Open':'Block'}"></span></td>
+                                            <td>
                                                 <!-------------------------------->
                                                 <ul class="d-flex gap-2 list-unstyled mb-0">
                                                     <li>
-                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#editCategoryModal"
+                                                        <a th:href="@{/admin/category-edit/{id}(id=${item.categoryId})}"
                                                            class="btn btn-subtle-secondary btn-icon btn-sm edit-item-btn">
                                                             <i class="ph-pencil"></i>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="#" data-bs-toggle="modal" data-bs-target="#deleteCategoryModal"
+                                                        <a th:href="@{/admin/category-change/{id}(id=${item.categoryId})}"
                                                            class="btn btn-subtle-danger btn-icon btn-sm remove-item-btn">
                                                             <i class="ph-trash"></i>
                                                         </a>
@@ -101,6 +100,7 @@
                                         </tr>
                                         </tbody>
                                     </table>
+
                                     <div class="noresult" style="display: none">
                                         <div class="text-center py-4">
                                             <i class="ph-magnifying-glass fs-1 text-primary"></i>
@@ -122,6 +122,9 @@
                                             <a class="page-item pagination-prev disabled" href="javascript:void(0)">
                                                 Previous
                                             </a>
+                                            <div th:each="item : ${#numbers.sequence(1,hello)}" >
+                                                <a th:href="@{/admin/category/{page}(page = ${item})}" th:text="${item}"></a>
+                                            </div>
                                             <ul class="pagination listjs-pagination mb-0"></ul>
                                             <a class="page-item pagination-next" href="javascript:void(0)">
                                                 Next
@@ -139,9 +142,6 @@
 </div>
 
 <!-- ============================================================== -->
-<th:block th:insert="admin/category/add-category.html"></th:block>
-<th:block th:insert="admin/category/edit-category.html"></th:block>
-<th:block th:insert="admin/category/delete-category.html"></th:block>
 <th:block th:insert="admin/layout/footer.html"></th:block>
 <th:block th:insert="admin/layout/script.html"></th:block>
 </body>

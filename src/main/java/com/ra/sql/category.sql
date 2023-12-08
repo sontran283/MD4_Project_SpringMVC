@@ -86,3 +86,14 @@ create procedure CATEGORY_CHANGE_STATUS(in _id int)
 BEGIN
     update category set status=status^1 where category_id=_id;
 END; //
+
+
+#phân trang
+DELIMITER //
+CREATE PROCEDURE CATEGORY_PAGINATION(IN limit_in int, IN current_page int, OUT total_page int)
+begin
+    DECLARE offset_page int;
+    SET offset_page = (current_page - 1) * limit_in;
+    SET total_page = CEIL((SELECT count(*) from category) / limit_in);
+    SELECT * FROM category LIMIT limit_in offset offset_page;
+end //
