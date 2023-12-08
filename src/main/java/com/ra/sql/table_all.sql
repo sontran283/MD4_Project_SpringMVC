@@ -28,13 +28,13 @@ create table image(
 
 create table customer(
                          customer_id int primary key NOT NULL auto_increment,
-                         name varchar(255) NOT NULL unique,
-                         email varchar(255) NOT NULL,
-                         address varchar(255) NOT NULL,
-                         phone_number double not null ,
-                         password varchar(255) NOT NULL,
-                         role bit(1) default 0 not null,
-                         status bit(1) default 1 not null
+                         name varchar(255) ,
+                         email varchar(255) ,
+                         address varchar(255) ,
+                         phone_number double  ,
+                         password varchar(255) ,
+                         role bit(1) default 0 ,
+                         status bit(1) default 1
 );
 
 CREATE TABLE orders (

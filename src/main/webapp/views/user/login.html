@@ -89,13 +89,13 @@
                             <!-- Email input -->
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="form3Example3">Email address</label>
-                                <input type="email" id="form3Example3" class="form-control" placeholder="Enter your email"/>
+                                <input th:field="*{userEmail}" type="email" id="form3Example3" class="form-control" placeholder="Enter your email"/>
                             </div>
 
                             <!-- Password input -->
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="form3Example4">Password</label>
-                                <input type="password" id="form3Example4" class="form-control"  placeholder="Enter your password"/>
+                                <input th:field="*{userPassword}" type="password" id="form3Example4" class="form-control"  placeholder="Enter your password"/>
                             </div>
 
                             <!-- Checkbox -->
@@ -113,22 +113,8 @@
 
                             <!-- Register buttons -->
                             <div class="text-center">
-                                <p>or sign up with:</p>
-                                <button type="button" class="btn btn-link btn-floating mx-1">
-                                    <i class="fab fa-facebook-f"></i>
-                                </button>
+                                <a href="/register">Register</a>
 
-                                <button type="button" class="btn btn-link btn-floating mx-1">
-                                    <i class="fab fa-google"></i>
-                                </button>
-
-                                <button type="button" class="btn btn-link btn-floating mx-1">
-                                    <i class="fab fa-twitter"></i>
-                                </button>
-
-                                <button type="button" class="btn btn-link btn-floating mx-1">
-                                    <i class="fab fa-github"></i>
-                                </button>
                             </div>
                         </form>
                     </div>

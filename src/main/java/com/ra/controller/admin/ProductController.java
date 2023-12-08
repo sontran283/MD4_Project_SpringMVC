@@ -8,20 +8,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin")
 public class ProductController {
-    @GetMapping("/product/index")
+    @GetMapping("/product")
     public String index(Model model) {
         return "admin/product/index";
     }
-    @GetMapping("/product/add-product")
+    @GetMapping("/add-product")
     public String add(Model model) {
         return "admin/product/add-product";
     }
-    @GetMapping("/product/edit-product")
+    @GetMapping("/edit-product")
     public String edit(Model model) {
         return "admin/product/edit-product";
     }
 
-    @GetMapping("/product/delete-product")
+    @GetMapping("/delete-product")
     public String delete(Model model) {
         return "admin/product/delete-product";
     }

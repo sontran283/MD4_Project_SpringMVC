@@ -1,5 +1,5 @@
 <!-- header-area-start -->
-<header>
+<header xmlns:th="http://www.thymeleaf.org/">
     <div class="header__top theme-bg-1 d-none d-md-block">
         <div class="container">
             <div class="row align-items-center">
@@ -83,11 +83,15 @@
                             <div class="header__info-search tpcolor__purple ml-10">
                                 <button class="tp-search-toggle"><i class="icon-search"></i></button>
                             </div>
+<!--                            <i class="icon-user">-->
                             <div class="header__info-user tpcolor__yellow ml-10">
-                                <a href="/login"><i class="icon-user"></i></a>
+                                <a href="/login"><span th:text="${session.user != null ? 'session.user.useEmail' : 'khach'}"> </span></a>
                             </div>
                             <div class="header__info-user tpcolor__yellow ml-10">
                                 <a href="/register"><i class="fal fa-key"></i></a>
+                            </div>
+                            <div class="header__info-user tpcolor__yellow ml-10">
+                                <a href="/logout">logout</a>
                             </div>
                             <div class="header__info-wishlist tpcolor__greenish ml-10">
                                 <a href="/wishlist"><i class="icon-heart icons"></i></a>

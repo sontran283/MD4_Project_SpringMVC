@@ -3,18 +3,15 @@
 -- #   ---------------- customer  ----------------
 DELIMITER //
 CREATE PROCEDURE CUSTOMER_ADD(
-    IN cus_img VARCHAR(255),
     IN cus_name VARCHAR(255),
     IN cus_email VARCHAR(255),
     IN cus_address VARCHAR(255),
     IN cus_phone_number VARCHAR(255),
-    IN cus_password VARCHAR(255),
-    IN cus_role BIT,
-    IN cus_status BIT
+    IN cus_password VARCHAR(255)
 )
 BEGIN
-INSERT INTO customer (img,name, email, address, phone_number, password, role, status)
-VALUES (cus_img,cus_name, cus_email, cus_address, cus_phone_number, cus_password, cus_role, cus_status);
+INSERT INTO customer (name, email, address, phone_number, password)
+VALUES (cus_name, cus_email, cus_address, cus_phone_number, cus_password);
 END; //
 
 

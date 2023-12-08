@@ -1,4 +1,4 @@
-package com.ra.controller.admin;
+package com.ra.controller.user;
 
 import com.ra.model.entity.User;
 import com.ra.model.service.User.UserService;
@@ -10,22 +10,21 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 @Controller
-@RequestMapping("/register")
+@RequestMapping("/")
 public class RegisterController {
     @Autowired
     UserService userService;
-
     @GetMapping("/register")
-    public String register(Model model) {
+    public String register(Model model){
         User user = new User();
         model.addAttribute("user", user);
-        return "admin/register";
+        return "user/register";
     }
-
     @PostMapping("/register")
-    public String handleRegister(@ModelAttribute("user") User user) {
+    public String handleRegister(@ModelAttribute("user") User user){
         userService.saveOrUpDate(user);
-        return "admin/login";
+        return "user/login";
     }
 }

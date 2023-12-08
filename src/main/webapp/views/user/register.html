@@ -82,25 +82,29 @@
                 <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
                 <div class="card bg-glass">
                     <div class="card-body px-4 py-5 px-md-5">
-                        <form method="post" action="login" th:object="${user}">
+
+                        <form method="post" action="/register" th:object="${user}">
                             <!-- Email input -->
                             <div class="form-outline mb-4">
-                                <label class="form-label" for="form3Example3">Email address</label>
-                                <input type="email" id="form3Example3" class="form-control" placeholder="Enter your email"/>
+                                <label class="form-label">Name</label>
+                                <input th:field="*{userName}" type="text" class="form-control" placeholder="Enter your name"/>
                             </div>
-
+                            <div class="form-outline mb-4">
+                                <label class="form-label" >Email</label>
+                                <input th:field="*{userEmail}" type="email"class="form-control" placeholder="Enter your email"/>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label class="form-label" >Address</label>
+                                <input th:field="*{userAddress}" type="text"  class="form-control" placeholder="Enter your address"/>
+                            </div>
+                            <div class="form-outline mb-4">
+                                <label class="form-label" >PhoneNumber</label>
+                                <input th:field="*{userPhoneNumber}" type="text"  class="form-control" placeholder="Enter your phonemumber"/>
+                            </div>
                             <!-- Password input -->
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="form3Example4">Password</label>
-                                <input  type="password" id="form3Example4" class="form-control"  placeholder="Enter your password"/>
-                            </div>
-
-                            <!-- Checkbox -->
-                            <div class="form-check d-flex justify-content-center mb-4">
-                                <input class="form-check-input me-2" type="checkbox" value="" id="form2Example33" checked />
-                                <label class="form-check-label" for="form2Example33">
-                                    Subscribe to our newsletter
-                                </label>
+                                <input th:field="*{userPassword}"  type="text" id="form3Example4" class="form-control"  placeholder="Enter your password"/>
                             </div>
 
                             <!-- Submit button -->
@@ -110,22 +114,7 @@
 
                             <!-- Register buttons -->
                             <div class="text-center">
-                                <p>or sign up with:</p>
-                                <button type="button" class="btn btn-link btn-floating mx-1">
-                                    <i class="fab fa-facebook-f"></i>
-                                </button>
-
-                                <button type="button" class="btn btn-link btn-floating mx-1">
-                                    <i class="fab fa-google"></i>
-                                </button>
-
-                                <button type="button" class="btn btn-link btn-floating mx-1">
-                                    <i class="fab fa-twitter"></i>
-                                </button>
-
-                                <button type="button" class="btn btn-link btn-floating mx-1">
-                                    <i class="fab fa-github"></i>
-                                </button>
+                                <a href="/login">Back Login</a>
                             </div>
                         </form>
                     </div>

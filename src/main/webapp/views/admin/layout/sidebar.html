@@ -1,6 +1,6 @@
 <div id="scrollbar">
     <div class="navbar-brand-box">
-        <a href="/" class="logo logo-dark">
+        <a href="/admin" class="logo logo-dark">
             <span class="logo-sm">
                 <img th:src="@{/assets3/images/logo-sm.png}" alt="" height="22">
             </span>
@@ -8,7 +8,7 @@
                 <img th:src="@{/assets3/images/logo-dark.png}" alt="" height="22">
             </span>
         </a>
-        <a href="/" class="logo logo-light">
+        <a href="/admin" class="logo logo-light">
             <span class="logo-sm">
                 <img th:src="@{/assets3/images/logo-sm.png}" alt="" height="22">
             </span>
@@ -26,8 +26,8 @@
 
             <li class="menu-title"><span data-key="t-menu">Menu</span></li>
             <li class="nav-item">
-                <a class="nav-link menu-link collapsed" href="/"
-                   th:classappend="${#httpServletRequest.requestURI == '/' ? 'active' : ''}"
+                <a class="nav-link menu-link collapsed" href="/admin"
+                   th:classappend="${#httpServletRequest.requestURI == '/admin' ? 'active' : ''}"
                    role="button" aria-expanded="false" aria-controls="sidebarDashboards">
                     <i class="ph-gauge"></i> <span data-key="t-dashboards">Dashboard</span>
                     <span class="badge badge-pill bg-olive" data-key="t-hot">DB</span>
@@ -35,8 +35,8 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link menu-link collapsed" href="/admin/user/index "
-                   th:classappend="${#httpServletRequest.requestURI == '/admin/user/index' ? 'active' : ''}"
+                <a class="nav-link menu-link collapsed" href="/admin/user "
+                   th:classappend="${#httpServletRequest.requestURI == '/admin/user' ? 'active' : ''}"
                    role="button" aria-expanded="false" aria-controls="sidebarDashboards">
                     <i class="ph-layout"></i> <span data-key="t-dashboards">User</span>
                     <span class="badge badge-pill bg-green" data-key="t-hot">US</span>
@@ -44,8 +44,8 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link menu-link collapsed" href="/admin/order/index"
-                   th:classappend="${#httpServletRequest.requestURI == '/admin/order/index' ? 'active' : ''}"
+                <a class="nav-link menu-link collapsed" href="/admin/order"
+                   th:classappend="${#httpServletRequest.requestURI == '/admin/order' ? 'active' : ''}"
                    role="button" aria-expanded="false" aria-controls="sidebarDashboards">
                     <i class="ph-file-text"></i> <span data-key="t-dashboards">Order</span>
                     <span class="badge badge-pill bg-yellow" data-key="t-hot">OR</span>
@@ -53,8 +53,8 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link menu-link collapsed" href="/admin/product/index"
-                   th:classappend="${#httpServletRequest.requestURI == '/admin/product/index' ? 'active' : ''}"
+                <a class="nav-link menu-link collapsed" href="/admin/product"
+                   th:classappend="${#httpServletRequest.requestURI == '/admin/product' ? 'active' : ''}"
                    role="button" aria-expanded="false" aria-controls="sidebarDashboards">
                     <i class="ph-storefront"></i> <span data-key="t-dashboards">Product</span>
                     <span class="badge badge-pill bg-blue" data-key="t-hot">PR</span>
@@ -62,8 +62,8 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link menu-link collapsed" href="/admin/category/index"
-                   th:classappend="${#httpServletRequest.requestURI == '/admin/category/index' ? 'active' : ''}"
+                <a class="nav-link menu-link collapsed" href="/admin/category"
+                   th:classappend="${#httpServletRequest.requestURI == '/admin/category' ? 'active' : ''}"
                    role="button" aria-expanded="false" aria-controls="sidebarDashboards">
                     <i class="ph-calendar"></i> <span data-key="t-dashboards">Category</span>
                     <span class="badge badge-pill bg-blue" data-key="t-hot">CT</span>

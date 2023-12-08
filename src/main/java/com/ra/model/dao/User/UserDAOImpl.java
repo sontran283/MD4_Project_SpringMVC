@@ -129,14 +129,13 @@ public class UserDAOImpl implements UserDAO {
         connection = ConnectionDataBase.openConnection();
         try {
             if (user.getUserId() == 0) {
-                CallableStatement callableStatement = connection.prepareCall("{CALL CUSTOMER_ADD(?,?,?,?,?,?,?)}");
+                String hasPassword = BCrypt.hashpw(user.getUserPassword(), BCrypt.gensalt());
+                CallableStatement callableStatement = connection.prepareCall("{CALL CUSTOMER_ADD(?,?,?,?,?)}");
                 callableStatement.setString(1, user.getUserName());
                 callableStatement.setString(2, user.getUserEmail());
                 callableStatement.setString(3, user.getUserAddress());
                 callableStatement.setDouble(4, user.getUserPhoneNumber());
-                callableStatement.setString(5, user.getUserPassword());
-                callableStatement.setBoolean(6, user.getRole());
-                callableStatement.setBoolean(7, user.getStatus());
+                callableStatement.setString(5,hasPassword);
                 int check = callableStatement.executeUpdate();
                 if (check > 0) {
                     return true;
@@ -183,10 +182,14 @@ public class UserDAOImpl implements UserDAO {
             callableStatement.setString(1,email);
             ResultSet resultSet=callableStatement.executeQuery();
             while (resultSet.next()){
-                user.setUserId(resultSet.getInt("id"));
-                user.setUserEmail(resultSet.getString("first_name"));
+                user.setUserId(resultSet.getInt("customer_id"));
+                user.setUserName(resultSet.getString("name"));
                 user.setUserEmail(resultSet.getString("email"));
+                user.setUserAddress(resultSet.getString("address"));
+                user.setUserPhoneNumber(resultSet.getDouble("phone_number"));
                 user.setUserPassword(resultSet.getString("password"));
+                user.setRole(resultSet.getBoolean("role"));
+                user.setStatus(resultSet.getBoolean("status"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

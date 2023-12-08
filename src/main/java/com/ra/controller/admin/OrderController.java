@@ -8,20 +8,21 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin")
 public class OrderController {
-    @GetMapping("/order/index")
-    public String index(Model model) {
+    @RequestMapping("/order")
+    public String index() {
         return "admin/order/index";
     }
-    @GetMapping("/order/add-order")
+
+    @GetMapping("/add-order")
     public String add(Model model) {
         return "admin/order/add-order";
     }
-    @GetMapping("/order/edit-order")
+    @GetMapping("/edit-order")
     public String edit(Model model) {
         return "admin/order/edit-order";
     }
 
-    @GetMapping("/order/delete-order")
+    @GetMapping("/delete-order")
     public String delete(Model model) {
         return "admin/order/delete-order";
     }
