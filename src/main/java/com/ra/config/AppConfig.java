@@ -48,12 +48,12 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         return thymeleafViewResolver;
     }
 
-//    @Bean
-//    CommonsMultipartResolver multipartResolver() {
-//        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-//        multipartResolver.setMaxUploadSize(52428800);
-//        return multipartResolver;
-//    }
+    @Bean
+    CommonsMultipartResolver multipartResolver() {
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        multipartResolver.setMaxUploadSize(52428800);
+        return multipartResolver;
+    }
 
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {

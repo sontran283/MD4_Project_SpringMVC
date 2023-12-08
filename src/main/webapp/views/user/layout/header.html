@@ -80,20 +80,23 @@
                     </div>
                     <div class="col-xl-3">
                         <div class="header__info d-flex align-items-center">
+                            <div class="header__info-wishlist tpcolor__greenish ml-10">
+                                <a href="/test"><i class="icon-heart icons"></i></a>
+                            </div>
+                            <div class="header__info-cart tpcolor__oasis ml-10">
+                                <a href="/cart"><i><img th:src="@{/assets2/img/icon/cart-1.svg}" alt=""></i></a>
+                            </div>
                             <div class="header__info-search tpcolor__purple ml-10">
                                 <button class="tp-search-toggle"><i class="icon-search"></i></button>
-                            </div>
-                            <div class="header__info-user tpcolor__yellow ml-10">
-                                <a href="/login"><span th:text="${session.user != null ? 'session.user.useEmail' : 'User'}"></span></a>
-                            </div>
-                            <div class="header__info-user tpcolor__yellow ml-10">
-                                <a href="/logout"><i class="fal fa-long-arrow-right"></i></a>
                             </div>
                             <div class="header__info-wishlist tpcolor__greenish ml-10">
                                 <a href="/wishlist"><i class="icon-heart icons"></i></a>
                             </div>
-                            <div class="header__info-cart tpcolor__oasis ml-10">
-                                <a href="/cart"><i><img th:src="@{/assets2/img/icon/cart-1.svg}" alt=""></i></a>
+                            <div class="header__info-user tpcolor__yellow ml-10">
+                                <a href="/logout"><i class="fal fa-long-arrow-right"></i></a>
+                            </div>
+                            <div class="header__info-user tpcolor__yellow ml-10">
+                                <a href="/login"><span th:text='${session.user != null ? session.user.getUserName() : "User"}'></span></a>
                             </div>
                         </div>
                     </div>
