@@ -9,6 +9,6 @@ import java.util.List;
 public interface UserService extends IGenericService<User,Integer> {
     User checkEmail(String email);
     User checkLogin(String email ,String password);
-    List<Category> paginater(Integer noPage);
+    List<User> paginater(Integer noPage);
     Integer getTotalPage();
 }

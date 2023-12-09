@@ -25,10 +25,6 @@
                         <div class="card">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-xxl-4">
-                                        <h5 class="card-title mb-3">Category Information</h5>
-                                        <p class="text-muted">Category Information refers to any information held by an organisation about the products it produces, buys, sells or distributes.</p>
-                                    </div>
                                     <div class="col-xxl-8">
                                         <form action="/admin/add-category" method="post" th:object="${category}">
                                             <div class="mb-3">
@@ -44,15 +40,15 @@
                                                 <input th:field="*{categoryStatus}" type="radio" value="1"> <span>open</span>
                                                 <input th:field="*{categoryStatus}" type="radio"  value="0"> <span>close</span>
                                             </div>
-                                            <a href="/admin/category" class="btn btn-danger"><i class="ph-x align-middle"></i> Cancel</a>
+                                            <a href="/admin" class="btn btn-danger"><i class="ph-x align-middle"></i> Cancel</a>
                                             <button class="btn btn-primary">Submit</button>
                                         </form>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div><!--end col-->
-                </div><!--end row-->
+                    </div>
+                </div>
             </div>
         </div>
     </div>

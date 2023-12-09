@@ -8,6 +8,6 @@ import com.ra.model.service.IGenericService;
 import java.util.List;
 
 public interface OrderService extends IGenericService<Order,Integer> {
-    List<Category> paginater(Integer noPage);
+    List<Order> paginater(Integer noPage);
     Integer getTotalPage();
 }

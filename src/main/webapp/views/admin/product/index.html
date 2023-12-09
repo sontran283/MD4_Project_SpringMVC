@@ -11,7 +11,6 @@
     <div class="vertical-overlay"></div>
     <!-- ============================================================== -->
 
-
     <!-- ============================================================== -->
     <div class="main-content">
         <div class="page-content">
@@ -53,10 +52,16 @@
                                                     onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i>
                                             </button>
                                             <!--------------------------------------->
-                                            <a href="#" class="btn btn-secondary " data-bs-toggle="modal"
-                                               data-bs-target="#addProductModal"><i
-                                                    class="bi bi-plus-circle align-baseline me-1"></i> Add Product</a>
+                                            <div>
+                                                <a href="/admin/add-product" class="btn btn-secondary " ><i
+                                                        class="bi bi-plus-circle align-baseline me-1"></i> Add Product</a>
+                                            </div>
                                             <!--------------------------------------->
+                                            <div>
+                                                <a href="#" class="btn btn-primary" ><i
+                                                        class="bi bi-plus-circle align-baseline me-1"></i> Sort Product</a>
+                                                <!--------------------------------------->
+                                            </div>
                                             <div>
                                             </div>
                                         </div>
@@ -68,89 +73,49 @@
                                     <table class="table table-centered align-middle table-custom-effect table-nowrap mb-0">
                                         <thead class="text-muted">
                                         <tr>
-                                            <th>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="option"
-                                                           id="checkAll">
-                                                    <label class="form-check-label" for="checkAll"></label>
-                                                </div>
-                                            </th>
-                                            <th scope="col" class="sort cursor-pointer" data-sort="category">Product
-                                            </th>
-                                            <th scope="col" class="sort cursor-pointer" data-sort="course_Name">Course
-                                                Name
-                                            </th>
-                                            <th scope="col" class="sort cursor-pointer" data-sort="instructor">
-                                                Instructor
-                                            </th>
-                                            <th scope="col" class="sort cursor-pointer" data-sort="lessons">Lessons</th>
-                                            <th scope="col" class="sort cursor-pointer" data-sort="duration">Duration
-                                            </th>
-                                            <th scope="col" class="sort cursor-pointer" data-sort="students">Students
-                                            </th>
-                                            <th scope="col" class="sort cursor-pointer" data-sort="fees">Fees</th>
-                                            <th scope="col" class="sort cursor-pointer" data-sort="rating">Rating</th>
-                                            <th scope="col" class="sort cursor-pointer" data-sort="status">Status</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="category">STT</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="course_Name">Image</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="course_Name">Category Name</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="instructor">Product Name</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="instructor">Description</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="instructor">Price</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="instructor">Quantity</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="lessons">Status</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                         </thead>
                                         <tbody class="list form-check-all">
-                                        <tr>
+                                        <tr th:each="item : ${productList}">
+                                            <td th:text="${item.productId}"></td>
+                                            <td th:text="${item.img}"></td>
+                                            <td th:text="${item.category.categoryName}"></td>
+                                            <td th:text="${item.productName}"></td>
+                                            <td th:text="${item.productDescription}"></td>
+                                            <td th:text="${item.productPrice}"></td>
+                                            <td th:text="${item.quantity}"></td>
+                                            <td ><span class="label" th:classappend="${item.productStatus?'btn btn-success':'btn btn-danger'}" th:text="${item.productStatus?'Open':'Block'}"></span></td>
                                             <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" name="chk_child">
-                                                    <label class="form-check-label"></label>
-                                                </div>
-                                            </td>
-                                            <td class="id d-none"><a href="javascript:void(0)"
-                                                                     class="fw-medium link-primary">#TBS001</a></td>
-                                            <td class="category"><a href="#" class="text-reset">React Development</a>
-                                            </td>
-                                            <td class="course_Name">
-                                                <div class="d-flex gap-2 align-items-center">
-                                                    <div class="flex-shrink-0">
-                                                        <img th:src="@{/assets3/images/learning/react.png}" alt=""
-                                                             class="avatar-xxs">
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        <a href="#" class="text-reset">Advanced React and Redux</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="instructor">Themesbrand</td>
-                                            <td class="lessons">15</td>
-                                            <td class="duration">2 Years</td>
-                                            <td class="students">49</td>
-                                            <td class="fees"><span class="fw-medium">$278.12</span></td>
-                                            <td class="rating">
-                                                <i class="bi bi-star-fill text-warning align-baseline me-1"></i>
-                                                <span class="rate-value">4.5</span>
-                                            </td>
-                                            <td class="status"><span class="badge bg-info-subtle text-info">Open</span>
-                                            </td>
-                                            <td>
+                                                <!-------------------------------->
                                                 <ul class="d-flex gap-2 list-unstyled mb-0">
-                                                    <!-------------------------------->
                                                     <li>
-                                                        <a href="#" data-bs-toggle="modal"
-                                                           data-bs-target="#editProductModal"
+                                                        <a th:href="@{/admin/product-edit/{id}(id=${item.productId})}"
                                                            class="btn btn-subtle-secondary btn-icon btn-sm edit-item-btn">
                                                             <i class="ph-pencil"></i>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="#" data-bs-toggle="modal"
-                                                           data-bs-target="#deleteProductModal"
+                                                        <a th:href="@{/admin/product-change/{id}(id=${item.productId})}"
                                                            class="btn btn-subtle-danger btn-icon btn-sm remove-item-btn">
-                                                            <i class="ph-trash"></i>
+                                                            <i class="ph-lock-key"></i>
                                                         </a>
                                                     </li>
-                                                    <!-------------------------------->
                                                 </ul>
+                                                <!-------------------------------->
                                             </td>
                                         </tr>
-                                        </tbody><!-- end tbody -->
-                                    </table><!-- end table -->
+                                        </tbody>
+                                    </table>
+
                                     <div class="noresult" style="display: none">
                                         <div class="text-center py-4">
                                             <i class="ph-magnifying-glass fs-1 text-primary"></i>
@@ -166,32 +131,32 @@
                                             Showing <span class="fw-semibold">10</span> of <span
                                                 class="fw-semibold">15</span> Results
                                         </div>
-                                    </div><!--end col-->
+                                    </div>
                                     <div class="col-sm-auto mt-3 mt-sm-0">
                                         <div class="pagination-wrap hstack gap-2 justify-content-center">
                                             <a class="page-item pagination-prev disabled" href="javascript:void(0)">
                                                 Previous
                                             </a>
+                                            <div th:each="item : ${#numbers.sequence(1,hello)}" >
+                                                <a th:href="@{/admin/product/{page}(page = ${item})}" th:text="${item}"></a>
+                                            </div>
                                             <ul class="pagination listjs-pagination mb-0"></ul>
                                             <a class="page-item pagination-next" href="javascript:void(0)">
                                                 Next
                                             </a>
                                         </div>
-                                    </div><!--end col-->
-                                </div><!--end row-->
+                                    </div>
+                                </div>
                             </div>
-                        </div><!--end card-->
-                    </div><!--end col-->
-                </div><!--end row-->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div><!-- /deleteRecordModal -->
+    </div>
 </div>
-<!-- ============================================================== -->
-<th:block th:insert="admin/product/add-product.html"></th:block>
-<th:block th:insert="admin/product/edit-product.html"></th:block>
-<th:block th:insert="admin/product/delete-product.html"></th:block>
 
+<!-- ============================================================== -->
 <th:block th:insert="admin/layout/footer.html"></th:block>
 <th:block th:insert="admin/layout/script.html"></th:block>
 </body>

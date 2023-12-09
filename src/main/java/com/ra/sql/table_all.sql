@@ -12,6 +12,7 @@ create table product(
                         product_id int primary key NOT NULL auto_increment,
                         category_id int NOT NULL ,
                         foreign key (category_id) REFERENCES category(category_id),
+                        img varchar(255),
                         name varchar(255) NOT NULL unique,
                         description varchar(255) NOT NULL,
                         price double NOT NULL,
@@ -28,6 +29,7 @@ create table image(
 
 create table customer(
                          customer_id int primary key NOT NULL auto_increment,
+                         img varchar(255) ,
                          name varchar(255) ,
                          email varchar(255) ,
                          address varchar(255) ,

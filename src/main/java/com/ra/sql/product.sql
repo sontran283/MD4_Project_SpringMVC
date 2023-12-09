@@ -4,14 +4,15 @@
 DELIMITER //
 CREATE PROCEDURE PRODUCT_ADD(
     IN p_category_id INT,
+    IN p_img VARCHAR(255),
     IN p_name VARCHAR(255),
     IN p_description VARCHAR(255),
     IN p_price DOUBLE,
     IN p_quantity INT
 )
 BEGIN
-INSERT INTO product (category_id, name, description, price, quantity)
-VALUES (p_category_id , p_name, p_description, p_price, p_quantity);
+INSERT INTO product (category_id,img, name, description, price, quantity)
+VALUES (p_category_id ,p_img, p_name, p_description, p_price, p_quantity);
 END; //
 
 
@@ -20,6 +21,7 @@ DELIMITER //
 CREATE PROCEDURE PRODUCT_UPDATE(
     IN p_product_id INT,
     IN p_category_id INT,
+    IN p_img VARCHAR(255),
     IN p_name VARCHAR(255),
     IN p_description VARCHAR(255),
     IN p_price DOUBLE,
@@ -27,8 +29,11 @@ CREATE PROCEDURE PRODUCT_UPDATE(
     IN p_status bit
 )
 BEGIN
+
+
 UPDATE product
 SET category_id = p_category_id,
+    img = p_img,
     name = p_name,
     description = p_description,
     price = p_price,
@@ -83,3 +88,25 @@ SELECT * FROM product
 ORDER BY name;
 END //
 DELIMITER ;
+
+-- # đổi trạng thái sp:
+DELIMITER //
+CREATE PROCEDURE PRODUCT_UPDATE_STATUS(
+    IN c_product_id INT
+)
+BEGIN
+    UPDATE product
+    SET status = not status
+    WHERE product_id = c_product_id;
+END; //
+
+
+-- phân trang
+DELIMITER //
+create procedure PRODUCT_PAGINATION(IN _limit int, IN no_page int, OUT total int)
+BEGIN
+    declare _offset int;
+    SET _offset = (no_page - 1) * _limit;
+    SET  total = CEIL((SELECT count(*) FROM product) / _limit);
+SELECT * FROM product LIMIT _limit OFFSET _offset;
+end; //

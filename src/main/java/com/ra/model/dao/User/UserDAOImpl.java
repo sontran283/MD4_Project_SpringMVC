@@ -1,8 +1,10 @@
 package com.ra.model.dao.User;
 
+import com.ra.model.dao.Category.CategoryDAO;
 import com.ra.model.entity.User;
 import com.ra.util.ConnectionDataBase;
 import org.mindrot.jbcrypt.BCrypt;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.sql.*;
@@ -11,6 +13,9 @@ import java.util.List;
 
 @Repository
 public class UserDAOImpl implements UserDAO {
+    private int LIMIT = 3;
+    private int totalPage = 0;
+
     @Override
     public List<User> findAll() {
         Connection connection = null;
@@ -171,6 +176,16 @@ public class UserDAOImpl implements UserDAO {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    @Override
+    public List<User> paginater(Integer noPage) {
+        return null;
+    }
+
+    @Override
+    public Integer getTotalPage() {
+        return totalPage;
     }
 
     @Override

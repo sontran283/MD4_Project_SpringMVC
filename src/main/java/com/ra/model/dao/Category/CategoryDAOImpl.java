@@ -68,7 +68,7 @@ public class CategoryDAOImpl implements CategoryDAO {
         connection = ConnectionDataBase.openConnection();
         List<Category> categoryList = new ArrayList<>();
         try {
-            CallableStatement callableStatement = connection.prepareCall("{CALL CATEGORY_SEARCH_BY_NAME()}");
+            CallableStatement callableStatement = connection.prepareCall("{CALL CATEGORY_SORT_BY_NAME()}");
             ResultSet resultSet = callableStatement.executeQuery();
             while (resultSet.next()) {
                 Category category = new Category();

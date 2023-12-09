@@ -84,7 +84,7 @@ END; //
 delimiter //
 create procedure CATEGORY_CHANGE_STATUS(in _id int)
 BEGIN
-    update category set status=status^1 where category_id=_id;
+    update category set status = not status where category_id=_id;
 END; //
 
 

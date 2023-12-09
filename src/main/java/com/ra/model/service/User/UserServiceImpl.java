@@ -55,12 +55,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Category> paginater(Integer noPage) {
-        return null;
+    public List<User> paginater(Integer noPage) {
+        return userDAO.paginater(noPage);
     }
 
     @Override
     public Integer getTotalPage() {
-        return null;
+        return userDAO.getTotalPage();
     }
 }

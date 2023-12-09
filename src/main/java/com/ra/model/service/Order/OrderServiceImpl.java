@@ -4,6 +4,7 @@ import com.ra.model.dao.Order.OrderDAO;
 import com.ra.model.dao.Product.ProductDAO;
 import com.ra.model.entity.Category;
 import com.ra.model.entity.Order;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,41 +15,41 @@ public class OrderServiceImpl implements OrderService{
     private OrderDAO orderDAO;
     @Override
     public List<Order> findAll() {
-        return null;
+        return orderDAO.findAll();
     }
 
     @Override
     public List<Order> findByName(String name) {
-        return null;
+        return orderDAO.findByName(name);
     }
 
     @Override
     public List<Order> sortByName() {
-        return null;
+        return orderDAO.sortByName();
     }
 
     @Override
     public Order findById(Integer integer) {
-        return null;
+        return orderDAO.findById(integer);
     }
 
     @Override
     public boolean saveOrUpDate(Order order) {
-        return false;
+        return orderDAO.saveOrUpDate(order);
     }
 
     @Override
     public void delete(Integer integer) {
-
+        orderDAO.delete(integer);
     }
 
     @Override
-    public List<Category> paginater(Integer noPage) {
-        return null;
+    public List<Order> paginater(Integer noPage) {
+        return orderDAO.paginater(noPage);
     }
 
     @Override
     public Integer getTotalPage() {
-        return null;
+        return orderDAO.getTotalPage();
     }
 }

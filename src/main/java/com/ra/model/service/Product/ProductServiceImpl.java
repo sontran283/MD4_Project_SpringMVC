@@ -44,12 +44,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Category> paginater(Integer noPage) {
-        return null;
+    public List<Product> paginater(Integer noPage) {
+        return productDAO.paginater(noPage);
     }
 
     @Override
     public Integer getTotalPage() {
-        return null;
+        return productDAO.getTotalPage();
     }
 }

@@ -4,14 +4,15 @@
 DELIMITER //
 CREATE PROCEDURE CUSTOMER_ADD(
     IN cus_name VARCHAR(255),
+    IN cus_img VARCHAR(255),
     IN cus_email VARCHAR(255),
     IN cus_address VARCHAR(255),
     IN cus_phone_number VARCHAR(255),
     IN cus_password VARCHAR(255)
 )
 BEGIN
-INSERT INTO customer (name, email, address, phone_number, password)
-VALUES (cus_name, cus_email, cus_address, cus_phone_number, cus_password);
+INSERT INTO customer (name, img, email, address, phone_number, password)
+VALUES (cus_name, cus_img, cus_email, cus_address, cus_phone_number, cus_password);
 END; //
 
 
@@ -27,7 +28,7 @@ CREATE PROCEDURE CUSTOMER_UPDATE(
 )
 BEGIN
 UPDATE customer
-SET email = cus_img,
+SET img = cus_img,
     name = cus_name,
     email = cus_email,
     address = cus_address,
@@ -98,4 +99,14 @@ CREATE PROCEDURE CUSTOMER_CHECK_EMAIL(in c_email varchar(255))
 BEGIN
 
 select * FROM customer where email = c_email;
+end; //
+
+-- phân trang
+DELIMITER //
+create procedure CUSTOMER_PAGINATION(IN _limit int, IN no_page int, OUT total int)
+BEGIN
+    declare _offset int;
+    SET _offset = (no_page - 1) * _limit;
+    SET  total = CEIL((SELECT count(*) FROM product) / _limit);
+    SELECT * FROM product LIMIT _limit OFFSET _offset;
 end; //
