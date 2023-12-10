@@ -1,6 +1,7 @@
 package com.ra.model.dao.User;
 
 import com.ra.model.dao.Category.CategoryDAO;
+import com.ra.model.entity.Category;
 import com.ra.model.entity.User;
 import com.ra.util.ConnectionDataBase;
 import org.mindrot.jbcrypt.BCrypt;
@@ -28,7 +29,7 @@ public class UserDAOImpl implements UserDAO {
                 User user = new User();
                 user.setUserId(resultSet.getInt("customer_id"));
                 user.setUserName(resultSet.getString("name"));
-                user.setUserName(resultSet.getString("email"));
+                user.setUserEmail(resultSet.getString("email"));
                 user.setUserAddress(resultSet.getString("address"));
                 user.setUserPhoneNumber(resultSet.getDouble("phone_number"));
                 user.setUserPassword(resultSet.getString("password"));
@@ -57,7 +58,7 @@ public class UserDAOImpl implements UserDAO {
                 User user = new User();
                 user.setUserId(resultSet.getInt("customer_id"));
                 user.setUserName(resultSet.getString("name"));
-                user.setUserName(resultSet.getString("email"));
+                user.setUserEmail(resultSet.getString("email"));
                 user.setUserAddress(resultSet.getString("address"));
                 user.setUserPhoneNumber(resultSet.getDouble("phone_number"));
                 user.setUserPassword(resultSet.getString("password"));
@@ -85,7 +86,7 @@ public class UserDAOImpl implements UserDAO {
                 User user = new User();
                 user.setUserId(resultSet.getInt("customer_id"));
                 user.setUserName(resultSet.getString("name"));
-                user.setUserName(resultSet.getString("email"));
+                user.setUserEmail(resultSet.getString("email"));
                 user.setUserAddress(resultSet.getString("address"));
                 user.setUserPhoneNumber(resultSet.getDouble("phone_number"));
                 user.setUserPassword(resultSet.getString("password"));
@@ -113,7 +114,7 @@ public class UserDAOImpl implements UserDAO {
             while (resultSet.next()) {
                 user.setUserId(resultSet.getInt("customer_id"));
                 user.setUserName(resultSet.getString("name"));
-                user.setUserName(resultSet.getString("email"));
+                user.setUserEmail(resultSet.getString("email"));
                 user.setUserAddress(resultSet.getString("address"));
                 user.setUserPhoneNumber(resultSet.getDouble("phone_number"));
                 user.setUserPassword(resultSet.getString("password"));
@@ -135,23 +136,25 @@ public class UserDAOImpl implements UserDAO {
         try {
             if (user.getUserId() == 0) {
                 String hasPassword = BCrypt.hashpw(user.getUserPassword(), BCrypt.gensalt());
-                CallableStatement callableStatement = connection.prepareCall("{CALL CUSTOMER_ADD(?,?,?,?,?)}");
+                CallableStatement callableStatement = connection.prepareCall("{CALL CUSTOMER_ADD(?,?,?,?,?,?)}");
                 callableStatement.setString(1, user.getUserName());
-                callableStatement.setString(2, user.getUserEmail());
-                callableStatement.setString(3, user.getUserAddress());
-                callableStatement.setDouble(4, user.getUserPhoneNumber());
-                callableStatement.setString(5,hasPassword);
+                callableStatement.setString(2, user.getUserImg());
+                callableStatement.setString(3, user.getUserEmail());
+                callableStatement.setString(4, user.getUserAddress());
+                callableStatement.setDouble(5, user.getUserPhoneNumber());
+                callableStatement.setString(6,hasPassword);
                 int check = callableStatement.executeUpdate();
                 if (check > 0) {
                     return true;
                 }
             } else {
-                CallableStatement callableStatement = connection.prepareCall("{CALL CUSTOMER_UPDATE(?,?,?,?,?)}");
+                CallableStatement callableStatement = connection.prepareCall("{CALL CUSTOMER_UPDATE(?,?,?,?,?,?)}");
                 callableStatement.setInt(1, user.getUserId());
                 callableStatement.setString(2, user.getUserName());
-                callableStatement.setString(3, user.getUserEmail());
-                callableStatement.setString(4, user.getUserAddress());
-                callableStatement.setDouble(5, user.getUserPhoneNumber());
+                callableStatement.setString(3, user.getUserImg());
+                callableStatement.setString(4, user.getUserEmail());
+                callableStatement.setString(5, user.getUserAddress());
+                callableStatement.setDouble(6, user.getUserPhoneNumber());
                 int check = callableStatement.executeUpdate();
                 if (check > 0) {
                     return true;
@@ -170,9 +173,9 @@ public class UserDAOImpl implements UserDAO {
         Connection connection = null;
         connection = ConnectionDataBase.openConnection();
         try {
-            PreparedStatement preparedStatement = connection.prepareStatement("DELETE FROM CUSTOMER WHERE ID = ?");
-            preparedStatement.setInt(1, integer);
-            preparedStatement.executeUpdate();
+            CallableStatement callableStatement = connection.prepareCall("{CALL CUSTOMER_CHANGE_STATUS(?)}");
+            callableStatement.setInt(1, integer);
+            callableStatement.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -180,7 +183,35 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public List<User> paginater(Integer noPage) {
-        return null;
+        Connection connection = null;
+        connection = ConnectionDataBase.openConnection();
+        List<User> userList = new ArrayList<>();
+        try {
+            CallableStatement callableStatement = connection.prepareCall("{CALL CUSTOMER_PAGINATION(?,?,?)}");
+            callableStatement.setInt(1,LIMIT);
+            callableStatement.setInt(2,noPage);
+            callableStatement.registerOutParameter(3, Types.INTEGER);
+            ResultSet resultSet = callableStatement.executeQuery();
+            while (resultSet.next()) {
+                User user = new User();
+                user.setUserId(resultSet.getInt("customer_id"));
+                user.setUserImg(resultSet.getString("img"));
+                user.setUserName(resultSet.getString("name"));
+                user.setUserEmail(resultSet.getString("email"));
+                user.setUserAddress(resultSet.getString("address"));
+                user.setUserPhoneNumber(resultSet.getDouble("phone_number"));
+                user.setUserPassword(resultSet.getString("password"));
+                user.setRole(resultSet.getBoolean("role"));
+                user.setStatus(resultSet.getBoolean("status"));
+                userList.add(user);
+            }
+            this.totalPage= callableStatement.getInt(3);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            ConnectionDataBase.closeConnection(connection);
+        }
+        return userList;
     }
 
     @Override
@@ -198,6 +229,7 @@ public class UserDAOImpl implements UserDAO {
             ResultSet resultSet=callableStatement.executeQuery();
             while (resultSet.next()){
                 user.setUserId(resultSet.getInt("customer_id"));
+                user.setUserImg(resultSet.getString("img"));
                 user.setUserName(resultSet.getString("name"));
                 user.setUserEmail(resultSet.getString("email"));
                 user.setUserAddress(resultSet.getString("address"));

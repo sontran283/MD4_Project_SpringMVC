@@ -82,6 +82,6 @@ create procedure ORDER_DETAIL_PAGINATION(IN _limit int, IN no_page int, OUT tota
 BEGIN
     declare _offset int;
     SET _offset = (no_page - 1) * _limit;
-    SET  total = CEIL((SELECT count(*) FROM product) / _limit);
-SELECT * FROM product LIMIT _limit OFFSET _offset;
+    SET  total = CEIL((SELECT count(*) FROM order_detail) / _limit);
+SELECT * FROM order_detail LIMIT _limit OFFSET _offset;
 end; //

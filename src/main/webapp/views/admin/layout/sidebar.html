@@ -35,8 +35,8 @@
             </li>
 
             <li class="nav-item">
-                <a class="nav-link menu-link collapsed" href="/admin/user "
-                   th:classappend="${#httpServletRequest.requestURI == '/admin/user' ? 'active' : ''}"
+                <a class="nav-link menu-link collapsed" href="/admin/user/1"
+                   th:classappend="${#httpServletRequest.requestURI == '/admin/user/1' ? 'active' : ''}"
                    role="button" aria-expanded="false" aria-controls="sidebarDashboards">
                     <i class="ph-layout"></i> <span data-key="t-dashboards">User</span>
                     <span class="badge badge-pill bg-green" data-key="t-hot">US</span>
@@ -45,7 +45,7 @@
 
             <li class="nav-item">
                 <a class="nav-link menu-link collapsed" href="/admin/order"
-                   th:classappend="${#httpServletRequest.requestURI == '/admin/order' ? 'active' : ''}"
+                   th:classappend="${#httpServletRequest.requestURI == '/admin/order/1' ? 'active' : ''}"
                    role="button" aria-expanded="false" aria-controls="sidebarDashboards">
                     <i class="ph-file-text"></i> <span data-key="t-dashboards">Order</span>
                     <span class="badge badge-pill bg-yellow" data-key="t-hot">OR</span>
@@ -54,7 +54,7 @@
 
             <li class="nav-item">
                 <a class="nav-link menu-link collapsed" href="/admin/product/1"
-                   th:classappend="${#httpServletRequest.requestURI == '/admin/product' ? 'active' : ''}"
+                   th:classappend="${#httpServletRequest.requestURI == '/admin/product/1' ? 'active' : ''}"
                    role="button" aria-expanded="false" aria-controls="sidebarDashboards">
                     <i class="ph-storefront"></i> <span data-key="t-dashboards">Product</span>
                     <span class="badge badge-pill bg-blue" data-key="t-hot">PR</span>
@@ -63,7 +63,7 @@
 
             <li class="nav-item">
                 <a class="nav-link menu-link collapsed" href="/admin/category/1"
-                   th:classappend="${#httpServletRequest.requestURI == '/admin/category' ? 'active' : ''}"
+                   th:classappend="${#httpServletRequest.requestURI == '/admin/category/1' ? 'active' : ''}"
                    role="button" aria-expanded="false" aria-controls="sidebarDashboards">
                     <i class="ph-calendar"></i> <span data-key="t-dashboards">Category</span>
                     <span class="badge badge-pill bg-blue" data-key="t-hot">CT</span>

@@ -15,10 +15,12 @@
     <div class="main-content">
         <div class="page-content">
             <div class="container-fluid">
+                <!-- start page title -->
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                             <h4 class="mb-sm-0">User List</h4>
+
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="javascript: void(0);">Courses</a></li>
@@ -50,10 +52,16 @@
                                                     onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i>
                                             </button>
                                             <!--------------------------------------->
-                                            <a href="#" class="btn btn-secondary " data-bs-toggle="modal"
-                                               data-bs-target="#addUserModal"><i
-                                                    class="bi bi-plus-circle align-baseline me-1"></i> Add User</a>
+                                            <div>
+                                                <a href="/admin/add-user" class="btn btn-secondary " ><i
+                                                        class="bi bi-plus-circle align-baseline me-1"></i> Add User</a>
+                                            </div>
                                             <!--------------------------------------->
+                                            <div>
+                                                <a href="#" class="btn btn-primary" ><i
+                                                        class="bi bi-plus-circle align-baseline me-1"></i> Sort User</a>
+                                                <!--------------------------------------->
+                                            </div>
                                             <div>
                                             </div>
                                         </div>
@@ -65,89 +73,49 @@
                                     <table class="table table-centered align-middle table-custom-effect table-nowrap mb-0">
                                         <thead class="text-muted">
                                         <tr>
-                                            <th>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" value="option"
-                                                           id="checkAll">
-                                                    <label class="form-check-label" for="checkAll"></label>
-                                                </div>
-                                            </th>
-                                            <th scope="col" class="sort cursor-pointer" data-sort="category">Product
-                                            </th>
-                                            <th scope="col" class="sort cursor-pointer" data-sort="course_Name">Course
-                                                Name
-                                            </th>
-                                            <th scope="col" class="sort cursor-pointer" data-sort="instructor">
-                                                Instructor
-                                            </th>
-                                            <th scope="col" class="sort cursor-pointer" data-sort="lessons">Lessons</th>
-                                            <th scope="col" class="sort cursor-pointer" data-sort="duration">Duration
-                                            </th>
-                                            <th scope="col" class="sort cursor-pointer" data-sort="students">Students
-                                            </th>
-                                            <th scope="col" class="sort cursor-pointer" data-sort="fees">Fees</th>
-                                            <th scope="col" class="sort cursor-pointer" data-sort="rating">Rating</th>
-                                            <th scope="col" class="sort cursor-pointer" data-sort="status">Status</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="category">STT</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="course_Name">Image</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="course_Name">Name</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="course_Name">Email</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="course_Name">Address</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="instructor">Phone Number</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="instructor">Role</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="lessons">Status</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                         </thead>
                                         <tbody class="list form-check-all">
-                                        <tr>
+                                        <tr th:each="item : ${userList}">
+                                            <td th:text="${item.userId}"></td>
+                                            <td th:text="${item.userImg}"></td>
+                                            <td th:text="${item.userName}"></td>
+                                            <td th:text="${item.userEmail}"></td>
+                                            <td th:text="${item.userAddress}"></td>
+                                            <td th:text="${item.userPhoneNumber}"></td>
+                                            <td ><span class="label" th:classappend="${item.role?'btn btn-success':'btn btn-danger'}" th:text="${item.role ? 'Admin' : 'User'}"></span></td>
+                                            <td ><span class="label" th:classappend="${item.status?'btn btn-success':'btn btn-danger'}" th:text="${item.status ? 'Active' : 'Block'}"></span></td>
                                             <td>
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="checkbox" name="chk_child">
-                                                    <label class="form-check-label"></label>
-                                                </div>
-                                            </td>
-                                            <td class="id d-none"><a href="javascript:void(0)"
-                                                                     class="fw-medium link-primary">#TBS001</a></td>
-                                            <td class="category"><a href="#" class="text-reset">React Development</a>
-                                            </td>
-                                            <td class="course_Name">
-                                                <div class="d-flex gap-2 align-items-center">
-                                                    <div class="flex-shrink-0">
-                                                        <img th:src="@{/assets3/images/learning/react.png}" alt=""
-                                                             class="avatar-xxs">
-                                                    </div>
-                                                    <div class="flex-grow-1">
-                                                        <a href="#" class="text-reset">Advanced React and Redux</a>
-                                                    </div>
-                                                </div>
-                                            </td>
-                                            <td class="instructor">Themesbrand</td>
-                                            <td class="lessons">15</td>
-                                            <td class="duration">2 Years</td>
-                                            <td class="students">49</td>
-                                            <td class="fees"><span class="fw-medium">$278.12</span></td>
-                                            <td class="rating">
-                                                <i class="bi bi-star-fill text-warning align-baseline me-1"></i>
-                                                <span class="rate-value">4.5</span>
-                                            </td>
-                                            <td class="status"><span class="badge bg-info-subtle text-info">Open</span>
-                                            </td>
-                                            <td>
+                                                <!-------------------------------->
                                                 <ul class="d-flex gap-2 list-unstyled mb-0">
-                                                    <!-------------------------------->
                                                     <li>
-                                                        <a href="#" data-bs-toggle="modal"
-                                                           data-bs-target="#editUserModal"
+                                                        <a th:href="@{/admin/user-edit/{id}(id=${item.userId})}"
                                                            class="btn btn-subtle-secondary btn-icon btn-sm edit-item-btn">
                                                             <i class="ph-pencil"></i>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a href="#" data-bs-toggle="modal"
-                                                           data-bs-target="#deleteUserModal"
+                                                        <a th:href="@{/admin/user-change/{id}(id=${item.userId})}"
                                                            class="btn btn-subtle-danger btn-icon btn-sm remove-item-btn">
-                                                            <i class="ph-trash"></i>
+                                                            <i class="ph-lock-key"></i>
                                                         </a>
                                                     </li>
-                                                    <!-------------------------------->
                                                 </ul>
+                                                <!-------------------------------->
                                             </td>
                                         </tr>
-                                        </tbody><!-- end tbody -->
-                                    </table><!-- end table -->
+                                        </tbody>
+                                    </table>
+
                                     <div class="noresult" style="display: none">
                                         <div class="text-center py-4">
                                             <i class="ph-magnifying-glass fs-1 text-primary"></i>
@@ -163,32 +131,32 @@
                                             Showing <span class="fw-semibold">10</span> of <span
                                                 class="fw-semibold">15</span> Results
                                         </div>
-                                    </div><!--end col-->
+                                    </div>
                                     <div class="col-sm-auto mt-3 mt-sm-0">
                                         <div class="pagination-wrap hstack gap-2 justify-content-center">
                                             <a class="page-item pagination-prev disabled" href="javascript:void(0)">
                                                 Previous
                                             </a>
+                                            <div th:each="item : ${#numbers.sequence(1,hello)}" >
+                                                <a th:href="@{/admin/user/{page}(page = ${item})}" th:text="${item}"></a>
+                                            </div>
                                             <ul class="pagination listjs-pagination mb-0"></ul>
                                             <a class="page-item pagination-next" href="javascript:void(0)">
                                                 Next
                                             </a>
                                         </div>
-                                    </div><!--end col-->
-                                </div><!--end row-->
+                                    </div>
+                                </div>
                             </div>
-                        </div><!--end card-->
-                    </div><!--end col-->
-                </div><!--end row-->
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div><!-- /deleteRecordModal -->
+    </div>
 </div>
-<!-- ============================================================== -->
-<th:block th:insert="admin/user/add-user.html"></th:block>
-<th:block th:insert="admin/user/edit-user.html"></th:block>
-<th:block th:insert="admin/user/delete-user.html"></th:block>
 
+<!-- ============================================================== -->
 <th:block th:insert="admin/layout/footer.html"></th:block>
 <th:block th:insert="admin/layout/script.html"></th:block>
 </body>

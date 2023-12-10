@@ -32,14 +32,14 @@
                                                 <input th:field="*{img}" type="file" multiple="multiple">
                                             </div>
                                             <div class="mb-3">
-                                                <label  class="form-label">Product Name<span class="text-danger">*</span></label>
-                                                <input th:field="*{productName}" type="text" class="form-control"  placeholder="Enter product name" required>
-                                            </div>
-                                            <div class="mb-3">
                                                 <label class="form-label">Category Name<span class="text-danger">*</span></label>
                                                 <select th:field="*{category}" class="form-select">
                                                     <option th:each="category : ${categoryList}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
                                                 </select>
+                                            </div>
+                                            <div class="mb-3">
+                                                <label  class="form-label">Product Name<span class="text-danger">*</span></label>
+                                                <input th:field="*{productName}" type="text" class="form-control"  placeholder="Enter product name" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label  class="form-label">Description<span class="text-danger">*</span></label>
