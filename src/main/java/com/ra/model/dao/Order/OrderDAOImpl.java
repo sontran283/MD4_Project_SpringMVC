@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public class OrderDAOImpl implements OrderDAO{
-    private int LIMIT = 3;
+    private int LIMIT = 4;
     private int totalPage = 0;
     @Override
     public List<Order> findAll() {

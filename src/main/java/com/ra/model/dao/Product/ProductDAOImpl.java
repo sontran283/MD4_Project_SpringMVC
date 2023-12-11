@@ -14,7 +14,7 @@ import java.util.List;
 
 @Repository
 public class ProductDAOImpl implements ProductDAO {
-    private int LIMIT = 3;
+    private int LIMIT = 4;
     private int totalPage = 0;
 
     @Autowired

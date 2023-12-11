@@ -29,7 +29,7 @@
                                         <form th:action="@{/admin/add-product}" method="post" th:object="${product}" enctype="multipart/form-data">
                                             <div class="mb-3">
                                                 <label class="form-label">Product ID<span class="text-danger">*</span></label>
-                                                <input th:field="*{productId}" type="hidden" name="fileimg" class="form-control" placeholder="Enter title" >
+                                                <input th:field="*{productId}" type="hidden" class="form-control" placeholder="Enter title" >
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Image<span class="text-danger">*</span></label>

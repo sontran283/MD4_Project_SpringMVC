@@ -18,7 +18,7 @@ public class CategoryController {
     @GetMapping("/category/{id}")
     public String index(@PathVariable("id")Integer id, Model model){
         List<Category>categoryList=categoryService.paginater(id);
-        model.addAttribute("hello", categoryService.getTotalPage());
+        model.addAttribute("totalPage", categoryService.getTotalPage());
         model.addAttribute("categoryList",categoryList);
         return "admin/category/index";
     }
@@ -53,5 +53,23 @@ public class CategoryController {
     public String changeStatus(@PathVariable("id") Integer id){
         categoryService.delete(id);
         return "redirect:/admin/category/1";
+    }
+
+    @GetMapping("/sort-category")
+    public String sortCategory(Model model) {
+        List<Category> sortedCategoryList = categoryService.sortByName();
+        List<Category> categories = categoryService.findAll();
+        model.addAttribute("categoryList", sortedCategoryList);
+        model.addAttribute("totalPage", (int) Math.ceil(categories.size() / 4.f));
+        return "/admin/category/index";
+    }
+
+    @GetMapping("/search-category")
+    public String searchCategory(@RequestParam String searchTerm, Model model) {
+        List<Category> searchResult = categoryService.findByName(searchTerm);
+        List<Category> categories = categoryService.findAll();
+        model.addAttribute("categoryList", searchResult);
+        model.addAttribute("totalPage", (int) Math.ceil(categories.size() / 4.f));
+        return "/admin/category/index";
     }
 }
