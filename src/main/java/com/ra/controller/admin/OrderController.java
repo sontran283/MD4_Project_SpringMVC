@@ -1,5 +1,6 @@
 package com.ra.controller.admin;
 
+import com.ra.model.entity.Category;
 import com.ra.model.entity.Order;
 import com.ra.model.entity.User;
 import com.ra.model.service.Order.OrderService;
@@ -21,7 +22,7 @@ public class OrderController {
     @GetMapping("/order/{id}")
     public String index(@PathVariable("id")Integer id, Model model){
         List<Order> orderList = orderService.paginater(id);
-        model.addAttribute("hello", orderService.getTotalPage());
+        model.addAttribute("totalPage", orderService.getTotalPage());
         model.addAttribute("userList",orderList);
         return "admin/order/index";
     }
@@ -56,5 +57,23 @@ public class OrderController {
     public String changeStatus(@PathVariable("id") Integer id){
         orderService.delete(id);
         return "redirect:/admin/order/1";
+    }
+
+    @GetMapping("/sort-order")
+    public String sortOrder(Model model) {
+        List<Order> sortedOrderList = orderService.sortByName();
+        List<Order> orders = orderService.findAll();
+        model.addAttribute("orderList", sortedOrderList);
+        model.addAttribute("totalPage", (int) Math.ceil(orders.size() / 4.f));
+        return "/admin/order/index";
+    }
+
+    @GetMapping("/search-order")
+    public String searchOrder(@RequestParam String searchTerm, Model model) {
+        List<Order> searchResult = orderService.findByName(searchTerm);
+        List<Order> orders = orderService.findAll();
+        model.addAttribute("orderList", searchResult);
+        model.addAttribute("totalPage", (int) Math.ceil(orders.size() / 4.f));
+        return "/admin/order/index";
     }
 }

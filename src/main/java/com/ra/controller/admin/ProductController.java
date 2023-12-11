@@ -30,7 +30,7 @@ public class ProductController {
     @GetMapping("/product/{id}")
     public String index(@PathVariable("id") Integer id, Model model) {
         List<Product> productList = productService.paginater(id);
-        model.addAttribute("hello", productService.getTotalPage());
+        model.addAttribute("totalPage", productService.getTotalPage());
         model.addAttribute("productList", productList);
         return "admin/product/index";
     }
@@ -79,5 +79,23 @@ public class ProductController {
     public String changeStatus(@PathVariable("id") Integer id) {
         productService.delete(id);
         return "redirect:/admin/product/1";
+    }
+
+    @GetMapping("/sort-product")
+    public String sortProduct(Model model) {
+        List<Product> sortedProductList = productService.sortByName();
+        List<Product> products = productService.findAll();
+        model.addAttribute("productList", sortedProductList);
+        model.addAttribute("totalPage", (int) Math.ceil(products.size() / 4.f));
+        return "/admin/product/index";
+    }
+
+    @GetMapping("/search-product")
+    public String searchCategory(@RequestParam String searchTerm, Model model) {
+        List<Product> searchResult = productService.findByName(searchTerm);
+        List<Product> products = productService.findAll();
+        model.addAttribute("productList", searchResult);
+        model.addAttribute("totalPage", (int) Math.ceil(products.size() / 4.f));
+        return "/admin/product/index";
     }
 }

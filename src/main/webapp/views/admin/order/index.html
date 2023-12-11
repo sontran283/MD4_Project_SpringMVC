@@ -37,29 +37,33 @@
                             <div class="card-body">
                                 <div class="row align-items-center g-2">
                                     <div class="col-lg-3 me-auto">
-                                    </div><!--end col-->
-                                    <div class="col-lg-2">
-                                        <div class="search-box">
-                                            <input type="text" class="form-control search" placeholder="Search...">
-                                            <i class="ri-search-line search-icon"></i>
-                                        </div>
+                                        <form th:action="@{/admin/search-order}" method="get">
+                                            <div class="search-box">
+                                                <input type="text" class="form-control search" placeholder="Search..." name="searchTerm">
+                                                <i class="ri-search-line search-icon"></i>
+                                            </div>
+                                            <div class="search-box">
+                                            </div>
+                                        </form>
                                     </div>
+                                    <!--------------------------------------->
+                                    <div class="col-lg-2">
+                                    </div>
+                                    <!--------------------------------------->
                                     <div class="col-lg-auto">
                                         <div class="hstack flex-wrap gap-2">
-                                            <button class="btn btn-subtle-danger d-none" id="remove-actions"
-                                                    onClick="deleteMultiple()"><i class="ri-delete-bin-2-line"></i>
-                                            </button>
                                             <!--------------------------------------->
                                             <div>
-                                                <a href="/admin/add-category" class="btn btn-secondary " ><i
+                                                <a th:href="@{/admin/add-order}" class="btn btn-secondary " ><i
                                                         class="bi bi-plus-circle align-baseline me-1"></i> Add Order</a>
                                             </div>
                                             <!--------------------------------------->
                                             <div>
-                                                <a href="#" class="btn btn-primary" ><i
-                                                        class="bi bi-plus-circle align-baseline me-1"></i> Sort Order</a>
-                                                <!--------------------------------------->
+                                                <a th:href="@{/admin/sort-order}" class="btn btn-primary">
+                                                    <i class="bi bi-sort-alpha-down"></i> Sort Order
+                                                </a>
                                             </div>
+                                            <!--------------------------------------->
                                             <div>
                                             </div>
                                         </div>
@@ -71,7 +75,7 @@
                                     <table class="table table-centered align-middle table-custom-effect table-nowrap mb-0">
                                         <thead class="text-muted">
                                         <tr>
-                                            <th scope="col" class="sort cursor-pointer" data-sort="category">STT</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="category">ID</th>
                                             <th scope="col" class="sort cursor-pointer" data-sort="course_Name">Name</th>
                                             <th scope="col" class="sort cursor-pointer" data-sort="instructor">Description</th>
                                             <th scope="col" class="sort cursor-pointer" data-sort="lessons">Status</th>
@@ -79,7 +83,7 @@
                                         </tr>
                                         </thead>
                                         <tbody class="list form-check-all">
-                                        <tr th:each="item : ${categoryList}">
+                                        <tr th:each="item : ${OrderList}">
                                             <td th:text="${item.categoryId}"></td>
                                             <td th:text="${item.categoryName}"></td>
                                             <td th:text="${item.categoryDescription}"></td>
@@ -123,8 +127,8 @@
                                             <a class="page-item pagination-prev disabled" href="javascript:void(0)">
                                                 Previous
                                             </a>
-                                            <div th:each="item : ${#numbers.sequence(1,hello)}" >
-                                                <a th:href="@{/admin/category/{page}(page = ${item})}" th:text="${item}"></a>
+                                            <div th:each="item : ${#numbers.sequence(1, totalPage, 1)}" >
+                                                <a th:href="@{/admin/order/{page}(page = ${item})}" th:text="${item}"></a>
                                             </div>
                                             <ul class="pagination listjs-pagination mb-0"></ul>
                                             <a class="page-item pagination-next" href="javascript:void(0)">

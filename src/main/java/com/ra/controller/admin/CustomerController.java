@@ -20,7 +20,7 @@ public class CustomerController {
     @GetMapping("/user/{id}")
     public String index(@PathVariable("id")Integer id, Model model){
         List<User> userList = userService.paginater(id);
-        model.addAttribute("hello", userService.getTotalPage());
+        model.addAttribute("totalPage", userService.getTotalPage());
         model.addAttribute("userList",userList);
         return "admin/user/index";
     }
@@ -54,5 +54,23 @@ public class CustomerController {
     public String changeStatus(@PathVariable("id") Integer id){
         userService.delete(id);
         return "redirect:/admin/user/1";
+    }
+
+    @GetMapping("/sort-user")
+    public String sortUser(Model model) {
+        List<User> sortedUserList = userService.sortByName();
+        List<User> users = userService.findAll();
+        model.addAttribute("userList", sortedUserList);
+        model.addAttribute("totalPage", (int) Math.ceil(users.size() / 4.f));
+        return "/admin/user/index";
+    }
+
+    @GetMapping("/search-user")
+    public String searchUser(@RequestParam String searchTerm, Model model) {
+        List<User> searchResult = userService.findByName(searchTerm);
+        List<User> users = userService.findAll();
+        model.addAttribute("userList", searchResult);
+        model.addAttribute("totalPage", (int) Math.ceil(users.size() / 4.f));
+        return "/admin/user/index";
     }
 }
