@@ -2,7 +2,6 @@ package com.ra.controller.admin;
 
 import com.ra.model.entity.Category;
 import com.ra.model.entity.Product;
-import com.ra.model.entity.User;
 import com.ra.model.service.Category.CategoryService;
 import com.ra.model.service.Product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,8 +14,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.StandardOpenOption;
 import java.util.List;
 
 @Controller
@@ -38,7 +35,7 @@ public class ProductController {
         return "admin/product/index";
     }
 
-    @GetMapping("/add-product")
+    @GetMapping("/add_product")
     public String add(Model model) {
         Product product = new Product();
         List<Category> categoryList = categoryService.findAll();
@@ -47,8 +44,9 @@ public class ProductController {
         return "admin/product/add-product";
     }
 
-    @PostMapping("create-product")
-    public String create(@ModelAttribute("product") Product product, @RequestParam("img") MultipartFile file) {
+    @PostMapping("/add-product")
+    public String create(@ModelAttribute("product") Product product, MultipartFile file) {
+        System.out.println("kkkkkk");
         String fileName = file.getOriginalFilename();
         File addFile = new File(path + fileName);
         try {

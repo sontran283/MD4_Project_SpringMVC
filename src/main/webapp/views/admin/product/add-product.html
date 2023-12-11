@@ -26,7 +26,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-xxl-8">
-                                        <form th:action="@{/admin/create-product}" method="post" enctype="multipart/form-data" th:object="${product}">
+                                        <form action="/admin/add-product" method="post" enctype="multipart/form-data" th:object="${product}">
                                             <div class="mb-3">
                                                 <label class="form-label">Image<span class="text-danger">*</span></label>
                                                 <input name="img" type="file" class="form-control" placeholder="Enter title" required>
@@ -37,7 +37,7 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Category Name<span class="text-danger">*</span></label>
-                                                <select th:field="*{category}" class="form-select">
+                                                <select th:field="*{category.categoryId}" class="form-select">
                                                     <option th:each="category : ${categoryList}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
                                                 </select>
                                             </div>
@@ -59,7 +59,7 @@
                                                 <input th:field="*{productStatus}" type="radio"  value="0"> <span>close</span>
                                             </div>
                                             <a href="/admin" class="btn btn-danger"><i class="ph-x align-middle"></i> Cancel</a>
-                                            <button class="btn btn-primary">Submit</button>
+                                            <button class="btn btn-primary" type="submit">Submit</button>
                                         </form>
                                     </div>
                                 </div>
