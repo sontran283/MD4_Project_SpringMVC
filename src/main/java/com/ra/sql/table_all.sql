@@ -33,7 +33,7 @@ create table customer(
                          name varchar(255) ,
                          email varchar(255) ,
                          address varchar(255) ,
-                         phone_number double  ,
+                         phone_number varchar(255)  ,
                          password varchar(255) ,
                          role bit(1) default 0 ,
                          status bit(1) default 1

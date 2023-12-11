@@ -1,12 +1,21 @@
 package com.ra.model.entity;
 
+import javax.validation.constraints.*;
+
 public class User {
+
     private int userId;
     private String userImg;
+    @NotEmpty(message = "not null")
     private String userName;
+    @NotEmpty(message = "not null")
+    @Email(message = "phải có @")
     private String userEmail;
+    @NotEmpty(message = "not null")
     private String userAddress;
-    private double userPhoneNumber;
+    @Pattern(regexp = "(0[3|5|7|8|9])+([0-9]{8})\\b", message = "sai")
+    private String userPhoneNumber;
+    @Size(min = 3, max = 100, message = "not null")
     private String userPassword;
     private boolean role;
     private boolean status;
@@ -14,7 +23,7 @@ public class User {
     public User() {
     }
 
-    public User(int userId, String userName, String userEmail, String userAddress, double userPhoneNumber, String userPassword, boolean role, boolean status ,String userImg) {
+    public User(int userId, String userName, String userEmail, String userAddress, String userPhoneNumber, String userPassword, boolean role, boolean status, String userImg) {
         this.userId = userId;
         this.userImg = userImg;
         this.userName = userName;
@@ -66,11 +75,11 @@ public class User {
         this.userAddress = userAddress;
     }
 
-    public double getUserPhoneNumber() {
+    public String getUserPhoneNumber() {
         return userPhoneNumber;
     }
 
-    public void setUserPhoneNumber(double userPhoneNumber) {
+    public void setUserPhoneNumber(String userPhoneNumber) {
         this.userPhoneNumber = userPhoneNumber;
     }
 

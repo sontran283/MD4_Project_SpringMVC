@@ -17,37 +17,9 @@
                         </div>
                         <div class="header__lang">
                             <span class="header__lang-select">English <i class="far fa-angle-down"></i></span>
-                            <ul class="header__lang-submenu">
-                                <li>
-                                    <a href="#">Australia</a>
-                                </li>
-                                <li>
-                                    <a href="#">Spain</a>
-                                </li>
-                                <li>
-                                    <a href="#">Brazil</a>
-                                </li>
-                                <li>
-                                    <a href="#">English</a>
-                                </li>
-                                <li>
-                                    <a href="#">France</a>
-                                </li>
-                                <li>
-                                    <a href="#">United States</a>
-                                </li>
-                            </ul>
                         </div>
-                        <div class="header__top-price">
-                            <select>
-                                <option>USD</option>
-                                <option>ARS</option>
-                                <option>AUD</option>
-                                <option>BRL</option>
-                                <option>GBP</option>
-                                <option>DKK</option>
-                                <option>EUR</option>
-                            </select>
+                        <div class="header__lang">
+                            <span class="header__lang-select">USD <i class="far fa-angle-down"></i></span>
                         </div>
                     </div>
                 </div>
@@ -89,21 +61,19 @@
                             <div class="header__info-wishlist tpcolor__greenish ml-10">
                                 <a href="/wishlist"><i class="icon-heart icons"></i></a>
                             </div>
-<!--                            <div class="header__info-user tpcolor__yellow ml-10">-->
-<!--                                <a href="/logout"><i class="fal fa-long-arrow-right"></i></a>-->
-<!--                            </div>-->
-<!--                            <div class="header__info-user tpcolor__yellow ml-10">-->
-<!--                                <a href="/login"><span th:text='${session.user != null ? session.user.getUserName() : "User"}'></span></a>-->
-<!--                            </div>-->
                             <div class="header__info d-flex align-items-center">
                                 <div class="header__info-user tpcolor__yellow ml-10">
                                     <a href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span th:text='${session.user != null ? session.user.getUserName() : "User"}'></span>
+                                        <span th:text='${session.user != null ? session.user.userName : "User"}'></span>
                                     </a>
-                                    <div class="dropdown-menu" aria-labelledby="userDropdown">
-                                        <a class="dropdown-item" href="/login">LogInt</a>
-                                        <a class="dropdown-item" href="/logout">Logout</a>
-                                    </div>
+                                  <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                     <span th:if="${session.user == null}">
+                                       <a class="dropdown-item" href="/login">Login</a>
+                                       <a class="dropdown-item" href="/register">Register</a>
+                                     </span>
+                                      <a class="dropdown-item" href="/profile">Profile</a>
+                                      <a class="dropdown-item" href="/logout">Logout</a>
+                                  </div>
                                 </div>
                             </div>
                         </div>

@@ -23,7 +23,7 @@
 
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Courses</a></li>
+                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Menu</a></li>
                                     <li class="breadcrumb-item active">Product View</li>
                                 </ol>
                             </div>
@@ -37,9 +37,7 @@
                             <div class="card-body">
                                 <div class="row align-items-center g-2">
                                     <div class="col-lg-3 me-auto">
-                                        <h6 class="card-title mb-0">Instructors List <span
-                                                class="badge bg-primary ms-1 align-baseline">283</span></h6>
-                                    </div><!--end col-->
+                                    </div>
                                     <div class="col-lg-2">
                                         <div class="search-box">
                                             <input type="text" class="form-control search" placeholder="Search...">
@@ -93,7 +91,7 @@
                                             <td th:text="${item.productDescription}"></td>
                                             <td th:text="${item.productPrice}"></td>
                                             <td th:text="${item.quantity}"></td>
-                                            <td ><span class="label" th:classappend="${item.productStatus?'btn btn-success':'btn btn-danger'}" th:text="${item.productStatus?'Open':'Block'}"></span></td>
+                                            <td ><span class="label" th:classappend="${item.productStatus?'btn btn-success':'btn btn-danger'}" th:text="${item.productStatus?'Open':'Close'}"></span></td>
                                             <td>
                                                 <!-------------------------------->
                                                 <ul class="d-flex gap-2 list-unstyled mb-0">

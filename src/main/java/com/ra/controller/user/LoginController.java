@@ -32,7 +32,7 @@ public class LoginController {
         System.out.println(user.getUserName());
         if (authent != null) {
             model.addAttribute("user", authent);
-            session.setAttribute("user",user);
+            session.setAttribute("user",authent);
             return "redirect:/";
         } else {
             return "redirect:/login";

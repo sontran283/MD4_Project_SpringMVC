@@ -31,7 +31,7 @@ public class UserDAOImpl implements UserDAO {
                 user.setUserName(resultSet.getString("name"));
                 user.setUserEmail(resultSet.getString("email"));
                 user.setUserAddress(resultSet.getString("address"));
-                user.setUserPhoneNumber(resultSet.getDouble("phone_number"));
+                user.setUserPhoneNumber(resultSet.getString("phone_number"));
                 user.setUserPassword(resultSet.getString("password"));
                 user.setRole(resultSet.getBoolean("role"));
                 user.setStatus(resultSet.getBoolean("status"));
@@ -60,7 +60,7 @@ public class UserDAOImpl implements UserDAO {
                 user.setUserName(resultSet.getString("name"));
                 user.setUserEmail(resultSet.getString("email"));
                 user.setUserAddress(resultSet.getString("address"));
-                user.setUserPhoneNumber(resultSet.getDouble("phone_number"));
+                user.setUserPhoneNumber(resultSet.getString("phone_number"));
                 user.setUserPassword(resultSet.getString("password"));
                 user.setRole(resultSet.getBoolean("role"));
                 user.setStatus(resultSet.getBoolean("status"));
@@ -88,7 +88,7 @@ public class UserDAOImpl implements UserDAO {
                 user.setUserName(resultSet.getString("name"));
                 user.setUserEmail(resultSet.getString("email"));
                 user.setUserAddress(resultSet.getString("address"));
-                user.setUserPhoneNumber(resultSet.getDouble("phone_number"));
+                user.setUserPhoneNumber(resultSet.getString("phone_number"));
                 user.setUserPassword(resultSet.getString("password"));
                 user.setRole(resultSet.getBoolean("role"));
                 user.setStatus(resultSet.getBoolean("status"));
@@ -116,7 +116,7 @@ public class UserDAOImpl implements UserDAO {
                 user.setUserName(resultSet.getString("name"));
                 user.setUserEmail(resultSet.getString("email"));
                 user.setUserAddress(resultSet.getString("address"));
-                user.setUserPhoneNumber(resultSet.getDouble("phone_number"));
+                user.setUserPhoneNumber(resultSet.getString("phone_number"));
                 user.setUserPassword(resultSet.getString("password"));
                 user.setRole(resultSet.getBoolean("role"));
                 user.setStatus(resultSet.getBoolean("status"));
@@ -141,7 +141,7 @@ public class UserDAOImpl implements UserDAO {
                 callableStatement.setString(2, user.getUserImg());
                 callableStatement.setString(3, user.getUserEmail());
                 callableStatement.setString(4, user.getUserAddress());
-                callableStatement.setDouble(5, user.getUserPhoneNumber());
+                callableStatement.setString(5, user.getUserPhoneNumber());
                 callableStatement.setString(6,hasPassword);
                 int check = callableStatement.executeUpdate();
                 if (check > 0) {
@@ -154,7 +154,7 @@ public class UserDAOImpl implements UserDAO {
                 callableStatement.setString(3, user.getUserImg());
                 callableStatement.setString(4, user.getUserEmail());
                 callableStatement.setString(5, user.getUserAddress());
-                callableStatement.setDouble(6, user.getUserPhoneNumber());
+                callableStatement.setString(6, user.getUserPhoneNumber());
                 int check = callableStatement.executeUpdate();
                 if (check > 0) {
                     return true;
@@ -199,7 +199,7 @@ public class UserDAOImpl implements UserDAO {
                 user.setUserName(resultSet.getString("name"));
                 user.setUserEmail(resultSet.getString("email"));
                 user.setUserAddress(resultSet.getString("address"));
-                user.setUserPhoneNumber(resultSet.getDouble("phone_number"));
+                user.setUserPhoneNumber(resultSet.getString("phone_number"));
                 user.setUserPassword(resultSet.getString("password"));
                 user.setRole(resultSet.getBoolean("role"));
                 user.setStatus(resultSet.getBoolean("status"));
@@ -233,7 +233,7 @@ public class UserDAOImpl implements UserDAO {
                 user.setUserName(resultSet.getString("name"));
                 user.setUserEmail(resultSet.getString("email"));
                 user.setUserAddress(resultSet.getString("address"));
-                user.setUserPhoneNumber(resultSet.getDouble("phone_number"));
+                user.setUserPhoneNumber(resultSet.getString("phone_number"));
                 user.setUserPassword(resultSet.getString("password"));
                 user.setRole(resultSet.getBoolean("role"));
                 user.setStatus(resultSet.getBoolean("status"));

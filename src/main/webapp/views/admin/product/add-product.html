@@ -26,10 +26,10 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-xxl-8">
-                                        <form action="/admin/add-product" method="post" enctype="multipart/form-data" th:object="${product}">
+                                        <form th:action="@{/admin/create-product}" method="post" enctype="multipart/form-data" th:object="${product}">
                                             <div class="mb-3">
                                                 <label class="form-label">Image<span class="text-danger">*</span></label>
-                                                <input th:field="*{img}" type="file" class="form-control" placeholder="Enter title" required>
+                                                <input name="img" type="file" class="form-control" placeholder="Enter title" required>
                                             </div>
                                             <div class="mb-3">
                                                 <label  class="form-label">Product Name<span class="text-danger">*</span></label>

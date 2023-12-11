@@ -6,15 +6,25 @@ import com.ra.model.entity.User;
 import com.ra.model.service.Category.CategoryService;
 import com.ra.model.service.Product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardOpenOption;
 import java.util.List;
 
 @Controller
+@PropertySource("classpath:/config.properties")
 @RequestMapping("/admin")
 public class ProductController {
+    @Value("D:\\MD4-JAVA-DATABASE\\Project_Module4_WebFruit\\src\\main\\webapp\\uploads\\images\\")
+    private String path;
     @Autowired
     private ProductService productService;
     @Autowired
@@ -37,9 +47,18 @@ public class ProductController {
         return "admin/product/add-product";
     }
 
-    @PostMapping("/add-product")
-    public String create(@ModelAttribute("product") Product product) {
-        productService.saveOrUpDate(product);
+    @PostMapping("create-product")
+    public String create(@ModelAttribute("product") Product product, @RequestParam("img") MultipartFile file) {
+        String fileName = file.getOriginalFilename();
+        File addFile = new File(path + fileName);
+        try {
+            product.setImg(fileName);
+            if (productService.saveOrUpDate(product)) {
+                file.transferTo(addFile);
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
         return "redirect:/admin/product/1";
     }
 

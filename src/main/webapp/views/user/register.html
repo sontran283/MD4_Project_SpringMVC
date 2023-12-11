@@ -87,24 +87,29 @@
                             <!-- Email input -->
                             <div class="form-outline mb-4">
                                 <label class="form-label">Name</label>
-                                <input th:field="*{userName}" type="text" class="form-control" placeholder="Enter your name"/>
+                                <input th:field="*{userName}" th:classappend="${#fields.hasErrors('userName')} ? 'border-danger'" type="text" class="form-control" placeholder="Enter your name"/>
+                                <small class="form-text text-danger" th:errors="*{userName}"></small>
                             </div>
                             <div class="form-outline mb-4">
                                 <label class="form-label" >Email</label>
-                                <input th:field="*{userEmail}" type="email"class="form-control" placeholder="Enter your email"/>
+                                <input th:field="*{userEmail}" th:classappend="${#fields.hasErrors('userEmail')} ? 'border-danger'" type="text"class="form-control" placeholder="Enter your email"/>
+                                <small class="form-text text-danger" th:errors="*{userEmail}"></small>
                             </div>
                             <div class="form-outline mb-4">
                                 <label class="form-label" >Address</label>
-                                <input th:field="*{userAddress}" type="text"  class="form-control" placeholder="Enter your address"/>
+                                <input th:field="*{userAddress}" th:classappend="${#fields.hasErrors('userAddress')} ? 'border-danger'" type="text"  class="form-control" placeholder="Enter your address"/>
+                                <small class="form-text text-danger" th:errors="*{userAddress}"></small>
                             </div>
                             <div class="form-outline mb-4">
                                 <label class="form-label" >PhoneNumber</label>
-                                <input th:field="*{userPhoneNumber}" type="text"  class="form-control" placeholder="Enter your phonenumber"/>
+                                <input th:field="*{userPhoneNumber}" th:classappend="${#fields.hasErrors('userPhoneNumber')} ? 'border-danger'" type="text"  class="form-control" placeholder="Enter your phonenumber"/>
+                                <small class="form-text text-danger" th:errors="*{userPhoneNumber}"></small>
                             </div>
                             <!-- Password input -->
                             <div class="form-outline mb-4">
                                 <label class="form-label" >Password</label>
-                                <input th:field="*{userPassword}"  type="text"  class="form-control"  placeholder="Enter your password"/>
+                                <input th:field="*{userPassword}" th:classappend="${#fields.hasErrors('userPassword')} ? 'border-danger'"  type="text"  class="form-control"  placeholder="Enter your password"/>
+                                <small class="form-text text-danger" th:errors="*{userPassword}"></small>
                             </div>
                             <!-- Submit button -->
                             <button type="submit" class="btn btn-primary btn-block mb-4">
