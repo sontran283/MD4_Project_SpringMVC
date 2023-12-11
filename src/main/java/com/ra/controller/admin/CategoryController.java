@@ -42,6 +42,7 @@ public class CategoryController {
         model.addAttribute("category",category);
         return "/admin/category/edit-category";
     }
+
     @PostMapping("/category-edit")
     public String update(@ModelAttribute("category") Category category){
         categoryService.saveOrUpDate(category);

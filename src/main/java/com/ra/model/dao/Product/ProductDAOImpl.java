@@ -16,6 +16,7 @@ import java.util.List;
 public class ProductDAOImpl implements ProductDAO {
     private int LIMIT = 3;
     private int totalPage = 0;
+
     @Autowired
     private CategoryDAO categoryDAO;
 
@@ -141,7 +142,7 @@ public class ProductDAOImpl implements ProductDAO {
         connection = ConnectionDataBase.openConnection();
         try {
             if (product.getProductId() == 0) {
-                CallableStatement callableStatement = connection.prepareCall("{CALL PRODUCT_ADD(?,?,?,?,?,?)}");
+                CallableStatement callableStatement = connection.prepareCall("{CALL PRODUCT_ADD(?,?,?,?,?,?,?)}");
                 callableStatement.setInt(1, product.getCategory().getCategoryId());
                 callableStatement.setString(2, product.getImg());
                 callableStatement.setString(3, product.getProductName());
@@ -215,7 +216,7 @@ public class ProductDAOImpl implements ProductDAO {
                 product.setProductStatus(resultSet.getBoolean("status"));
                 productList.add(product);
             }
-            this.totalPage= callableStatement.getInt(3);
+            this.totalPage = callableStatement.getInt(3);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {

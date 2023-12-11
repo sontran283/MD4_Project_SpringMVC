@@ -30,12 +30,12 @@ public class ProductController {
     @GetMapping("/product/{id}")
     public String index(@PathVariable("id") Integer id, Model model) {
         List<Product> productList = productService.paginater(id);
-        model.addAttribute("hello", categoryService.getTotalPage());
+        model.addAttribute("hello", productService.getTotalPage());
         model.addAttribute("productList", productList);
         return "admin/product/index";
     }
 
-    @GetMapping("/add_product")
+    @GetMapping("/add-product")
     public String add(Model model) {
         Product product = new Product();
         List<Category> categoryList = categoryService.findAll();
@@ -45,14 +45,14 @@ public class ProductController {
     }
 
     @PostMapping("/add-product")
-    public String create(@ModelAttribute("product") Product product, MultipartFile file) {
-        System.out.println("kkkkkk");
+    public String create(@ModelAttribute("product") Product product, @RequestParam("fileimg") MultipartFile file) {
         String fileName = file.getOriginalFilename();
-        File addFile = new File(path + fileName);
+        String url = "D:\\MD4-JAVA-DATABASE\\Project_Module4_WebFruit\\src\\main\\webapp\\uploads\\images\\";
+        File file1 = new File(url + fileName);
         try {
             product.setImg(fileName);
             if (productService.saveOrUpDate(product)) {
-                file.transferTo(addFile);
+                file.transferTo(file1);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
@@ -72,7 +72,7 @@ public class ProductController {
     @PostMapping("/product-edit")
     public String update(@ModelAttribute("product") Product product) {
         productService.saveOrUpDate(product);
-        return "redirect:product/1";
+        return "redirect:/admin/product/1";
     }
 
     @GetMapping("/product-change/{id}")

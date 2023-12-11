@@ -17,7 +17,6 @@
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
                             <h4 class="mb-sm-0">Edit Category</h4>
-
                         </div>
                     </div>
                 </div>
@@ -27,7 +26,11 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-xxl-8">
-                                        <form action="/admin/category-edit" method="post" th:object="${category}">
+                                        <form th:action="@{/admin/add-category}" method="post" th:object="${category}">
+                                            <div class="mb-3">
+                                                <label  class="form-label">Category ID<span class="text-danger">*</span></label>
+                                                <input th:field="*{categoryId}" type="hidden" class="form-control"  placeholder="Enter product title">
+                                            </div>
                                             <div class="mb-3">
                                                 <label  class="form-label">Category Name<span class="text-danger">*</span></label>
                                                 <input th:field="*{categoryName}" type="text" class="form-control"  placeholder="Enter product title" required>
@@ -38,10 +41,10 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label  class="form-label">Status<span class="text-danger">*</span></label>
-                                                <input th:field="*{categoryStatus}" type="radio" value="1"> <span>hien</span>
-                                                <input th:field="*{categoryStatus}" type="radio"  value="0"> <span>an</span>
+                                                <input th:field="*{categoryStatus}" type="radio" value="1"> <span>open</span>
+                                                <input th:field="*{categoryStatus}" type="radio"  value="0"> <span>close</span>
                                             </div>
-                                            <a href="/admin" class="btn btn-danger"><i class="ph-x align-middle"></i> Cancel</a>
+                                            <a href="/admin/category/1" class="btn btn-danger"><i class="ph-x align-middle"></i> Cancel</a>
                                             <button class="btn btn-primary">Submit</button>
                                         </form>
                                     </div>
@@ -53,6 +56,7 @@
             </div>
         </div>
     </div>
+    <!-- ============================================================== -->
 </div>
 <th:block th:insert="admin/layout/footer.html"></th:block>
 <th:block th:insert="admin/layout/script.html"></th:block>

@@ -8,11 +8,12 @@ CREATE PROCEDURE PRODUCT_ADD(
     IN p_name VARCHAR(255),
     IN p_description VARCHAR(255),
     IN p_price DOUBLE,
-    IN p_quantity INT
+    IN p_quantity INT,
+    IN p_status BIT
 )
 BEGIN
-INSERT INTO product (category_id,img, name, description, price, quantity)
-VALUES (p_category_id ,p_img, p_name, p_description, p_price, p_quantity);
+INSERT INTO product (category_id,img, name, description, price, quantity,status)
+VALUES (p_category_id ,p_img, p_name, p_description, p_price, p_quantity,p_status);
 END; //
 
 

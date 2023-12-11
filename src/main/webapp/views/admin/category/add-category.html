@@ -26,7 +26,7 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-xxl-8">
-                                        <form action="/admin/add-category" method="post" th:object="${category}">
+                                        <form th:action="@{/admin/add-category}" method="post" th:object="${category}">
                                             <div class="mb-3">
                                                 <label  class="form-label">Category Name<span class="text-danger">*</span></label>
                                                 <input th:field="*{categoryName}" type="text" class="form-control"  placeholder="Enter product title" required>
@@ -40,7 +40,7 @@
                                                 <input th:field="*{categoryStatus}" type="radio" value="1"> <span>open</span>
                                                 <input th:field="*{categoryStatus}" type="radio"  value="0"> <span>close</span>
                                             </div>
-                                            <a href="/admin" class="btn btn-danger"><i class="ph-x align-middle"></i> Cancel</a>
+                                            <a href="/admin/category/1" class="btn btn-danger"><i class="ph-x align-middle"></i> Cancel</a>
                                             <button class="btn btn-primary">Submit</button>
                                         </form>
                                     </div>
