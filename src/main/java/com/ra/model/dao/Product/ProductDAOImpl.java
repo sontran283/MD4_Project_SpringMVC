@@ -252,4 +252,19 @@ public class ProductDAOImpl implements ProductDAO {
     public Integer getTotalPage() {
         return totalPage;
     }
+
+    @Override
+    public void deleteProduct(int id) {
+        Connection connection = null;
+        connection = ConnectionDataBase.openConnection();
+        try {
+            CallableStatement callableStatement = connection.prepareCall("{CALL PRODUCT_DELETE(?)}");
+            callableStatement.setInt(1, id);
+            callableStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            ConnectionDataBase.closeConnection(connection);
+        }
+    }
 }

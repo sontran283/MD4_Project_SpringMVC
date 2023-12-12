@@ -1,6 +1,7 @@
 package com.ra.model.service.Product;
 
 import com.ra.model.dao.Product.ProductDAO;
+import com.ra.model.dto.product.ProductDTO;
 import com.ra.model.entity.Category;
 import com.ra.model.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -49,12 +50,26 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public int saveProductId(Product product) {
+    public int saveProductId(ProductDTO productDTO) {
+        Product product = new Product();
+        product.setProductId(productDTO.getProductId());
+        product.setProductName(productDTO.getProductName());
+        product.setProductDescription(productDTO.getProductDescription());
+        product.setProductPrice(productDTO.getProductPrice());
+        product.setQuantity(productDTO.getQuantity());
+        product.setProductStatus(productDTO.getProductStatus());
+        product.setCategory(productDTO.getCategory());
+        product.setImg(productDTO.getFile().getOriginalFilename());
         return productDAO.saveProductId(product);
     }
 
     @Override
     public Integer getTotalPage() {
         return productDAO.getTotalPage();
+    }
+
+    @Override
+    public void deleteProduct(int id) {
+        productDAO.deleteProduct(id);
     }
 }

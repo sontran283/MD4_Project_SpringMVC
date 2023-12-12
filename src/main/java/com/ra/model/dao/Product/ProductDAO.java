@@ -10,4 +10,5 @@ public interface ProductDAO extends IGenericDAO<Product, Integer> {
     List<Product> paginater(Integer noPage);
     int saveProductId(Product product);
     Integer getTotalPage();
+    void deleteProduct(int id);
 }

@@ -29,17 +29,19 @@
                                         <form th:action="@{/admin/add-product}" method="post" th:object="${product}" enctype="multipart/form-data">
                                             <div class="mb-3">
                                                 <label class="form-label">Image<span class="text-danger">*</span></label>
-                                                <input type="file" name="fileimg"  placeholder="Enter title" >
+                                                <input th:field="*{file}" type="file"  class="form-control"  placeholder="Enter title" >
+                                                <small th:errors="*{file}" class="text-danger"></small>
                                             </div>
 
                                             <div class="mb-3">
-                                                <label class="form-label">anh khac<span class="text-danger">*</span></label>
-                                                <input type="file" name="abccccc" multiple  placeholder="Enter title" >
+                                                <label class="form-label">Description Image<span class="text-danger">*</span></label>
+                                                <input type="file" name="fileName" multiple class="form-control"  placeholder="Enter title" >
                                             </div>
 
                                             <div class="mb-3">
                                                 <label  class="form-label">Product Name<span class="text-danger">*</span></label>
-                                                <input th:field="*{productName}" type="text" class="form-control"  placeholder="Enter product name" required>
+                                                <input th:field="*{productName}" type="text" class="form-control"  placeholder="Enter product name">
+                                                <small th:errors="*{productName}" class="text-danger"></small>
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Category Name<span class="text-danger">*</span></label>
@@ -49,15 +51,15 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label  class="form-label">Description<span class="text-danger">*</span></label>
-                                                <input th:field="*{productDescription}" type="text" class="form-control" placeholder="Enter product title" required>
+                                                <input th:field="*{productDescription}" type="text" class="form-control" placeholder="Enter product title">
                                             </div>
                                             <div class="mb-3">
                                                 <label  class="form-label">Price<span class="text-danger">*</span></label>
-                                                <input th:field="*{productPrice}" type="text" class="form-control" placeholder="Enter product title" required>
+                                                <input th:field="*{productPrice}" type="text" class="form-control" placeholder="Enter product title">
                                             </div>
                                             <div class="mb-3">
                                                 <label  class="form-label">Quantity<span class="text-danger">*</span></label>
-                                                <input th:field="*{quantity}" type="text" class="form-control" placeholder="Enter product title" required>
+                                                <input th:field="*{quantity}" type="text" class="form-control" placeholder="Enter product title">
                                             </div>
                                             <div class="mb-3">
                                                 <label  class="form-label">Status<span class="text-danger">*</span></label>

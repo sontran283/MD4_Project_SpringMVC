@@ -1,5 +1,6 @@
 package com.ra.controller.admin;
 
+import com.ra.model.dto.product.ProductDTO;
 import com.ra.model.entity.Category;
 import com.ra.model.entity.Image;
 import com.ra.model.entity.Product;
@@ -11,9 +12,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.validation.Valid;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -22,7 +25,7 @@ import java.util.List;
 @PropertySource("classpath:/config.properties")
 @RequestMapping("/admin")
 public class ProductController {
-    @Value("D:\\MD4-JAVA-DATABASE\\Project_Module4_WebFruit\\src\\main\\webapp\\uploads\\images\\")
+    @Value("${path}")
     private String path;
     @Autowired
     private ProductService productService;
@@ -41,31 +44,37 @@ public class ProductController {
 
     @GetMapping("/add-product")
     public String add(Model model) {
-        Product product = new Product();
+        ProductDTO productDTO = new ProductDTO();
         List<Category> categoryList = categoryService.findAll();
-        model.addAttribute("product", product);
+        model.addAttribute("product", productDTO);
         model.addAttribute("categoryList", categoryList);
         return "admin/product/add-product";
     }
 
     @PostMapping("/add-product")
-    public String create(@ModelAttribute("product") Product product, @RequestParam("fileimg") MultipartFile file, @RequestParam("abccccc") MultipartFile[] files)  {
-        String fileName = file.getOriginalFilename();
-        String url = "D:\\MD4-JAVA-DATABASE\\Project_Module4_WebFruit\\src\\main\\webapp\\uploads\\images\\";
-        File file1 = new File(url + fileName);
+    public String create(@Valid @ModelAttribute("product") ProductDTO productDTO,
+                         BindingResult result, Model model,
+                         @RequestParam("fileName") MultipartFile[] files) {
+        if (result.hasErrors()) {
+            List<Category> categoryList = categoryService.findAll();
+            model.addAttribute("categoryList", categoryList);
+            return "admin/product/add-product";
+        }
         try {
-            product.setImg(fileName);
-            Integer productId=productService.saveProductId(product);
-            if (productId>0) {
+            MultipartFile file = productDTO.getFile();
+            String fileName = file.getOriginalFilename();
+            File file1 = new File(path + fileName);
+            int productId = productService.saveProductId(productDTO);
+            if (productId > 0) {
                 file.transferTo(file1);
-                for (MultipartFile multipartFile : files){
+                for (MultipartFile multipartFile : files) {
                     String fileImgName = multipartFile.getOriginalFilename();
                     File fileDescription = new File(path + fileImgName);
                     multipartFile.transferTo(fileDescription);
 
                     Image image = new Image();
                     image.setImgUrl(fileImgName);
-                    imageService.addImage(image,productId );
+                    imageService.addImage(image, productId);
                 }
             }
         } catch (IOException e) {
@@ -92,6 +101,12 @@ public class ProductController {
     @GetMapping("/product-change/{id}")
     public String changeStatus(@PathVariable("id") Integer id) {
         productService.delete(id);
+        return "redirect:/admin/product/1";
+    }
+
+    @GetMapping("/product-delete/{id}")
+    public String delete(@PathVariable("id") Integer id) {
+        productService.deleteProduct(id);
         return "redirect:/admin/product/1";
     }
 

@@ -114,7 +114,6 @@ SELECT * FROM product LIMIT _limit OFFSET _offset;
 end; //
 
 
-
 DELIMITER //
 CREATE PROCEDURE PRODUCT_ADD_PRODUCT_ID(
     IN p_category_id INT,
