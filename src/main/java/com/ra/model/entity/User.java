@@ -6,16 +6,16 @@ public class User {
 
     private int userId;
     private String userImg;
-    @NotEmpty(message = "not null")
+    @NotEmpty(message = "Cannot be left blank")
     private String userName;
-    @NotEmpty(message = "not null")
-    @Email(message = "phải có @")
+    @NotEmpty(message = "Cannot be left blank")
+    @Email(message = "Must have @")
     private String userEmail;
-    @NotEmpty(message = "not null")
+    @NotEmpty(message = "Cannot be left blank")
     private String userAddress;
-    @Pattern(regexp = "(0[3|5|7|8|9])+([0-9]{8})\\b", message = "sai")
+    @Pattern(regexp = "(0[3|5|7|8|9])+([0-9]{8})\\b", message = "Enter the correct Vietnamese phone format")
     private String userPhoneNumber;
-    @Size(min = 3, max = 100, message = "not null")
+    @Size(min = 3, max = 100, message = "Cannot be left blank")
     private String userPassword;
     private boolean role;
     private boolean status;

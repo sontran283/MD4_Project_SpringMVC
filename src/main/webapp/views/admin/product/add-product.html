@@ -29,13 +29,13 @@
                                         <form th:action="@{/admin/add-product}" method="post" th:object="${product}" enctype="multipart/form-data">
                                             <div class="mb-3">
                                                 <label class="form-label">Image<span class="text-danger">*</span></label>
-                                                <input th:field="*{file}" type="file"  class="form-control"  placeholder="Enter title" >
+                                                <input th:field="*{file}" type="file"  class="form-control" placeholder="Enter title" >
                                                 <small th:errors="*{file}" class="text-danger"></small>
                                             </div>
 
                                             <div class="mb-3">
                                                 <label class="form-label">Description Image<span class="text-danger">*</span></label>
-                                                <input type="file" name="fileName" multiple class="form-control"  placeholder="Enter title" >
+                                                <input type="file" name="fileName" multiple class="form-control"  placeholder="Enter title" required >
                                             </div>
 
                                             <div class="mb-3">
@@ -48,18 +48,22 @@
                                                 <select th:field="*{category.categoryId}" class="form-select">
                                                     <option th:each="category : ${categoryList}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
                                                 </select>
+                                                <small th:errors="*{category.categoryName}" class="text-danger"></small>
                                             </div>
                                             <div class="mb-3">
                                                 <label  class="form-label">Description<span class="text-danger">*</span></label>
-                                                <input th:field="*{productDescription}" type="text" class="form-control" placeholder="Enter product title">
+                                                <input th:field="*{productDescription}" type="text" class="form-control" placeholder="Enter product description">
+                                                <small th:errors="*{productDescription}" class="text-danger"></small>
                                             </div>
                                             <div class="mb-3">
                                                 <label  class="form-label">Price<span class="text-danger">*</span></label>
-                                                <input th:field="*{productPrice}" type="text" class="form-control" placeholder="Enter product title">
+                                                <input th:field="*{productPrice}" type="number" class="form-control" placeholder="Enter product price">
+                                                <small th:errors="*{productPrice}" class="text-danger"></small>
                                             </div>
                                             <div class="mb-3">
                                                 <label  class="form-label">Quantity<span class="text-danger">*</span></label>
-                                                <input th:field="*{quantity}" type="text" class="form-control" placeholder="Enter product title">
+                                                <input th:field="*{quantity}" type="text" class="form-control" placeholder="Enter product quantity">
+                                                <small th:errors="*{quantity}" class="text-danger"></small>
                                             </div>
                                             <div class="mb-3">
                                                 <label  class="form-label">Status<span class="text-danger">*</span></label>

@@ -4,19 +4,21 @@ import com.ra.model.entity.Category;
 import com.ra.model.validate.FileNotNull;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.*;
 
 public class ProductDTO {
     private int productId;
+    @NotNull(message = "Cannot be left blank")
     private Category category;
-    @FileNotNull(message = "NotEmpty")
+    @FileNotNull(message = "Cannot be left blank")
     private MultipartFile file;
-    @NotEmpty(message = "NotEmpty")
+    @NotEmpty(message = "Cannot be left blank")
     private String productName;
-    @NotEmpty(message = "NotEmpty")
+    @NotEmpty(message = "Cannot be left blank")
     private String productDescription;
+    @Min(value = 1, message = "Price should not be less than 1")
     private double productPrice;
+    @Min(value = 1, message = "Quantity should not be less than 1")
     private int quantity;
 
     private boolean productStatus;
