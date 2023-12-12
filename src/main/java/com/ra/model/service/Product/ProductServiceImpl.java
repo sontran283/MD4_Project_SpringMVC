@@ -49,6 +49,11 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
+    public int saveProductId(Product product) {
+        return productDAO.saveProductId(product);
+    }
+
+    @Override
     public Integer getTotalPage() {
         return productDAO.getTotalPage();
     }

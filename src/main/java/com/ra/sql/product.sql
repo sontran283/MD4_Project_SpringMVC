@@ -1,6 +1,7 @@
 -- #   ---------------- product  ----------------
 -- #   ---------------- product  ----------------
 -- #   ---------------- product  ----------------
+# drop PROCEDURE PRODUCT_ADD;
 DELIMITER //
 CREATE PROCEDURE PRODUCT_ADD(
     IN p_category_id INT,
@@ -111,3 +112,22 @@ BEGIN
     SET  total = CEIL((SELECT count(*) FROM product) / _limit);
 SELECT * FROM product LIMIT _limit OFFSET _offset;
 end; //
+
+
+
+DELIMITER //
+CREATE PROCEDURE PRODUCT_ADD_PRODUCT_ID(
+    IN p_category_id INT,
+    IN p_img VARCHAR(255),
+    IN p_name VARCHAR(255),
+    IN p_description VARCHAR(255),
+    IN p_price DOUBLE,
+    IN p_quantity INT,
+    IN p_status BIT,
+    out _productId int
+)
+BEGIN
+    INSERT INTO product (category_id,img, name, description, price, quantity,status)
+    VALUES (p_category_id ,p_img, p_name, p_description, p_price, p_quantity,p_status);
+    SELECT LAST_INSERT_ID() INTO _productId;
+END; //

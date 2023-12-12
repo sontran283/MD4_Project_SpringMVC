@@ -8,5 +8,6 @@ import java.util.List;
 
 public interface ProductService extends IGenericService<Product,Integer> {
     List<Product> paginater(Integer noPage);
+    int saveProductId(Product product);
     Integer getTotalPage();
 }

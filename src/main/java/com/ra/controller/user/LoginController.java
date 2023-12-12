@@ -5,10 +5,7 @@ import com.ra.model.service.User.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
 
@@ -31,17 +28,35 @@ public class LoginController {
         User authent = userService.checkLogin(user.getUserEmail(), user.getUserPassword());
         System.out.println(user.getUserName());
         if (authent != null) {
-            model.addAttribute("user", authent);
-            session.setAttribute("user",authent);
-            return "redirect:/";
-        } else {
-            return "redirect:/login";
+            if (authent.getRole()== false){
+                model.addAttribute("user", authent);
+                session.setAttribute("user",authent);
+                return "redirect:/";
+            }
         }
+
+        return "redirect:/login";
     }
 
     @GetMapping("/logout")
     public String logout(){
         session.removeAttribute("user");
         return "redirect:/";
+    }
+    @GetMapping("/adminLogin")
+    public String adminLogin(){
+        return "/user/adminLogin";
+    }
+
+    @PostMapping("/adminLogin")
+    public String handleLogin(@RequestParam("email") String email,@RequestParam("password") String password){
+        User user = userService.checkLogin(email,password);
+        if (user != null){
+            if (user.getRole() == true){
+                session.setAttribute("admin",user);
+                return "admin/run/index";
+            }
+        }
+        return "/user/adminLogin";
     }
 }

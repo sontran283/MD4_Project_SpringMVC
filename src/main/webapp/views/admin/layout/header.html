@@ -700,9 +700,12 @@
                                     <span class="d-flex align-items-center">
                                         <img class="rounded-circle header-profile-user"
                                              th:src="@{/assets3/images/users/32/avatar-8.jpg}" alt="Header Avatar">
+
+<!--                                        <img width="90" height="90" id="output" th:if="${session.user.userImg}"-->
+<!--                                             th:src="@{|/uploads/images/${session.user.userImg}|}"/>-->
                                         <span class="text-start ms-xl-2">
-                                            <span class="d-none d-xl-inline-block ms-1 fw-medium user-name-text">ADMIN</span>
                                             <span class="d-none d-xl-block ms-1 fs-sm user-name-sub-text">Hello!</span>
+                                            <span th:text='${session.admin != null ? session.admin.userName : "ADMIN!"}'></span>
                                         </span>
                                     </span>
                     </button>
@@ -710,7 +713,7 @@
                         <a class="dropdown-item" href="#"><i
                                 class="mdi mdi-account-circle text-muted fs-lg align-middle me-1"></i> <span
                                 class="align-middle">Profile</span></a>
-                        <a class="dropdown-item" href="#"><i
+                        <a class="dropdown-item" href="/adminLogin"><i
                                 class="mdi mdi-logout text-muted fs-lg align-middle me-1"></i> <span
                                 class="align-middle" data-key="t-logout">Logout</span></a>
                     </div>
@@ -718,7 +721,7 @@
             </div>
         </div>
     </div>
-</header>
+    </header>
 
 
 

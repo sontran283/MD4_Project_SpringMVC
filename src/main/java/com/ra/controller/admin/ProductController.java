@@ -1,8 +1,10 @@
 package com.ra.controller.admin;
 
 import com.ra.model.entity.Category;
+import com.ra.model.entity.Image;
 import com.ra.model.entity.Product;
 import com.ra.model.service.Category.CategoryService;
+import com.ra.model.service.Image.ImageService;
 import com.ra.model.service.Product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -26,6 +28,8 @@ public class ProductController {
     private ProductService productService;
     @Autowired
     private CategoryService categoryService;
+    @Autowired
+    private ImageService imageService;
 
     @GetMapping("/product/{id}")
     public String index(@PathVariable("id") Integer id, Model model) {
@@ -45,14 +49,24 @@ public class ProductController {
     }
 
     @PostMapping("/add-product")
-    public String create(@ModelAttribute("product") Product product, @RequestParam("fileimg") MultipartFile file) {
+    public String create(@ModelAttribute("product") Product product, @RequestParam("fileimg") MultipartFile file, @RequestParam("abccccc") MultipartFile[] files)  {
         String fileName = file.getOriginalFilename();
         String url = "D:\\MD4-JAVA-DATABASE\\Project_Module4_WebFruit\\src\\main\\webapp\\uploads\\images\\";
         File file1 = new File(url + fileName);
         try {
             product.setImg(fileName);
-            if (productService.saveOrUpDate(product)) {
+            Integer productId=productService.saveProductId(product);
+            if (productId>0) {
                 file.transferTo(file1);
+                for (MultipartFile multipartFile : files){
+                    String fileImgName = multipartFile.getOriginalFilename();
+                    File fileDescription = new File(path + fileImgName);
+                    multipartFile.transferTo(fileDescription);
+
+                    Image image = new Image();
+                    image.setImgUrl(fileImgName);
+                    imageService.addImage(image,productId );
+                }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);

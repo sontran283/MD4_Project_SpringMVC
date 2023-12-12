@@ -56,7 +56,7 @@ public class ProductDAOImpl implements ProductDAO {
         List<Product> productList = new ArrayList<>();
         try {
             CallableStatement callableStatement = connection.prepareCall("{CALL PRODUCT_SEARCH_BY_NAME(?)}");
-            callableStatement.setString(1,name);
+            callableStatement.setString(1, name);
             ResultSet resultSet = callableStatement.executeQuery();
             while (resultSet.next()) {
                 Product product = new Product();
@@ -199,8 +199,8 @@ public class ProductDAOImpl implements ProductDAO {
         List<Product> productList = new ArrayList<>();
         try {
             CallableStatement callableStatement = connection.prepareCall("{CALL PRODUCT_PAGINATION(?,?,?)}");
-            callableStatement.setInt(1,LIMIT);
-            callableStatement.setInt(2,noPage);
+            callableStatement.setInt(1, LIMIT);
+            callableStatement.setInt(2, noPage);
             callableStatement.setInt(3, Types.INTEGER);
             ResultSet resultSet = callableStatement.executeQuery();
             while (resultSet.next()) {
@@ -223,6 +223,29 @@ public class ProductDAOImpl implements ProductDAO {
             ConnectionDataBase.closeConnection(connection);
         }
         return productList;
+    }
+
+    @Override
+    public int saveProductId(Product product) {
+        Connection connection = null;
+        connection = ConnectionDataBase.openConnection();
+        try {
+            CallableStatement callableStatement = connection.prepareCall("{CALL PRODUCT_ADD_PRODUCT_ID(?,?,?,?,?,?,?,?)}");
+            callableStatement.setInt(1, product.getCategory().getCategoryId());
+            callableStatement.setString(2, product.getImg());
+            callableStatement.setString(3, product.getProductName());
+            callableStatement.setString(4, product.getProductDescription());
+            callableStatement.setDouble(5, product.getProductPrice());
+            callableStatement.setInt(6, product.getQuantity());
+            callableStatement.setBoolean(7, product.getProductStatus());
+            callableStatement.registerOutParameter(8, Types.INTEGER);
+            callableStatement.executeUpdate();
+            return  callableStatement.getInt(8);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            ConnectionDataBase.closeConnection(connection);
+        }
     }
 
     @Override

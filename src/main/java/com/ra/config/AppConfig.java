@@ -55,7 +55,7 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     @Bean
     CommonsMultipartResolver multipartResolver() {
         CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
-        multipartResolver.setMaxUploadSize(52428800);
+        multipartResolver.setMaxUploadSize(52000000);
         return multipartResolver;
     }
 
@@ -63,10 +63,10 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         this.applicationContext = applicationContext;
     }
-//
+
 //    @Override
 //    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("/**").addResourceLocations("/resources/**");
+//        registry.addResourceHandler("/**").addResourceLocations("/resources/");
 //    }
 
     @Override
@@ -76,8 +76,8 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
                         , "classpath:asset/css/" , "classpath:asset/fonts/" , "classpath:asset/images/", "classpath:asset/js/" , "classpath:asset/vendor/");
     }
 
-//        @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(new AuthInterceptor()).addPathPatterns("/admin/**");
-//    }
+        @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new AuthInterceptor()).addPathPatterns("/admin/**");
+    }
 }
