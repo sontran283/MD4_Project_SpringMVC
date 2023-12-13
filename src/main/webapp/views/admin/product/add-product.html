@@ -30,16 +30,15 @@
                                             <div class="mb-3">
                                                 <label class="form-label">Image<span class="text-danger">*</span></label>
                                                 <input th:field="*{file}" type="file"  class="form-control" placeholder="Enter title" accept="image/*" onchange="loadFile(event)" >
-                                                <img width="40" height="40" id="output"/>
                                                 <small th:errors="*{file}" class="text-danger"></small>
+                                                <img width="50" height="50"  id="output"/>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Description Images<span class="text-danger">*</span></label>
-                                                <input type="file" multiple class="form-control" name="fileName" placeholder="Enter title" required accept="image/*" onchange="loadFiles(event)">
+                                                <label class="form-label">Other Image<span class="text-danger">*</span></label>
+                                                <input name="fileName" type="file" multiple class="form-control" placeholder="Enter title" required accept="image/*" onchange="loadFiles(event)">
                                                 <div id="image-preview-container">
                                                 </div>
                                             </div>
-
                                             <div class="mb-3">
                                                 <label  class="form-label">Product Name<span class="text-danger">*</span></label>
                                                 <input th:field="*{productName}" type="text" class="form-control"  placeholder="Enter product name">

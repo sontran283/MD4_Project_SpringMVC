@@ -93,10 +93,6 @@ public class ProductController {
         model.addAttribute("product", product);
         List<Category> categoryList = categoryService.findAll();
         List<Image> imageList = imageService.findByProductId(id);
-        for (Image image : imageList) {
-            System.out.println(image);
-        }
-
         model.addAttribute("categoryList", categoryList);
         model.addAttribute("imageList", imageList);
         return "/admin/product/edit-product";

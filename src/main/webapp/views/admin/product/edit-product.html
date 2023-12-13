@@ -16,7 +16,7 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-sm-flex align-items-center justify-content-between">
-                            <h4 class="mb-sm-0">Add Product</h4>
+                            <h4 class="mb-sm-0">Edit Product</h4>
                         </div>
                     </div>
                 </div>
@@ -33,21 +33,21 @@
                                             <div class="mb-3">
                                                 <label class="form-label">Image<span class="text-danger">*</span></label>
                                                 <input th:field="*{img}" type="file"  class="form-control" placeholder="Enter title" accept="image/*" onchange="loadFile(event)" >
-                                                <img width="40" height="40" id="output" th:src="@{|/uploads/images/${product.img}|}"/>
+                                                <small th:errors="*{img}" class="text-danger"></small>
+                                                <img width="50" height="50" id="output" th:src="@{|/uploads/images/${product.img}|}"/>
                                             </div>
                                             <div class="col-md-12">
-                                                <label class="form-label">Ảnh khác:</label>
-                                                <input type="file" name="fileName" accept="image/*" multiple onchange="loadFiles(event)" class="form-check-label">
+                                                <label class="form-label">Other Image</label>
+                                                <input name="fileName" type="file" accept="image/*" multiple onchange="loadFiles(event)" class="form-control">
                                                 <div id="image-preview-container">
                                                     <div th:each="item,iterStat : ${imageList}">
-                                                        <div class="image-container">
-                                                            <img th:src="@{|/uploads/images/${item.imgUrl}|}" alt="" width="100" height="100"/>
-                                                            <a th:href="@{/admin/delete_image_product/{id}(id=${item.id})}" class="remove-image-btn" onclick="removeImage(event, ${image.id})">X</a>
+                                                        <div class="image-container" style="display: flex">
+                                                           <div> <img th:src="@{|/uploads/images/${item.imgUrl}|}" alt="" width="50" height="50"/></div>
+                                                           <div> <a th:href="@{/admin/delete_image_product/{id}(id=${item.id})}" class="remove-image-btn" onclick="removeImage(event, ${image.id})">X</a></div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-
                                             <div class="mb-3">
                                                 <label  class="form-label">Product Name<span class="text-danger">*</span></label>
                                                 <input th:field="*{productName}" type="text" class="form-control"  placeholder="Enter product name">
