@@ -55,22 +55,12 @@ CREATE PROCEDURE IMAGE_FIND_BY_ID(
 BEGIN
 SELECT *FROM image WHERE id = i_id;
 END; //
+# drop PROCEDURE IMAGE_PRODUCT_FIND_BY_ID
 
---      DELIMITER //
--- CREATE PROCEDURE PROC_CREATE_PRODUCT(
---     IN p_category_id INT,
---     IN p_name VARCHAR(255),
---     IN p_description VARCHAR(255),
---     IN p_price DOUBLE,
---     in _url_image varchar(255),
---     IN p_stock INT,
---     OUT _productId INT
--- )
--- BEGIN
--- INSERT INTO product (category_id, name, description, price,url_image, stock)
--- VALUES (p_category_id, p_name, p_description, p_price,_url_image, p_stock);
---
--- -- Lấy ID của sản phẩm vừa được thêm
--- SELECT LAST_INSERT_ID() INTO _productId;
--- END //
--- DELIMITER ;
+DELIMITER //
+CREATE PROCEDURE IMAGE_PRODUCT_FIND_BY_ID(
+    IN i_id INT
+)
+BEGIN
+    SELECT *FROM image WHERE product_id = i_id;
+END; //

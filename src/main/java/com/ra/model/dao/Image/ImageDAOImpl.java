@@ -35,55 +35,83 @@ public class ImageDAOImpl implements ImageDAO {
 
     @Override
     public List<Image> findByName(String name) {
-       return null;
+        return null;
     }
 
     @Override
     public List<Image> sortByName() {
-       return null;
+        return null;
     }
 
     @Override
     public Image findById(Integer integer) {
         Connection connection = null;
         connection = ConnectionDataBase.openConnection();
-        Category category = new Category();
+        Image image = new Image();
         try {
-            CallableStatement callableStatement = connection.prepareCall("{CALL CATEGORY_FIND_BY_ID(?)}");
+            CallableStatement callableStatement = connection.prepareCall("{CALL IMAGE_FIND_BY_ID(?)}");
             callableStatement.setInt(1, integer);
             ResultSet resultSet = callableStatement.executeQuery();
             while (resultSet.next()) {
-                category.setCategoryId(resultSet.getInt("category_id"));
-                category.setCategoryName(resultSet.getString("name"));
-                category.setCategoryDescription(resultSet.getString("description"));
-                category.setCategoryStatus(resultSet.getBoolean("status"));
+                image.setId(resultSet.getInt("id"));
+                image.setImgUrl(resultSet.getString("url"));
+                image.setProductId(resultSet.getInt("product_id"));
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
             ConnectionDataBase.closeConnection(connection);
         }
-        return null;
+        return image;
     }
 
     @Override
     public boolean saveOrUpDate(Image image) {
-      return false;
+        return false;
     }
 
     @Override
     public void delete(Integer id) {
+        Connection connection=ConnectionDataBase.openConnection();
+        try {
+            CallableStatement callableStatement= connection.prepareCall("CALL IMAGE_DELETE(?)");
+            callableStatement.setInt(1,id);
+            callableStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            ConnectionDataBase.closeConnection(connection);
+        }
+
     }
 
 
     @Override
     public List<Image> findByProductId(Integer id) {
-        return null;
+        Connection connection = ConnectionDataBase.openConnection();
+        List<Image> imageList = new ArrayList<>();
+        try {
+            CallableStatement callableStatement = connection.prepareCall("{CALL IMAGE_PRODUCT_FIND_BY_ID(?)}");
+            callableStatement.setInt(1, id);
+            ResultSet resultSet = callableStatement.executeQuery();
+            while (resultSet.next()) {
+                Image image = new Image();
+                image.setId(resultSet.getInt("id"));
+                image.setImgUrl(resultSet.getString("url"));
+                image.setProductId(resultSet.getInt("product_id"));
+                imageList.add(image);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            ConnectionDataBase.closeConnection(connection);
+        }
+        return imageList;
     }
 
     @Override
     public List<Image> paginater(Integer noPage) {
-       return null;
+        return null;
     }
 
     @Override
@@ -93,18 +121,18 @@ public class ImageDAOImpl implements ImageDAO {
 
     @Override
     public boolean addImage(Image image, Integer productId) {
-        Connection connection=ConnectionDataBase.openConnection();
+        Connection connection = ConnectionDataBase.openConnection();
         try {
-            CallableStatement callableStatement=connection.prepareCall("CALL IMAGE_ADD(?,?)");
-            callableStatement.setString(1,image.getImgUrl());
-            callableStatement.setInt(2,productId);
-            int check=callableStatement.executeUpdate();
-            if (check>0){
+            CallableStatement callableStatement = connection.prepareCall("CALL IMAGE_ADD(?,?)");
+            callableStatement.setString(1, image.getImgUrl());
+            callableStatement.setInt(2, productId);
+            int check = callableStatement.executeUpdate();
+            if (check > 0) {
                 return true;
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             ConnectionDataBase.closeConnection(connection);
         }
         return false;

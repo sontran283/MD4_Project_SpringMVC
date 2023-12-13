@@ -29,13 +29,15 @@
                                         <form th:action="@{/admin/add-product}" method="post" th:object="${product}" enctype="multipart/form-data">
                                             <div class="mb-3">
                                                 <label class="form-label">Image<span class="text-danger">*</span></label>
-                                                <input th:field="*{file}" type="file"  class="form-control" placeholder="Enter title" >
+                                                <input th:field="*{file}" type="file"  class="form-control" placeholder="Enter title" accept="image/*" onchange="loadFile(event)" >
+                                                <img width="40" height="40" id="output"/>
                                                 <small th:errors="*{file}" class="text-danger"></small>
                                             </div>
-
                                             <div class="mb-3">
-                                                <label class="form-label">Description Image<span class="text-danger">*</span></label>
-                                                <input type="file" name="fileName" multiple class="form-control"  placeholder="Enter title" required >
+                                                <label class="form-label">Description Images<span class="text-danger">*</span></label>
+                                                <input type="file" multiple class="form-control" name="fileName" placeholder="Enter title" required accept="image/*" onchange="loadFiles(event)">
+                                                <div id="image-preview-container">
+                                                </div>
                                             </div>
 
                                             <div class="mb-3">
@@ -84,6 +86,41 @@
     </div>
     <!-- ============================================================== -->
 </div>
+<script>
+    var loadFile = function(event) {
+        var reader = new FileReader();
+        reader.onload = function(){
+            var output = document.getElementById('output');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    };
+</script>
+
+
+
+<script>
+    var loadFiles = function(event) {
+        var container = document.getElementById('image-preview-container');
+
+        // Clear previous images
+        container.innerHTML = '';
+
+        var files = event.target.files;
+        for (var i = 0; i < files.length; i++) {
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                var img = document.createElement('img');
+                img.src = e.target.result;
+                img.width = 40;
+                img.height = 40;
+                container.appendChild(img);
+            };
+            reader.readAsDataURL(files[i]);
+        }
+    };
+</script>
+
 <th:block th:insert="admin/layout/footer.html"></th:block>
 <th:block th:insert="admin/layout/script.html"></th:block>
 </body>

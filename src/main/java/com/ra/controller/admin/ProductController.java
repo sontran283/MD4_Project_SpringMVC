@@ -90,9 +90,15 @@ public class ProductController {
     @GetMapping("/product-edit/{id}")
     public String edit(@PathVariable("id") Integer id, Model model) {
         Product product = productService.findById(id);
-        List<Category> categoryList = categoryService.findAll();
         model.addAttribute("product", product);
+        List<Category> categoryList = categoryService.findAll();
+        List<Image> imageList = imageService.findByProductId(id);
+        for (Image image : imageList) {
+            System.out.println(image);
+        }
+
         model.addAttribute("categoryList", categoryList);
+        model.addAttribute("imageList", imageList);
         return "/admin/product/edit-product";
     }
 
@@ -130,5 +136,13 @@ public class ProductController {
         model.addAttribute("productList", searchResult);
         model.addAttribute("totalPage", (int) Math.ceil(products.size() / 4.f));
         return "/admin/product/index";
+    }
+
+    @GetMapping("delete_image_product/{id}")
+    public String deleteImageProduct(@PathVariable("id") Integer id){
+        Image image=imageService.findById(id);
+        int ProductId=image.getProductId();
+        imageService.delete(id);
+        return "redirect:/admin/product-edit/"+ ProductId;
     }
 }

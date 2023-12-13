@@ -49,5 +49,4 @@ public class ImageServiceImpl implements ImageService{
     public boolean addImage(Image image, Integer productId) {
         return imageDAO.addImage(image, productId);
     }
-
 }

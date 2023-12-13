@@ -11,4 +11,5 @@ public interface ImageDAO extends IGenericDAO<Image, Integer> {
   List<Image> paginater(Integer noPage);
   Integer getTotalPage();
   boolean addImage(Image image ,Integer productId);
+
 }
