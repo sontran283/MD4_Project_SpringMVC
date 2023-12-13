@@ -8,4 +8,5 @@ import java.util.List;
 public interface CategoryService extends IGenericService<Category,Integer> {
     List<Category> paginater(Integer noPage);
     Integer getTotalPage();
+    Boolean checkNameCategory(String name);
 }

@@ -130,3 +130,11 @@ BEGIN
     VALUES (p_category_id ,p_img, p_name, p_description, p_price, p_quantity,p_status);
     SELECT LAST_INSERT_ID() INTO _productId;
 END; //
+
+
+DELIMITER //
+CREATE PROCEDURE PRODUCT_CHECK_NAME(in p_name varchar(255))
+BEGIN
+
+    select * FROM product where name = p_name;
+end; //

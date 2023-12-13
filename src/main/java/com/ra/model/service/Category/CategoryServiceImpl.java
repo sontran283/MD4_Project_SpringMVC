@@ -52,4 +52,9 @@ public class CategoryServiceImpl implements CategoryService  {
     public Integer getTotalPage() {
         return categoryDAO.getTotalPage();
     }
+
+    @Override
+    public Boolean checkNameCategory(String name) {
+        return categoryDAO.checkNameCategory(name);
+    }
 }

@@ -61,6 +61,10 @@ public class ProductController {
             return "admin/product/add-product";
         }
         try {
+            if (productService.checkNameProduct(productDTO.getProductName())){
+                result.rejectValue("productName", "productName.exits", "Product name already exists");
+                return "admin/product/add-product";
+            }
             MultipartFile file = productDTO.getFile();
             String fileName = file.getOriginalFilename();
             File file1 = new File(path + fileName);

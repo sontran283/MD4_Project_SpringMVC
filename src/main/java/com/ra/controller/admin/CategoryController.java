@@ -5,8 +5,10 @@ import com.ra.model.service.Category.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -31,7 +33,14 @@ public class CategoryController {
     }
 
     @PostMapping("/add-category")
-    public String create(@ModelAttribute("category") Category category){
+    public String create(@Valid @ModelAttribute("category") Category category, BindingResult result){
+        if (result.hasErrors()){
+            return "admin/category/add-category";
+        }
+        if (categoryService.checkNameCategory(category.getCategoryName())){
+            result.rejectValue("categoryName", "categoryName.exits", "Category name already exists");
+            return "admin/category/add-category";
+        }
         categoryService.saveOrUpDate(category);
         return "redirect:/admin/category/1";
     }

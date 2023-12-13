@@ -9,4 +9,5 @@ import java.util.List;
 public interface CategoryDAO extends IGenericDAO<Category, Integer> {
   List<Category> paginater(Integer noPage);
   Integer getTotalPage();
+  Boolean checkNameCategory(String name);
 }

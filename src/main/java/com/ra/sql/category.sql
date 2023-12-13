@@ -97,3 +97,11 @@ begin
     SET total_page = CEIL((SELECT count(*) from category) / limit_in);
     SELECT * FROM category LIMIT limit_in offset offset_page;
 end //
+
+
+DELIMITER //
+CREATE PROCEDURE CATEGORY_CHECK_NAME(in c_name varchar(255))
+BEGIN
+
+    select * FROM category where name = c_name;
+end; //

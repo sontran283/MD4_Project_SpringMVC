@@ -30,6 +30,7 @@
                                             <div class="mb-3">
                                                 <label  class="form-label">Category Name<span class="text-danger">*</span></label>
                                                 <input th:field="*{categoryName}" type="text" class="form-control"  placeholder="Enter product title" required>
+                                                <small th:errors="*{categoryName}" class="text-danger"></small>
                                             </div>
                                             <div class="mb-3">
                                                 <label  class="form-label">Description<span class="text-danger">*</span></label>

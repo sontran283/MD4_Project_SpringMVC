@@ -11,4 +11,5 @@ public interface UserService extends IGenericService<User,Integer> {
     User checkLogin(String email ,String password);
     List<User> paginater(Integer noPage);
     Integer getTotalPage();
+    Boolean checkValidateEmail(String email);
 }

@@ -190,4 +190,19 @@ public class CategoryDAOImpl implements CategoryDAO {
     public Integer getTotalPage() {
         return totalPage;
     }
+
+    @Override
+    public Boolean checkNameCategory(String name) {
+        Connection connection = ConnectionDataBase.openConnection();
+        try {
+            CallableStatement callableStatement1 = connection.prepareCall("{CALL CATEGORY_CHECK_NAME(?)}");
+            callableStatement1.setString(1,name);
+            ResultSet resultSet = callableStatement1.executeQuery();
+            return resultSet.next();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            ConnectionDataBase.closeConnection(connection);
+        }
+    }
 }

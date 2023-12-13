@@ -142,7 +142,7 @@ public class UserDAOImpl implements UserDAO {
                 callableStatement.setString(3, user.getUserEmail());
                 callableStatement.setString(4, user.getUserAddress());
                 callableStatement.setString(5, user.getUserPhoneNumber());
-                callableStatement.setString(6,hasPassword);
+                callableStatement.setString(6, hasPassword);
                 int check = callableStatement.executeUpdate();
                 if (check > 0) {
                     return true;
@@ -188,8 +188,8 @@ public class UserDAOImpl implements UserDAO {
         List<User> userList = new ArrayList<>();
         try {
             CallableStatement callableStatement = connection.prepareCall("{CALL CUSTOMER_PAGINATION(?,?,?)}");
-            callableStatement.setInt(1,LIMIT);
-            callableStatement.setInt(2,noPage);
+            callableStatement.setInt(1, LIMIT);
+            callableStatement.setInt(2, noPage);
             callableStatement.registerOutParameter(3, Types.INTEGER);
             ResultSet resultSet = callableStatement.executeQuery();
             while (resultSet.next()) {
@@ -205,7 +205,7 @@ public class UserDAOImpl implements UserDAO {
                 user.setStatus(resultSet.getBoolean("status"));
                 userList.add(user);
             }
-            this.totalPage= callableStatement.getInt(3);
+            this.totalPage = callableStatement.getInt(3);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -221,13 +221,13 @@ public class UserDAOImpl implements UserDAO {
 
     @Override
     public User checkEmail(String email) {
-        Connection connection= ConnectionDataBase.openConnection();
-        User user=new User();
+        Connection connection = ConnectionDataBase.openConnection();
+        User user = new User();
         try {
-            CallableStatement callableStatement=connection.prepareCall("CALL CUSTOMER_CHECK_EMAIL(?)");
-            callableStatement.setString(1,email);
-            ResultSet resultSet=callableStatement.executeQuery();
-            while (resultSet.next()){
+            CallableStatement callableStatement = connection.prepareCall("CALL CUSTOMER_CHECK_EMAIL(?)");
+            callableStatement.setString(1, email);
+            ResultSet resultSet = callableStatement.executeQuery();
+            while (resultSet.next()) {
                 user.setUserId(resultSet.getInt("customer_id"));
                 user.setUserImg(resultSet.getString("img"));
                 user.setUserName(resultSet.getString("name"));
@@ -240,7 +240,7 @@ public class UserDAOImpl implements UserDAO {
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             ConnectionDataBase.closeConnection(connection);
         }
         return user;
@@ -253,5 +253,20 @@ public class UserDAOImpl implements UserDAO {
             return user;
         }
         return null;
+    }
+
+    @Override
+    public Boolean checkValidateEmail(String email) {
+        Connection connection = ConnectionDataBase.openConnection();
+        try {
+            CallableStatement callableStatement = connection.prepareCall("{CALL CUSTOMER_CHECK_EMAIL(?)}");
+            callableStatement.setString(1, email);
+            ResultSet resultSet = callableStatement.executeQuery();
+            return resultSet.next();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            ConnectionDataBase.closeConnection(connection);
+        }
     }
 }

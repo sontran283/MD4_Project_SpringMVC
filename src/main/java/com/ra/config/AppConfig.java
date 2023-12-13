@@ -78,8 +78,8 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
                         , "classpath:asset/css/" , "classpath:asset/fonts/" , "classpath:asset/images/", "classpath:asset/js/" , "classpath:asset/vendor/");
     }
 
-//        @Override
-//    public void addInterceptors(InterceptorRegistry registry) {
-//        registry.addInterceptor(new AuthInterceptor()).addPathPatterns("/admin/**");
-//    }
+    @Override
+    public void addInterceptors(InterceptorRegistry registry) {
+        registry.addInterceptor(new AuthInterceptor()).addPathPatterns("/admin/**");
+    }
 }

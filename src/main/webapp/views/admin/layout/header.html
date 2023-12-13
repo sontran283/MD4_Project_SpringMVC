@@ -1,4 +1,4 @@
-<header id="page-topbar">
+<header id="page-topbar" xmlns:th="http://www.thymeleaf.org/">
     <div class="layout-width">
         <div class="navbar-header">
             <div class="d-flex">
@@ -693,19 +693,12 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="dropdown ms-sm-3 header-item topbar-user">
-                    <button type="button" class="btn shadow-none" id="page-header-user-dropdown"
-                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button type="button" class="btn shadow-none" id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="d-flex align-items-center">
-                                        <img class="rounded-circle header-profile-user"
-                                             th:src="@{/assets3/images/users/32/avatar-8.jpg}" alt="Header Avatar">
-
-<!--                                        <img width="90" height="90" id="output" th:if="${session.user.userImg}"-->
-<!--                                             th:src="@{|/uploads/images/${session.user.userImg}|}"/>-->
                                         <span class="text-start ms-xl-2">
-                                            <span class="d-none d-xl-block ms-1 fs-sm user-name-sub-text">Hello!</span>
-                                            <span th:text='${session.admin != null ? session.admin.userName : "ADMIN!"}'></span>
+                                          <img style="width:30px; height:30px; object-fit:cover; border-radius:50px;" th:src="@{'http://localhost:8081/uploads/images/' + ${session.admin.userImg}}" alt="img">
+                                            <span th:text='${session.admin.userName}'></span>
                                         </span>
                                     </span>
                     </button>

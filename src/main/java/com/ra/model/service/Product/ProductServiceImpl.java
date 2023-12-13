@@ -72,4 +72,9 @@ public class ProductServiceImpl implements ProductService {
     public void deleteProduct(int id) {
         productDAO.deleteProduct(id);
     }
+
+    @Override
+    public Boolean checkNameProduct(String name) {
+        return productDAO.checkNameProduct(name);
+    }
 }

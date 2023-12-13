@@ -63,4 +63,9 @@ public class UserServiceImpl implements UserService {
     public Integer getTotalPage() {
         return userDAO.getTotalPage();
     }
+
+    @Override
+    public Boolean checkValidateEmail(String email) {
+        return userDAO.checkValidateEmail(email);
+    }
 }

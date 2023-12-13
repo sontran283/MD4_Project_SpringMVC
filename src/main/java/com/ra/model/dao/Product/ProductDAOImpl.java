@@ -267,4 +267,20 @@ public class ProductDAOImpl implements ProductDAO {
             ConnectionDataBase.closeConnection(connection);
         }
     }
+
+    @Override
+    public Boolean checkNameProduct(String name) {
+        Connection connection = ConnectionDataBase.openConnection();
+        CallableStatement callableStatement = null;
+        try {
+            CallableStatement callableStatement1 = connection.prepareCall("{CALL PRODUCT_CHECK_NAME(?)}");
+            callableStatement1.setString(1,name);
+            ResultSet resultSet = callableStatement1.executeQuery();
+            return resultSet.next();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            ConnectionDataBase.closeConnection(connection);
+        }
+    }
 }

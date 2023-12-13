@@ -13,7 +13,7 @@ public class User {
     private String userEmail;
     @NotEmpty(message = "Cannot be left blank")
     private String userAddress;
-    @Pattern(regexp = "(0[3|5|7|8|9])+([0-9]{8})\\b", message = "Enter the correct Vietnamese phone format")
+    @Pattern(regexp = "(0[3|5|7|8|9])+([0-9]{8})\\b", message = "Enter the correct Vietnamese phone number")
     private String userPhoneNumber;
     @Size(min = 3, max = 100, message = "Cannot be left blank")
     private String userPassword;

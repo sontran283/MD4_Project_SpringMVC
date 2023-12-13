@@ -11,4 +11,5 @@ public interface ProductDAO extends IGenericDAO<Product, Integer> {
     int saveProductId(Product product);
     Integer getTotalPage();
     void deleteProduct(int id);
+    Boolean checkNameProduct(String name);
 }

@@ -11,4 +11,5 @@ public interface UserDAO extends IGenericDAO<User, Integer> {
     Integer getTotalPage();
     User checkEmail(String email);
     User checkLogin(String email ,String password);
+    Boolean checkValidateEmail(String email);
 }

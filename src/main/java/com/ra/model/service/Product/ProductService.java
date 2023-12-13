@@ -12,4 +12,5 @@ public interface ProductService extends IGenericService<Product,Integer> {
     int saveProductId(ProductDTO productDTO);
     Integer getTotalPage();
     void deleteProduct(int id);
+    Boolean checkNameProduct(String name);
 }

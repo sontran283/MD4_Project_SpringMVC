@@ -63,17 +63,22 @@
                             </div>
                             <div class="header__info d-flex align-items-center">
                                 <div class="header__info-user tpcolor__yellow ml-10">
-                                    <a href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <span th:text='${session.user != null ? session.user.userName : "User"}'></span>
-                                    </a>
-                                  <div class="dropdown-menu" aria-labelledby="dropdownId">
-                                     <span th:if="${session.user == null}">
-                                       <a class="dropdown-item" href="/login">Login</a>
-                                       <a class="dropdown-item" href="/register">Register</a>
-                                     </span>
-                                      <a class="dropdown-item" href="/profile">Profile</a>
-                                      <a class="dropdown-item" href="/logout">Logout</a>
-                                  </div>
+                                    <div th:if="${session.user == null}">
+                                        <!-- Hiển thị nút Login và Register nếu chưa đăng nhập -->
+                                       <a href="/login"><i class="icon-user"></i></a>
+                                    </div>
+                                    <div th:if="${session.user != null}">
+                                        <!-- Hiển thị tên và hình ảnh của người dùng khi đã đăng nhập -->
+                                        <a href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <img style="width:30px; height:30px; object-fit:cover; border-radius:50px;" th:src="@{'http://localhost:8081/uploads/images/' + ${session.user.userImg}}" alt="img">
+                                            <span th:text='${session.user.userName}'></span>
+                                        </a>
+                                        <!-- Dropdown menu chứa Profile và Logout khi đã đăng nhập -->
+                                        <div class="dropdown-menu" aria-labelledby="dropdownId">
+                                            <a class="dropdown-item" href="/profile">Profile</a>
+                                            <a class="dropdown-item" href="/logout">Logout</a>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
