@@ -66,8 +66,6 @@ create table cart(
 
 create table cart_item(
                           cartitem_id int primary key NOT NULL auto_increment,
-                          cart_id int not null,
-                          foreign key (cart_id) references cart(cart_id),
                           product_id int not null,
                           price double NOT NULL,
                           quantity int NOT NULL

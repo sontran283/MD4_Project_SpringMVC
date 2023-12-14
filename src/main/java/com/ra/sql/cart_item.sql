@@ -19,14 +19,13 @@ END; //
 DELIMITER //
 CREATE PROCEDURE CART_ITEM_UPDATE(
     IN cit_cartitem_id INT,
-    IN cit_cart_id INT,
     IN cit_product_id INT,
     IN cit_price DECIMAL(10, 2),
     IN cit_quantity INT
 )
 BEGIN
 UPDATE cart_item
-SET cart_id = cit_cart_id, product_id = cit_product_id, price = cit_price, quantity = cit_quantity
+SET  product_id = cit_product_id, price = cit_price, quantity = cit_quantity
 WHERE cartitem_id = cit_cartitem_id;
 END; //
 

@@ -1,6 +1,5 @@
 package com.ra.model.entity;
 
-import javax.validation.constraints.NotEmpty;
 
 public class Category {
     private int categoryId;
