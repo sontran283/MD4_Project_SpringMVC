@@ -1,5 +1,33 @@
 <!-- cart area -->
 <th:block th:insert="user/layout/head.html"></th:block>
+<style>
+    /* Thực hiện căn giữa cho input trong thẻ td có class "product-quantity1" */
+    .product-quantity1 input {
+        text-align: center;
+    }
+    /* Kiểu CSS cho nút trong ô Quantity */
+    .product-quantity1 button {
+        background-color: #8FB63E;/* Màu nền của nút */
+        color: white; /* Màu chữ của nút */
+        border: none; /* Bỏ viền */
+        padding: 8px 12px; /* Kích thước của nút */
+        cursor: pointer; /* Hiển thị hình con trỏ khi hover */
+        transition: background-color 0.3s, color 0.3s; /* Hiệu ứng chuyển đổi màu sắc */
+        border-radius: 8px;
+    }
+
+    .product-quantity1 input[type="text"] {
+        width: 40px; /* Độ rộng của ô input */
+        text-align: center; /* Căn giữa nội dung trong ô input */
+    }
+
+
+    /* Kiểu CSS cho nút khi hover */
+    .product-quantity1 button:hover {
+        background-color: #6C9147; /* Màu nền khi hover */
+        color: white; /* Màu chữ khi hover */
+    }
+</style>
 <th:block th:insert="user/layout/header.html"></th:block>
 
 <!-- breadcrumb-area-start -->
@@ -29,20 +57,17 @@
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th class="product-thumbnail">ID</th>
                                     <th class="cart-product-name">Image</th>
                                     <th class="product-price">Price</th>
                                     <th class="product-price">Name</th>
-                                    <th class="product-price">Description</th>
+                                    <th class="product-quantity">Total Amount</th>
                                     <th class="product-quantity">Quantity</th>
                                     <th class="product-remove">Remove</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr th:each="item: ${cartItems}">
-                                    <td class="product-price">
-                                        <span class="amount" th:text="${item.product.productId}"></span>
-                                    </td>
+                                    <input type="hidden" name="productId" th:value="${item.product.productId}" />
                                     <td class="product-thumbnail">
                                         <a>
                                             <img style="width: 50px; height: 50px; object-fit: cover" th:src="@{|/uploads/images/${item.product.img}|}" alt="">
@@ -55,7 +80,7 @@
                                         <span class="amount" th:text="${item.product.productName}"></span>
                                     </td>
                                     <td class="product-price">
-                                        <span class="amount" th:text="${item.product.productDescription}"></span>
+                                        <span class="amount" th:text="${item.product.productPrice* item.quantity}"></span>
                                     </td>
                                     <td class="product-quantity1">
                                         <form th:action="@{/update-cart}" method="post">
@@ -71,15 +96,6 @@
                                             <button type="submit"><i class="fa fa-times"></i></button>
                                         </form>
                                     </td>
-                                    <td class="product-price">
-                                        <span class="amount" th:text="${item.product.productPrice* item.quantity}"></span>
-                                    </td>
-                                    <td class="product-remove">
-                                            <input type="hidden" name="productId" th:value="${item.product.productId}" />
-                                            <button type="submit"><i class="fa fa-times"></i></button>
-                                    </td>
-
-
                                 </tr>
                                 </tbody>
                             </table>
@@ -91,7 +107,7 @@
                                         <button class="tp-btn tp-color-btn banner-animation" name="apply_coupon" type="submit"><a href="/shop">Back Shop</a></button>
                                     </div>
                                     <div class="coupon2">
-                                        <button class="tp-btn tp-color-btn banner-animation" name="update_cart" type="submit">Update cart</button>
+<!--                                        <button class="tp-btn tp-color-btn banner-animation" name="update_cart" type="submit">Update cart</button>-->
                                     </div>
                                 </div>
                             </div>
@@ -121,15 +137,15 @@
         // Lấy giá trị hiện tại của input
         var inputElement = document.querySelector(`input[ip_id="${id}"]`);
         var currentQuantity = parseInt(inputElement.value);
-        //
-        // // Tăng hoặc giảm giá trị tùy thuộc vào action
-        if (action === '-') {
-            currentQuantity = Math.max(0, currentQuantity - 1);
+
+        // Tăng hoặc giảm giá trị tùy thuộc vào action
+        if (action === '-' && currentQuantity > 1) {
+            currentQuantity = currentQuantity - 1;
         } else if (action === '+') {
             currentQuantity = currentQuantity + 1;
         }
-        //
-        // // Cập nhật giá trị mới vào input
+
+        // Cập nhật giá trị mới vào input
         inputElement.value = currentQuantity;
     }
 </script>
