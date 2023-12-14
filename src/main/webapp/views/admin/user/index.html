@@ -55,8 +55,8 @@
                                         <div class="hstack flex-wrap gap-2">
                                             <!--------------------------------------->
                                             <div>
-                                                <a th:href="@{/admin/add-user}" class="btn btn-secondary " ><i
-                                                        class="bi bi-plus-circle align-baseline me-1"></i> Add User</a>
+<!--                                                <a th:href="@{/admin/add-user}" class="btn btn-secondary " ><i-->
+<!--                                                        class="bi bi-plus-circle align-baseline me-1"></i> Add User</a>-->
                                             </div>
                                             <!--------------------------------------->
                                             <div>
@@ -98,15 +98,15 @@
                                             <td ><span class="label" th:classappend="${item.role?'btn btn-success':'btn btn-danger'}" th:text="${item.role ? 'Admin' : 'User'}"></span></td>
                                             <td ><span class="label" th:classappend="${item.status?'btn btn-success':'btn btn-danger'}" th:text="${item.status ? 'Active' : 'Block'}"></span></td>
                                             <td>
-                                                <!-------------------------------->
+                                               <! -------------------------------->
                                                 <ul class="d-flex gap-2 list-unstyled mb-0">
-                                                    <li>
-                                                        <a th:href="@{/admin/user-edit/{id}(id=${item.userId})}"
-                                                           class="btn btn-subtle-secondary btn-icon btn-sm edit-item-btn">
-                                                            <i class="ph-pencil"></i>
-                                                        </a>
+                                                    <li th:if="${item.role eq false}">
+<!--                                                        <a th:href="@{/admin/user-edit/{id}(id=${item.userId})}"-->
+<!--                                                           class="btn btn-subtle-secondary btn-icon btn-sm edit-item-btn">-->
+<!--                                                            <i class="ph-pencil"></i>-->
+<!--                                                        </a>-->
                                                     </li>
-                                                    <li>
+                                                    <li th:if="${item.role eq false}">
                                                         <a th:href="@{/admin/user-change/{id}(id=${item.userId})}"
                                                            class="btn btn-subtle-danger btn-icon btn-sm remove-item-btn">
                                                             <i class="ph-lock-key"></i>

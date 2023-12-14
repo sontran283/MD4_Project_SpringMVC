@@ -61,7 +61,7 @@ public class ProductController {
             return "admin/product/add-product";
         }
         try {
-            if (productService.checkNameProduct(productDTO.getProductName())){
+            if (productService.checkNameProduct(productDTO.getProductName())) {
                 result.rejectValue("productName", "productName.exits", "Product name already exists");
                 return "admin/product/add-product";
             }
@@ -99,11 +99,11 @@ public class ProductController {
     }
 
     @PostMapping("/product-edit")
-    public String update(@ModelAttribute("product") Product product,Model model,
+    public String update(@ModelAttribute("product") Product product, Model model,
                          @RequestParam("images") MultipartFile file,
                          @RequestParam("fileName") MultipartFile[] files) {
         try {
-            if (!file.isEmpty()){
+            if (!file.isEmpty()) {
                 String fileImgName = file.getOriginalFilename();
                 File fileaaaa = new File(path + fileImgName);
                 product.setImg(fileImgName);
@@ -119,7 +119,6 @@ public class ProductController {
                 image.setImgUrl(fileImg);
                 imageService.addImage(image, product.getProductId());
             }
-
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -157,10 +156,10 @@ public class ProductController {
     }
 
     @GetMapping("delete_image_product/{id}")
-    public String deleteImageProduct(@PathVariable("id") Integer id){
-        Image image=imageService.findById(id);
-        int ProductId=image.getProductId();
+    public String deleteImageProduct(@PathVariable("id") Integer id) {
+        Image image = imageService.findById(id);
+        int ProductId = image.getProductId();
         imageService.delete(id);
-        return "redirect:/admin/product-edit/"+ ProductId;
+        return "redirect:/admin/product-edit/" + ProductId;
     }
 }

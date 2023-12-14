@@ -3,7 +3,6 @@
 <th:block th:insert="user/layout/head.html"></th:block>
 <body>
 <th:block th:insert="user/layout/header.html"></th:block>
-
 <!-- breadcrumb-area-start -->
 <div class="breadcrumb__area grey-bg pt-5 pb-5">
     <div class="container">
@@ -11,7 +10,7 @@
             <div class="col-lg-12">
                 <div class="tp-breadcrumb__content">
                     <div class="tp-breadcrumb__list">
-                        <span class="tp-breadcrumb__active"><a href="index.html">Home</a></span>
+                        <span class="tp-breadcrumb__active"><a href="/home">Home</a></span>
                         <span class="dvdr">/</span>
                         <span>Shop</span>
                     </div>
@@ -39,7 +38,7 @@
                                                     alt="category-thumb"></a>
                                         </div>
                                         <div class="category__content">
-                                            <h5 class="category__title"><a href="shop-details-4.html">Vegetables</a>
+                                            <h5 class="category__title"><a href="#">Vegetables</a>
                                             </h5>
                                         </div>
                                     </div>
@@ -52,7 +51,7 @@
                                                     alt="category-thumb"></a>
                                         </div>
                                         <div class="category__content">
-                                            <h5 class="category__title"><a href="shop-details-3.html">Fresh Fruits</a>
+                                            <h5 class="category__title"><a href="#">Fresh Fruits</a>
                                             </h5>
                                         </div>
                                     </div>
@@ -65,7 +64,7 @@
                                                     alt="category-thumb"></a>
                                         </div>
                                         <div class="category__content">
-                                            <h5 class="category__title"><a href="shop-details-4.html">Fruit Drink</a>
+                                            <h5 class="category__title"><a href="#">Fruit Drink</a>
                                             </h5>
                                         </div>
                                     </div>
@@ -78,7 +77,7 @@
                                                     alt="category-thumb"></a>
                                         </div>
                                         <div class="category__content">
-                                            <h5 class="category__title"><a href="shop-details-4.html">Fresh Bakery</a>
+                                            <h5 class="category__title"><a href="#">Fresh Bakery</a>
                                             </h5>
                                         </div>
                                     </div>
@@ -91,7 +90,7 @@
                                                     alt="category-thumb"></a>
                                         </div>
                                         <div class="category__content">
-                                            <h5 class="category__title"><a href="shop-details-4.html">Biscuits Snack</a>
+                                            <h5 class="category__title"><a href="#">Biscuits Snack</a>
                                             </h5>
                                         </div>
                                     </div>
@@ -104,7 +103,7 @@
                                                     alt="category-thumb"></a>
                                         </div>
                                         <div class="category__content">
-                                            <h5 class="category__title"><a href="shop-details.html">Fresh Meat</a></h5>
+                                            <h5 class="category__title"><a href="#">Fresh Meat</a></h5>
                                         </div>
                                     </div>
                                 </div>
@@ -116,7 +115,7 @@
                                                     alt="category-thumb"></a>
                                         </div>
                                         <div class="category__content">
-                                            <h5 class="category__title"><a href="shop-details-4.html">Fresh Milk</a>
+                                            <h5 class="category__title"><a href="#">Fresh Milk</a>
                                             </h5>
                                         </div>
                                     </div>
@@ -129,7 +128,7 @@
                                                     alt="category-thumb"></a>
                                         </div>
                                         <div class="category__content">
-                                            <h5 class="category__title"><a href="shop-details-4.html">Fresh Milk</a>
+                                            <h5 class="category__title"><a href="#">Fresh Milk</a>
                                             </h5>
                                         </div>
                                     </div>
@@ -142,7 +141,7 @@
                                                     alt="category-thumb"></a>
                                         </div>
                                         <div class="category__content">
-                                            <h5 class="category__title"><a href="shop-details-4.html">Fresh Milk</a>
+                                            <h5 class="category__title"><a href="#">Fresh Milk</a>
                                             </h5>
                                         </div>
                                     </div>
@@ -150,6 +149,9 @@
                             </div>
                         </div>
                     </div>
+                    <!--                    <div th:each="item : ${categoryList}">-->
+                    <!--                        <button th:text="${item.categoryName}"></button>-->
+                    <!--                    </div>-->
                     <div class="product__filter-content mb-30">
                         <div class="row align-items-center">
                             <div class="col-sm-4">
@@ -288,8 +290,10 @@
                                 <div class="col" th:each="item : ${productList}">
                                     <div class="tpproduct p-relative mb-20">
                                         <div class="tpproduct__thumb p-relative text-center">
-                                            <a th:href="@{/detail/{id}(id=${item.productId})}"><img th:src="@{|/uploads/images/${item.img}|}" alt=""></a>
-                                            <a th:href="@{/detail/{id}(id=${item.productId})}" class="tpproduct__thumb-img">
+                                            <a th:href="@{/detail/{id}(id=${item.productId})}"><img
+                                                    th:src="@{|/uploads/images/${item.img}|}" alt=""></a>
+                                            <a th:href="@{/detail/{id}(id=${item.productId})}"
+                                               class="tpproduct__thumb-img">
                                                 <img th:src="@{|/uploads/images/${item.img}|}" alt=""></a>
                                             <div class="tpproduct__info bage">
                                                 <span class="tpproduct__info-discount bage__discount">-50%</span>
@@ -306,10 +310,12 @@
                                         </div>
                                         <div class="tpproduct__content">
                                           <span class="tpproduct__content-weight">
-                                             <a th:href="@{/detail/{id}(id=${item.productId})}" th:text="${item.category.categoryName}"></a>,
+                                             <a th:href="@{/detail/{id}(id=${item.productId})}"
+                                                th:text="${item.category.categoryName}"></a>,
                                           </span>
                                             <h4 class="tpproduct__title">
-                                                <a th:href="@{/detail/{id}(id=${item.productId})}" th:text="${item.productName}"></a>
+                                                <a th:href="@{/detail/{id}(id=${item.productId})}"
+                                                   th:text="${item.productName}"></a>
                                             </h4>
                                             <div class="tpproduct__rating mb-5">
                                                 <a href="#"><i class="icon-star_outline1"></i></a>

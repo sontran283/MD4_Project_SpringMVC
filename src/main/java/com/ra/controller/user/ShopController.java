@@ -19,10 +19,14 @@ import java.util.List;
 public class ShopController {
     @Autowired
     private ProductService productService;
+    @Autowired
+    private CategoryService categoryService;
 
     @RequestMapping("/shop")
     public String shopList(Model model) {
         List<Product> productList = productService.findAll();
+        List<Category> categoryList = categoryService.findAll();
+        model.addAttribute("categoryList", categoryList);
         model.addAttribute("productList", productList);
         return "user/shop";
     }
