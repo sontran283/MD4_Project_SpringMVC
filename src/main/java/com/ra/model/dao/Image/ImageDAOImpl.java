@@ -20,10 +20,14 @@ public class ImageDAOImpl implements ImageDAO {
         connection = ConnectionDataBase.openConnection();
         List<Image> imageList = new ArrayList<>();
         try {
-            CallableStatement callableStatement = connection.prepareCall("{CALL CATEGORY_FIND_ALL()}");
+            CallableStatement callableStatement = connection.prepareCall("{CALL IMAGE_FIND_ALL()}");
             ResultSet resultSet = callableStatement.executeQuery();
             while (resultSet.next()) {
                 Image image = new Image();
+                image.setId(resultSet.getInt("id"));
+                image.setImgUrl(resultSet.getString("url"));
+                image.setProductId(resultSet.getInt("product_id"));
+                imageList.add(image);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -82,7 +86,6 @@ public class ImageDAOImpl implements ImageDAO {
         }finally {
             ConnectionDataBase.closeConnection(connection);
         }
-
     }
 
 

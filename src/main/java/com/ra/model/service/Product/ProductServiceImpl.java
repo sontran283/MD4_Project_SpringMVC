@@ -77,4 +77,9 @@ public class ProductServiceImpl implements ProductService {
     public Boolean checkNameProduct(String name) {
         return productDAO.checkNameProduct(name);
     }
+
+    @Override
+    public void update(Product product) {
+        productDAO.update(product);
+    }
 }

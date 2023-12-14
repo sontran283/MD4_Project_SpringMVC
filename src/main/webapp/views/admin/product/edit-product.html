@@ -32,8 +32,8 @@
                                             </div>
                                             <div class="mb-3">
                                                 <label class="form-label">Image<span class="text-danger">*</span></label>
-                                                <input th:field="*{img}" type="file"  class="form-control" placeholder="Enter title" accept="image/*" onchange="loadFile(event)" >
-                                                <small th:errors="*{img}" class="text-danger"></small>
+                                                <input name="images" type="file"  class="form-control" placeholder="Enter title" accept="image/*" onchange="loadFile(event)" >
+                                                <input type="hidden" th:field="*{img}">
                                                 <img width="50" height="50" id="output" th:src="@{|/uploads/images/${product.img}|}"/>
                                             </div>
                                             <div class="col-md-12">

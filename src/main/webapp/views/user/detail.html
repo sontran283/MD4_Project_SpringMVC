@@ -1,20 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <th:block th:insert="user/layout/head.html"></th:block>
-<style>
-    .product__details-btn a {
-        padding: 10px 15px; /* Điều chỉnh giá trị này để thay đổi kích thước của nút */
-        display: inline-block;
-        text-decoration: none;
-        background-color: #3498db; /* Màu nền của nút */
-        color: #ffffff; /* Màu chữ của nút */
-        border-radius: 5px; /* Định dạng viền cong cho nút */
-    }
 
-    .product__details-btn a:hover {
-        background-color: #2980b9; /* Màu nền khi di chuột qua nút */
-    }
-</style>
 <body>
 <th:block th:insert="user/layout/header.html"></th:block>
 <!-- breadcrumb-area-start -->
@@ -111,8 +98,8 @@
                                                        <input name="quantity" class="tp-cart-input" type="text" value="1">
                                                        <span class="cart-plus"><i class="far fa-plus"></i></span>
                                                    </div>
-                                                   <div class="product__details-btn">
-                                                       <button type="submit" href="/cart">Add to cart</button>
+                                                   <div class="product__details-count mr-10" style="background-color: lightgreen">
+                                                       <button href="/cart" class="tp-cart-input" type="submit">Add to cart</button>
                                                    </div>
                                                </form>
                                             </div>

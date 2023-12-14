@@ -178,6 +178,28 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
+    public void update(Product product) {
+        CallableStatement callableStatement = null;
+        Connection connection = ConnectionDataBase.openConnection();
+        try {
+            callableStatement = connection.prepareCall("{CALL PRODUCT_UPDATE(?,?,?,?,?,?,?,?)}");
+            callableStatement.setInt(1, product.getProductId());
+            callableStatement.setInt(2, product.getCategory().getCategoryId());
+            callableStatement.setString(3, product.getImg());
+            callableStatement.setString(4, product.getProductName());
+            callableStatement.setString(5, product.getProductDescription());
+            callableStatement.setDouble(6, product.getProductPrice());
+            callableStatement.setInt(7, product.getQuantity());
+            callableStatement.setBoolean(8, product.getProductStatus());
+            callableStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            ConnectionDataBase.closeConnection(connection);
+        }
+    }
+
+    @Override
     public void delete(Integer id) {
         Connection connection = null;
         connection = ConnectionDataBase.openConnection();
@@ -240,7 +262,7 @@ public class ProductDAOImpl implements ProductDAO {
             callableStatement.setBoolean(7, product.getProductStatus());
             callableStatement.registerOutParameter(8, Types.INTEGER);
             callableStatement.executeUpdate();
-            return  callableStatement.getInt(8);
+            return callableStatement.getInt(8);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -274,12 +296,12 @@ public class ProductDAOImpl implements ProductDAO {
         CallableStatement callableStatement = null;
         try {
             CallableStatement callableStatement1 = connection.prepareCall("{CALL PRODUCT_CHECK_NAME(?)}");
-            callableStatement1.setString(1,name);
+            callableStatement1.setString(1, name);
             ResultSet resultSet = callableStatement1.executeQuery();
             return resultSet.next();
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             ConnectionDataBase.closeConnection(connection);
         }
     }
