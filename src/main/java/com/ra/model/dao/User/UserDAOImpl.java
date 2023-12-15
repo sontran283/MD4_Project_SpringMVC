@@ -133,9 +133,9 @@ public class UserDAOImpl implements UserDAO {
     public boolean saveOrUpDate(User user) {
         Connection connection = null;
         connection = ConnectionDataBase.openConnection();
+        String hasPassword = BCrypt.hashpw(user.getUserPassword(), BCrypt.gensalt());
         try {
             if (user.getUserId() == 0) {
-                String hasPassword = BCrypt.hashpw(user.getUserPassword(), BCrypt.gensalt());
                 CallableStatement callableStatement = connection.prepareCall("{CALL CUSTOMER_ADD(?,?,?,?,?,?)}");
                 callableStatement.setString(1, user.getUserName());
                 callableStatement.setString(2, user.getUserImg());
@@ -148,13 +148,14 @@ public class UserDAOImpl implements UserDAO {
                     return true;
                 }
             } else {
-                CallableStatement callableStatement = connection.prepareCall("{CALL CUSTOMER_UPDATE(?,?,?,?,?,?)}");
+                CallableStatement callableStatement = connection.prepareCall("{CALL CUSTOMER_UPDATE(?,?,?,?,?,?,?)}");
                 callableStatement.setInt(1, user.getUserId());
-                callableStatement.setString(2, user.getUserName());
-                callableStatement.setString(3, user.getUserImg());
+                callableStatement.setString(2, user.getUserImg());
+                callableStatement.setString(3, user.getUserName());
                 callableStatement.setString(4, user.getUserEmail());
                 callableStatement.setString(5, user.getUserAddress());
                 callableStatement.setString(6, user.getUserPhoneNumber());
+                callableStatement.setString(7, user.getUserPassword());
                 int check = callableStatement.executeUpdate();
                 if (check > 0) {
                     return true;

@@ -52,19 +52,14 @@
                                     <div class="tpproduct-details__nab">
                                         <div class="tab-content" id="nav-tabContents" style="display: flex">
                                             <div>
-                                                <div class="nav nav-tabs justify-content-center" id="nav-tab"
-                                                     role="tablist" th:each="img : ${imageList}">
-                                                    <button class="nav-link active" id="nav-home-tab"
-                                                            data-bs-toggle="tab" data-bs-target="#nav-home"
-                                                            type="button" role="tab" aria-controls="nav-home"
-                                                            aria-selected="true">
-                                                        <img th:src="@{|/uploads/images/${img.imgUrl}|}" alt="">
+                                                <div class="nav nav-tabs justify-content-center" id="nav-tab" role="tablist" th:each="img, status : ${imageList}">
+                                                    <button class="nav-link thumbnail-img" id="nav-tab-[[${status.index}]]" data-bs-toggle="tab" data-bs-target="#nav-[[${status.index}]]" type="button" role="tab" aria-controls="nav-home" aria-selected="true">
+                                                        <img th:src="@{|/uploads/images/${img.imgUrl}|}" alt="" class="thumbnail-image">
                                                     </button>
                                                 </div>
                                             </div>
-                                            <div class="tab-pane fade show active w-img" id="nav-home" role="tabpanel"
-                                                 aria-labelledby="nav-home-tab" tabindex="0">
-                                                <img th:src="@{|/uploads/images/${product.img}|}" alt="">
+                                            <div class="tab-pane fade show active w-img" id="nav-[[${status.index}]]" role="tabpanel" aria-labelledby="nav-home-tab" tabindex="0">
+                                                <img th:src="@{|/uploads/images/${product.img}|}" alt="" id="large-image">
                                                 <div class="tpproduct__info bage">
                                                     <span class="tpproduct__info-hot bage__hot">HOT</span>
                                                 </div>
@@ -773,6 +768,36 @@
         </div>
     </div>
 </section>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        // Lấy tất cả các ảnh nhỏ và ảnh lớn
+        var thumbnailImages = document.querySelectorAll('.thumbnail-img');
+        var largeImage = document.getElementById('large-image');
+
+        // Lặp qua từng ảnh nhỏ và thêm sự kiện click
+        thumbnailImages.forEach(function (thumbnail) {
+            thumbnail.addEventListener('click', function () {
+                // Lấy đường dẫn của ảnh nhỏ được click
+                var smallImageUrl = thumbnail.querySelector('.thumbnail-image').getAttribute('src');
+
+                // Thay đổi đường dẫn của ảnh lớn
+                largeImage.setAttribute('src', smallImageUrl);
+            });
+        });
+
+        // Thêm hiệu ứng phóng to khi di chuột vào ảnh nhỏ
+        thumbnailImages.forEach(function (thumbnail) {
+            thumbnail.addEventListener('mouseover', function () {
+                thumbnail.querySelector('.thumbnail-image').style.transform = 'scale(1.2)';
+            });
+
+            thumbnail.addEventListener('mouseout', function () {
+                thumbnail.querySelector('.thumbnail-image').style.transform = 'scale(1)';
+            });
+        });
+    });
+
+</script>
 <!-- product-area-end -->
 <th:block th:insert="user/layout/footer.html"></th:block>
 <th:block th:insert="user/layout/script.html"></th:block>

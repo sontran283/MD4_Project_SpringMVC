@@ -1,16 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <th:block th:insert="user/layout/head.html"></th:block>
-<style>
-    .nav {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .nav button {
-        margin-right: 10px;
-    }
-</style>
 <body>
 <th:block th:insert="user/layout/header.html"></th:block>
 <!-- breadcrumb-area-start -->
@@ -209,7 +199,7 @@
                                         <div class="tpproduct__content">
                                           <span class="tpproduct__content-weight">
                                              <a th:href="@{/detail/{id}(id=${item.productId})}"
-                                                th:text="${item.category.categoryName}"></a>,
+                                                th:text="${item.category.categoryName}"></a>.
                                           </span>
                                             <h4 class="tpproduct__title">
                                                 <a th:href="@{/detail/{id}(id=${item.productId})}"

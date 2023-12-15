@@ -6,6 +6,7 @@ import com.ra.model.entity.Product;
 import com.ra.model.entity.User;
 import com.ra.model.service.Image.ImageService;
 import com.ra.model.service.User.UserService;
+import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
@@ -13,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -28,7 +30,9 @@ public class ProfileController {
     ImageService imageService;
 
     @RequestMapping("/profile")
-    public String page() {
+    public String page(Model model) {
+        List<User> userList = userService.findAll();
+        model.addAttribute("userList",userList);
         return "user/profile";
     }
 
@@ -40,33 +44,25 @@ public class ProfileController {
         List<Image> imageList = imageService.findByProductId(id);
         model.addAttribute("userList", userList);
         model.addAttribute("imageList", imageList);
-        return "/admin/profile/edit-profile";
+        return "/user/profile/edit-profile";
     }
 
     @PostMapping("/profile-edit")
-    public String update(@ModelAttribute("profile") User user, Model model,
-                         @RequestParam("images") MultipartFile file,
-                         @RequestParam("fileName") MultipartFile[] files) {
+    public String update(@ModelAttribute("profile") User user,
+                         @RequestParam("profileImage") MultipartFile profileImage,
+                         HttpSession session) {
         try {
-            if (!file.isEmpty()) {
-                String fileImgName = file.getOriginalFilename();
-                File fileaaaa = new File(path + fileImgName);
-                user.setUserImg(fileImgName);
+            if (!profileImage.isEmpty()) {
+                String profileImageName = profileImage.getOriginalFilename();
+                File profileImageFile = new File(path + profileImageName);
+                user.setUserImg(profileImageName);
                 userService.saveOrUpDate(user);
-                file.transferTo(fileaaaa);
-            }
-            for (MultipartFile multipartFile : files) {
-                String fileImg = multipartFile.getOriginalFilename();
-                File fileDescription = new File(path + fileImg);
-                multipartFile.transferTo(fileDescription);
-
-                Image image = new Image();
-                image.setImgUrl(fileImg);
-                imageService.addImage(image, user.getUserId());
+                profileImage.transferTo(profileImageFile);
+                session.setAttribute("user",user);
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        return "redirect:/user/profile/1";
+        return "redirect:/profile";
     }
 }

@@ -24,7 +24,8 @@ CREATE PROCEDURE CUSTOMER_UPDATE(
     IN cus_name VARCHAR(255),
     IN cus_email VARCHAR(255),
     IN cus_address VARCHAR(255),
-    IN cus_phone_number VARCHAR(255)
+    IN cus_phone_number VARCHAR(255),
+    IN cus_password VARCHAR(255)
 )
 BEGIN
 UPDATE customer
@@ -32,7 +33,8 @@ SET img = cus_img,
     name = cus_name,
     email = cus_email,
     address = cus_address,
-    phone_number = cus_phone_number
+    phone_number = cus_phone_number,
+    password = cus_password
 WHERE customer_id = cus_id;
 END; //
 
