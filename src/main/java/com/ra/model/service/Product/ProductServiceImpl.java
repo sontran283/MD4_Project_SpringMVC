@@ -82,4 +82,9 @@ public class ProductServiceImpl implements ProductService {
     public void update(Product product) {
         productDAO.update(product);
     }
+
+    @Override
+    public List<Product> findByCategoryId(Integer categoryId) {
+        return productDAO.findByCategoryId(categoryId);
+    }
 }

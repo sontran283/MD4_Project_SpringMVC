@@ -14,4 +14,5 @@ public interface ProductService extends IGenericService<Product,Integer> {
     void deleteProduct(int id);
     Boolean checkNameProduct(String name);
     void update(Product product);
+    List<Product> findByCategoryId(Integer categoryId);
 }

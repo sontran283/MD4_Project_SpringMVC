@@ -3,7 +3,6 @@
 <th:block th:insert="user/layout/head.html"></th:block>
 <body>
 <th:block th:insert="user/layout/header.html"></th:block>
-<!-- breadcrumb-area-start -->
 <div class="breadcrumb__area grey-bg pt-5 pb-5">
     <div class="container">
         <div class="row">
@@ -19,163 +18,188 @@
         </div>
     </div>
 </div>
-<!-- breadcrumb-area-end -->
-
-<!-- shop-area-start -->
+<!----------------------------------------------->
 <section class="shop-area-start grey-bg pb-200">
     <div class="container">
-        <div class="row">
-            <div class="col-xl-12 col-lg-12 col-md-12">
-                <div class="tpshop__details">
-                    <div class="tpshop__category">
-                        <div class="swiper-container inner-category-two">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide">
-                                    <div class="category__item mb-30">
-                                        <div class="category__thumb fix mb-15">
-                                            <a href="#"><img
-                                                    th:src="@{/assets2/img/catagory/category-9.jpg}"
-                                                    alt="category-thumb"></a>
-                                        </div>
-                                        <div class="category__content">
-                                            <h5 class="category__title"><a href="#">Vegetables</a>
-                                            </h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="category__item mb-30">
-                                        <div class="category__thumb fix mb-15">
-                                            <a href="#"><img
-                                                    th:src="@{/assets2/img/catagory/category-10.jpg}"
-                                                    alt="category-thumb"></a>
-                                        </div>
-                                        <div class="category__content">
-                                            <h5 class="category__title"><a href="#">Fresh Fruits</a>
-                                            </h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="category__item mb-30">
-                                        <div class="category__thumb fix mb-15">
-                                            <a href="#"><img
-                                                    th:src="@{/assets2/img/catagory/category-11.jpg}"
-                                                    alt="category-thumb"></a>
-                                        </div>
-                                        <div class="category__content">
-                                            <h5 class="category__title"><a href="#">Fruit Drink</a>
-                                            </h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="category__item mb-30">
-                                        <div class="category__thumb fix mb-15">
-                                            <a href="#"><img
-                                                    th:src="@{/assets2/img/catagory/category-12.jpg}"
-                                                    alt="category-thumb"></a>
-                                        </div>
-                                        <div class="category__content">
-                                            <h5 class="category__title"><a href="#">Fresh Bakery</a>
-                                            </h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="category__item mb-30">
-                                        <div class="category__thumb fix mb-15">
-                                            <a href="#"><img
-                                                    th:src="@{/assets2/img/catagory/category-13.jpg}"
-                                                    alt="category-thumb"></a>
-                                        </div>
-                                        <div class="category__content">
-                                            <h5 class="category__title"><a href="#">Biscuits Snack</a>
-                                            </h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="category__item mb-30">
-                                        <div class="category__thumb fix mb-15">
-                                            <a href="#"><img
-                                                    th:src="@{/assets2/img/catagory/category-14.png}"
-                                                    alt="category-thumb"></a>
-                                        </div>
-                                        <div class="category__content">
-                                            <h5 class="category__title"><a href="#">Fresh Meat</a></h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="category__item mb-30">
-                                        <div class="category__thumb fix mb-15">
-                                            <a href="#"><img
-                                                    th:src="@{/assets2/img/catagory/category-15.png}"
-                                                    alt="category-thumb"></a>
-                                        </div>
-                                        <div class="category__content">
-                                            <h5 class="category__title"><a href="#">Fresh Milk</a>
-                                            </h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="category__item mb-30">
-                                        <div class="category__thumb fix mb-15">
-                                            <a href="#"><img
-                                                    th:src="@{/assets2/img/catagory/category-16.png}"
-                                                    alt="category-thumb"></a>
-                                        </div>
-                                        <div class="category__content">
-                                            <h5 class="category__title"><a href="#">Fresh Milk</a>
-                                            </h5>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide">
-                                    <div class="category__item mb-30">
-                                        <div class="category__thumb fix mb-15">
-                                            <a href="#"><img
-                                                    th:src="@{/assets2/img/catagory/category-17.png}"
-                                                    alt="category-thumb"></a>
-                                        </div>
-                                        <div class="category__content">
-                                            <h5 class="category__title"><a href="#">Fresh Milk</a>
-                                            </h5>
-                                        </div>
-                                    </div>
+        <div class="row row-reverse">
+            <div class="col-xl-2 col-lg-12 col-md-12 order-2">
+                <div class="tpshop__leftbar tpshop__leftbar-area">
+                    <ul class="tpshop__widget mb-30 pb-25">
+                        <h4 class="tpshop__widget-title">Product Categorie</h4>
+                        <li class="form-check" >
+                            <a href="/shop" class="form-check-label" for="flexCheckDefault9">All Product</a>
+                        </li>
+                        <li class="form-check" th:each="item : ${categoryList}">
+                            <a class="form-check-label" for="flexCheckDefault9" th:href="@{/shop/{id}(id=${item.categoryId})}" th:text="${item.categoryName}" ></a>
+                        </li>
+                    </ul>
+                    <div class="tpshop__widget mb-30 pb-25">
+                        <h4 class="tpshop__widget-title mb-20">FILTER BY PRICE</h4>
+                        <div class="productsidebar">
+                            <div class="productsidebar__head">
+                            </div>
+                            <div class="productsidebar__range">
+                                <div id="slider-range"></div>
+                                <div class="price-filter mt-10"><input type="text" id="amount">
                                 </div>
                             </div>
                         </div>
-                    </div>
-                   <!----------------------------------------------->
-                    <div class="col-sm-4">
-                        <div class="tpproductnav tpnavbar product-filter-nav d-flex align-items-center justify-content-center">
-                            <nav>
-                                <div class="nav nav-pills" id="nav-tab" role="tablist">
-                                    <button class="nav-link active btn btn-light" id="nav-all-tab" data-bs-toggle="tab"
-                                            data-bs-target="#nav-all" role="tab" aria-controls="nav-all"
-                                            aria-selected="true">
-                                        All
-                                    </button>
-                                    <div th:each="category : ${categoryList}">
-                                        <button class="nav-link btn btn-light" th:id="${'nav-' + category.categoryId + '-tab'}"
-                                                th:data-bs-toggle="tab" th:data-bs-target="${'#nav-' + category.categoryId}"
-                                                th:role="tab" th:aria-controls="${'nav-' + category.categoryId}"
-                                                th:aria-selected="false">
-                                            <span th:text="${category.categoryName}"></span>
-                                        </button>
-                                    </div>
-                                </div>
-                            </nav>
+                        <div class="productsidebar__btn mt-15 mb-15">
+                            <a href="#">FILTER</a>
                         </div>
                     </div>
-
-                    <div class="tab-content" id="nav-tabContent">
-                        <div class="tab-pane fade" id="nav-all" role="tabpanel" aria-labelledby="nav-all-tab">
+                    <div class="tpshop__widget mb-30 pb-25">
+                        <h4 class="tpshop__widget-title mb-20">Filter by Color</h4>
+                        <div class="tpshop__widget-color-box">
+                            <div class="form-check">
+                                <input class="form-check-input black-input" type="checkbox" value="" id="flexCheckDefault12">
+                                <label class="form-check-label" for="flexCheckDefault12">
+                                    Black
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input blue-input" type="checkbox" value="" id="flexCheckChecked13">
+                                <label class="form-check-label" for="flexCheckChecked13">
+                                    Blue
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input brown-input" type="checkbox" value="" id="flexCheckChecked18">
+                                <label class="form-check-label" for="flexCheckChecked18">
+                                    Blue
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input grey-input" type="checkbox" value="" id="flexCheckChecked14">
+                                <label class="form-check-label" for="flexCheckChecked14">
+                                    Gray
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input green-input" type="checkbox" value="" id="flexCheckChecked15">
+                                <label class="form-check-label" for="flexCheckChecked15">
+                                    Green
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input orange-input" type="checkbox" value="" id="flexCheckChecked16">
+                                <label class="form-check-label" for="flexCheckChecked16">
+                                    Red
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input red-input" type="checkbox" value="" id="flexCheckChecked17">
+                                <label class="form-check-label" for="flexCheckChecked17">
+                                    Yellow
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="tpshop__widget mb-30 pb-25">
+                        <h4 class="tpshop__widget-title">FILTER BY BRAND</h4>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault18">
+                            <label class="form-check-label" for="flexCheckDefault18">
+                                Chrome Hearts  (15)
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault19">
+                            <label class="form-check-label" for="flexCheckDefault19">
+                                Dominique Aurientis  (15)
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault20">
+                            <label class="form-check-label" for="flexCheckDefault20">
+                                Galliano  (15)
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault21">
+                            <label class="form-check-label" for="flexCheckDefault21">
+                                Georgine  (15)
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault22">
+                            <label class="form-check-label" for="flexCheckDefault22">
+                                Matthew Christopher  (15)
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault23">
+                            <label class="form-check-label" for="flexCheckDefault23">
+                                Paul Gaultier  (15)
+                            </label>
+                        </div>
+                    </div>
+                    <div class="tpshop__widget">
+                        <h4 class="tpshop__widget-title">FILTER BY RATING</h4>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault24">
+                            <label class="form-check-label" for="flexCheckDefault24">
+                                <i class="icon-star_rate"></i>
+                                <i class="icon-star_rate"></i>
+                                <i class="icon-star_rate"></i>
+                                <i class="icon-star_rate"></i>
+                                <i class="icon-star_rate"></i>
+                                (45)
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault25">
+                            <label class="form-check-label" for="flexCheckDefault25">
+                                <i class="icon-star_rate"></i>
+                                <i class="icon-star_rate"></i>
+                                <i class="icon-star_rate"></i>
+                                <i class="icon-star_rate"></i>
+                                <i class="icon-star_rate"></i>
+                                (10)
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault26">
+                            <label class="form-check-label" for="flexCheckDefault26">
+                                <i class="icon-star_rate"></i>
+                                <i class="icon-star_rate"></i>
+                                <i class="icon-star_rate"></i>
+                                <i class="icon-star_rate"></i>
+                                <i class="icon-star_rate"></i>
+                                (05)
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault27">
+                            <label class="form-check-label" for="flexCheckDefault27">
+                                <i class="icon-star_rate"></i>
+                                <i class="icon-star_rate"></i>
+                                <i class="icon-star_rate"></i>
+                                <i class="icon-star_rate"></i>
+                                <i class="icon-star_rate"></i>
+                                (02)
+                            </label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault28">
+                            <label class="form-check-label" for="flexCheckDefault28">
+                                <i class="icon-star_rate"></i>
+                                <i class="icon-star_rate"></i>
+                                <i class="icon-star_rate"></i>
+                                <i class="icon-star_rate"></i>
+                                <i class="icon-star_rate"></i>
+                                (02)
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-10 col-lg-12 col-md-12">
+                <div class="tpshop__top tpshop__sidebar-area mr-60 ">
+                    <div class="tab-content1" id="nav-tabContent1">
+                        <div class="tab-pane fade1" id="nav-all11" role="tabpanel" aria-labelledby="nav-all-tab1">
                             <div class="row row-cols-xxl-4 row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-1 tpproduct__shop-item">
-                                <!---------------------------------------------------->
+                                <!----------------------------------------------->
                                 <div class="col" th:each="item : ${productList}">
                                     <div class="tpproduct p-relative mb-20">
                                         <div class="tpproduct__thumb p-relative text-center">
@@ -217,32 +241,37 @@
                                                 <del>$19000.0</del>
                                             </div>
                                         </div>
-                                        <div class="tpproduct__hover-text">
-                                            <div class="tpproduct__hover-btn d-flex justify-content-center mb-10">
-                                                <a class="tp-btn-2" href="/cart">Add to cart</a>
-                                            </div>
-                                            <div class="tpproduct__descrip">
-                                                <ul>
-                                                    <li>Type: Organic</li>
-                                                    <li>MFG: August 4.2021</li>
-                                                    <li>LIFE: 60 days</li>
-                                                </ul>
-                                            </div>
-                                        </div>
                                     </div>
                                 </div>
+                                <!---------------------------------------------------->
                             </div>
                         </div>
-                        <!---------------------------------------------------->
+                    </div>
+                    <div class="basic-pagination text-center mt-35">
+                        <nav>
+                            <ul>
+                                <li>
+                                    <span class="current">1</span>
+                                </li>
+                                <li>
+                                    <a href="#">2</a>
+                                </li>
+                                <li>
+                                    <a href="#">3</a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="icon-chevrons-right"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-<!-- shop-area-end -->
-
-<!-- shop-area-end -->
 <th:block th:insert="user/layout/footer.html"></th:block>
 <th:block th:insert="user/layout/script.html"></th:block>
 </body>

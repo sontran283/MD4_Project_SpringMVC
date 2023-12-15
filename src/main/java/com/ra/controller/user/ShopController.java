@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -22,12 +21,21 @@ public class ShopController {
     @Autowired
     private CategoryService categoryService;
 
-    @RequestMapping("/shop")
+    @GetMapping("/shop")
     public String shopList(Model model) {
         List<Product> productList = productService.findAll();
         List<Category> categoryList = categoryService.findAll();
         model.addAttribute("categoryList", categoryList);
         model.addAttribute("productList", productList);
-        return "user/shop";
+        return "/user/shop";
+    }
+
+    @GetMapping("/shop/{categoryId}")
+    public String categoryFruit(@PathVariable Integer categoryId, Model model) {
+        List<Category> categoryList = categoryService.findAll();
+        List<Product> productList = productService.findByCategoryId(categoryId);
+        model.addAttribute("categoryList", categoryList);
+        model.addAttribute("productList", productList);
+        return "/user/shop";
     }
 }

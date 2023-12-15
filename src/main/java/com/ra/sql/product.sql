@@ -138,3 +138,13 @@ BEGIN
 
     select * FROM product where name = p_name;
 end; //
+
+
+DELIMITER //
+CREATE PROCEDURE PRODUCT_FIND_BY_CATEGORY_ID(IN p_category_id INT)
+BEGIN
+    SELECT * FROM product WHERE category_id = p_category_id;
+END //
+DELIMITER ;
+
+

@@ -200,6 +200,37 @@ public class ProductDAOImpl implements ProductDAO {
     }
 
     @Override
+    public List<Product> findByCategoryId(Integer categoryId) {
+        Connection connection = null;
+        connection = ConnectionDataBase.openConnection();
+        List<Product> productList = new ArrayList<>();
+        try {
+            CallableStatement callableStatement = connection.prepareCall("{CALL PRODUCT_FIND_BY_CATEGORY_ID(?)}");
+            callableStatement.setInt(1, categoryId);
+            ResultSet resultSet = callableStatement.executeQuery();
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setProductId(resultSet.getInt("product_id"));
+                Category category = categoryDAO.findById(resultSet.getInt("category_id"));
+                product.setCategory(category);
+                product.setImg(resultSet.getString("img"));
+                product.setProductName(resultSet.getString("name"));
+                product.setProductDescription(resultSet.getString("description"));
+                product.setProductPrice(resultSet.getDouble("price"));
+                product.setQuantity(resultSet.getInt("quantity"));
+                product.setProductStatus(resultSet.getBoolean("status"));
+                productList.add(product);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            ConnectionDataBase.closeConnection(connection);
+        }
+        return productList;
+    }
+
+
+    @Override
     public void delete(Integer id) {
         Connection connection = null;
         connection = ConnectionDataBase.openConnection();

@@ -26,7 +26,7 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String handleLogin(@ModelAttribute("user") User user, Model model){
+    public String handleLogin(@ModelAttribute("user") User user, Model model,@RequestParam(value = "action",required = false)String action){
         User authent = userService.checkLogin(user.getUserEmail(), user.getUserPassword());
         if (authent != null) {
             if (authent.getStatus() == false){
@@ -35,6 +35,9 @@ public class LoginController {
             }else if (authent.getRole()== false){
                 model.addAttribute("user", authent);
                 session.setAttribute("user",authent);
+                if (action.equals("checkout")){
+                    return "redirect:/checkout";
+                }
                 return "redirect:/";
             }
         }
@@ -46,6 +49,7 @@ public class LoginController {
         session.removeAttribute("user");
         return "redirect:/";
     }
+
     @GetMapping("/adminLogin")
     public String adminLogin(){
         return "/user/adminLogin";
