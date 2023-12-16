@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
@@ -26,11 +27,10 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String handleLogin(@ModelAttribute("user") User user, Model model,@RequestParam(value = "action",required = false)String action){
+    public String handleLogin(@ModelAttribute("user") User user, Model model, @RequestParam(value = "action",required = false)String action){
         User authent = userService.checkLogin(user.getUserEmail(), user.getUserPassword());
         if (authent != null) {
             if (authent.getStatus() == false){
-                System.out.println("tk da bi khoa");
                 return "redirect:/login";
             }else if (authent.getRole()== false){
                 model.addAttribute("user", authent);

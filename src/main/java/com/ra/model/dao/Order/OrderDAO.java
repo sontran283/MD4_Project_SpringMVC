@@ -7,7 +7,9 @@ import com.ra.model.entity.Product;
 
 import java.util.List;
 
-public interface OrderDAO extends IGenericDAO<Order, Integer> {
+public interface OrderDAO  extends IGenericDAO<Order, Integer> {
     List<Order> paginater(Integer noPage);
     Integer getTotalPage();
+    List<Order> findAll();
+    Order save(Order order);
 }

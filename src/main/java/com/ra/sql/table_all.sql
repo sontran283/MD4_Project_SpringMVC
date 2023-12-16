@@ -45,7 +45,10 @@ CREATE TABLE orders (
                         order_date DATE NOT NULL default( CURDATE()),
                         FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
                         total DOUBLE NOT NULL,
-                        status bit(1)
+                        status bit(1),
+                        phone varchar(25),
+                        address text,
+                        note varchar(255)
 );
 
 create table order_detail(
@@ -56,6 +59,7 @@ create table order_detail(
                              quantity int NOT NULL,
                              price double NOT NULL,
                              primary key (order_id, product_id)
+
 );
 
 create table cart(

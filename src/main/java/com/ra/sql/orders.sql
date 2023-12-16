@@ -1,16 +1,19 @@
 -- #   ---------------- orders  ----------------
 -- #   ---------------- orders  ----------------
 -- #   ---------------- orders  ----------------
-DELIMITER //
-CREATE PROCEDURE ORDER_ADD(
-    IN or_customer_id INT,
-    IN or_total DOUBLE
-)
-BEGIN
-INSERT INTO orders (customer_id, total)
-VALUES (or_customer_id, or_total);
-END //
-DELIMITER ;
+    DELIMITER //
+    CREATE PROCEDURE ORDER_ADD(
+        IN or_customer_id INT,
+        IN or_total DOUBLE,
+        IN or_phone varchar(25),
+        IN or_address text,
+        IN or_note varchar(255)
+    )
+    BEGIN
+    INSERT INTO orders (customer_id, total,phone,address,note)
+    VALUES (or_customer_id, or_total,or_phone,or_address,or_note);
+    END //
+    DELIMITER ;
 
 
 -- #update trạng thái

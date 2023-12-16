@@ -38,6 +38,7 @@ public class CartController {
         cartService.addToCart(cartItem);
         return "redirect:/cart";
     }
+
     @PostMapping("/update-cart")
     public String updateCart(@RequestParam("quantity") Integer quantity, @RequestParam("productId") Integer productId) {
         cartService.update(quantity, productId);
