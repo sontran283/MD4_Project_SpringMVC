@@ -23,7 +23,7 @@ public class OrderController {
     public String index(@PathVariable("id")Integer id, Model model){
         List<Order> orderList = orderService.paginater(id);
         model.addAttribute("totalPage", orderService.getTotalPage());
-        model.addAttribute("userList",orderList);
+        model.addAttribute("orderList",orderList);
         return "admin/order/index";
     }
 

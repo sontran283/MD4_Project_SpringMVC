@@ -2,18 +2,12 @@ package com.ra.model.dao.Order;
 
 import com.ra.model.dao.Category.CategoryDAO;
 import com.ra.model.dao.User.UserDAO;
-import com.ra.model.entity.Category;
-import com.ra.model.entity.Order;
-import com.ra.model.entity.StatusName;
-import com.ra.model.entity.User;
+import com.ra.model.entity.*;
 import com.ra.util.ConnectionDataBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -26,12 +20,41 @@ public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public List<Order> paginater(Integer noPage) {
-        return null;
+        Connection connection = null;
+        connection = ConnectionDataBase.openConnection();
+        List<Order> orderList = new ArrayList<>();
+        try {
+            CallableStatement callableStatement = connection.prepareCall("{CALL ORDERS_PAGINATION(?,?,?)}");
+            callableStatement.setInt(1,LIMIT);
+            callableStatement.setInt(2,noPage);
+            callableStatement.setInt(3, Types.INTEGER);
+            ResultSet resultSet = callableStatement.executeQuery();
+            while (resultSet.next()) {
+                Order order = new Order();
+                order.setOrder_id(resultSet.getInt("order_id"));
+                User user = userDAO.findById(resultSet.getInt("customer_id"));
+                order.setUser(user);
+                order.setOrder_date(resultSet.getDate("order_date"));
+                order.setTotal(resultSet.getDouble("total"));
+                StatusName status = StatusName.valueOf(resultSet.getString("status"));
+                order.setOrderStatus(status);
+                order.setPhone(resultSet.getString("phone"));
+                order.setAddress(resultSet.getString("address"));
+                order.setNote(resultSet.getString("note"));
+                orderList.add(order);
+            }
+            this.totalPage= callableStatement.getInt(3);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            ConnectionDataBase.closeConnection(connection);
+        }
+        return orderList;
     }
 
     @Override
     public Integer getTotalPage() {
-        return null;
+        return totalPage;
     }
 
     @Override
@@ -65,17 +88,92 @@ public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public List<Order> findByName(String name) {
-        return null;
+        Connection connection = null;
+        connection = ConnectionDataBase.openConnection();
+        List<Order> orderList = new ArrayList<>();
+        try {
+            CallableStatement callableStatement = connection.prepareCall("{CALL ORDERS_SEARCH_BY_NAME(?)}");
+            callableStatement.setString(1, name);
+            ResultSet resultSet = callableStatement.executeQuery();
+            while (resultSet.next()) {
+                Order order = new Order();
+                order.setOrder_id(resultSet.getInt("order_id"));
+                User user = userDAO.findById(resultSet.getInt("customer_id"));
+                order.setUser(user);
+                order.setOrder_date(resultSet.getDate("order_date"));
+                order.setTotal(resultSet.getDouble("total"));
+                StatusName status = StatusName.valueOf(resultSet.getString("status"));
+                order.setOrderStatus(status);
+                order.setPhone(resultSet.getString("phone"));
+                order.setAddress(resultSet.getString("address"));
+                order.setNote(resultSet.getString("note"));
+                orderList.add(order);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            ConnectionDataBase.closeConnection(connection);
+        }
+        return orderList;
     }
 
     @Override
     public List<Order> sortByName() {
-        return null;
+        Connection connection = null;
+        connection = ConnectionDataBase.openConnection();
+        List<Order> orderList = new ArrayList<>();
+        try {
+            CallableStatement callableStatement = connection.prepareCall("{CALL ORDERS_SORT_BY_DATE()}");
+            ResultSet resultSet = callableStatement.executeQuery();
+            while (resultSet.next()) {
+                Order order = new Order();
+                order.setOrder_id(resultSet.getInt("order_id"));
+                User user = userDAO.findById(resultSet.getInt("customer_id"));
+                order.setUser(user);
+                order.setOrder_date(resultSet.getDate("order_date"));
+                order.setTotal(resultSet.getDouble("total"));
+                StatusName status = StatusName.valueOf(resultSet.getString("status"));
+                order.setOrderStatus(status);
+                order.setPhone(resultSet.getString("phone"));
+                order.setAddress(resultSet.getString("address"));
+                order.setNote(resultSet.getString("note"));
+                orderList.add(order);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            ConnectionDataBase.closeConnection(connection);
+        }
+        return orderList;
     }
 
     @Override
     public Order findById(Integer integer) {
-        return null;
+        Connection connection = null;
+        connection = ConnectionDataBase.openConnection();
+        Order order = new Order();
+        try {
+            CallableStatement callableStatement = connection.prepareCall("{CALL ORDER_FY_BY_ID(?)}");
+            callableStatement.setInt(1, integer);
+            ResultSet resultSet = callableStatement.executeQuery();
+            while (resultSet.next()) {
+                order.setOrder_id(resultSet.getInt("order_id"));
+                User user = userDAO.findById(resultSet.getInt("customer_id"));
+                order.setUser(user);
+                order.setOrder_date(resultSet.getDate("order_date"));
+                order.setTotal(resultSet.getDouble("total"));
+                StatusName status = StatusName.valueOf(resultSet.getString("status"));
+                order.setOrderStatus(status);
+                order.setPhone(resultSet.getString("phone"));
+                order.setAddress(resultSet.getString("address"));
+                order.setNote(resultSet.getString("note"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            ConnectionDataBase.closeConnection(connection);
+        }
+        return order;
     }
 
     @Override
@@ -85,7 +183,17 @@ public class OrderDAOImpl implements OrderDAO {
 
     @Override
     public void delete(Integer integer) {
-
+        Connection connection = null;
+        connection = ConnectionDataBase.openConnection();
+        try {
+            CallableStatement callableStatement = connection.prepareCall("{CALL ORDER_DELETE(?)}");
+            callableStatement.setInt(1, integer);
+            callableStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            ConnectionDataBase.closeConnection(connection);
+        }
     }
 
     @Override

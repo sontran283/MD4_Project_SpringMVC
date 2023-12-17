@@ -7,6 +7,7 @@ public class Category {
     private String categoryDescription;
     private boolean categoryStatus;
 
+
     public Category() {
     }
 

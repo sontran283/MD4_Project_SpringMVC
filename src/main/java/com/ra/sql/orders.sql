@@ -87,6 +87,17 @@ ORDER BY order_date;
 END //
 DELIMITER ;
 
+DELIMITER //
+
+
+CREATE PROCEDURE ORDERS_SEARCH_BY_NAME(IN search_name VARCHAR(255))
+BEGIN
+    SELECT o.*, c.name as customer_name
+    FROM orders o
+             JOIN customer c ON o.customer_id = c.customer_id
+    WHERE c.name LIKE CONCAT('%', search_name, '%');
+END //;
+
 
 -- phân trang
 DELIMITER //

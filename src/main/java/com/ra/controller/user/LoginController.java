@@ -35,7 +35,7 @@ public class LoginController {
             }else if (authent.getRole()== false){
                 model.addAttribute("user", authent);
                 session.setAttribute("user",authent);
-                if (action.equals("checkout")){
+                if ("checkout".equals(action)){
                     return "redirect:/checkout";
                 }
                 return "redirect:/";

@@ -24,12 +24,12 @@
         <div class="row row-reverse">
             <div class="col-xl-2 col-lg-12 col-md-12 order-2">
                 <div class="tpshop__leftbar tpshop__leftbar-area">
-                    <ul class="tpshop__widget mb-30 pb-25">
+                    <ul class="tpshop__widget mb-30 pb-25" >
                         <h4 class="tpshop__widget-title">Product Categorie</h4>
-                        <li class="form-check" >
+                        <li class="form-check">
                             <a href="/shop" class="form-check-label" for="flexCheckDefault9">All Product</a>
                         </li>
-                        <li class="form-check" th:each="item : ${categoryList}">
+                        <li class="form-check" th:each="item : ${categoryList}" th:if="${item.getCategoryStatus() == true}">
                             <a class="form-check-label" for="flexCheckDefault9" th:href="@{/shop/{id}(id=${item.categoryId})}" th:text="${item.categoryName}" ></a>
                         </li>
                     </ul>
@@ -200,7 +200,7 @@
                         <div class="tab-pane fade1" id="nav-all11" role="tabpanel" aria-labelledby="nav-all-tab1">
                             <div class="row row-cols-xxl-4 row-cols-xl-4 row-cols-lg-3 row-cols-md-3 row-cols-sm-2 row-cols-1 tpproduct__shop-item">
                                 <!----------------------------------------------->
-                                <div class="col" th:each="item : ${productList}">
+                                <div class="col" th:each="item : ${productList}" th:if="${item.getProductStatus() == true}">
                                     <div class="tpproduct p-relative mb-20">
                                         <div class="tpproduct__thumb p-relative text-center">
                                             <a th:href="@{/detail/{id}(id=${item.productId})}">

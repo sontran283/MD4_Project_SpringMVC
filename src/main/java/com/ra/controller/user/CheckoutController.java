@@ -21,14 +21,18 @@ public class CheckoutController {
     @Autowired
     private OrderService orderService;
     @Autowired
-    private ProductService productService;
+    private CartService cartService;
 
     @RequestMapping("/checkout")
     public String checkout(HttpSession httpSession, Model model) {
         if (httpSession.getAttribute("user") == null) {
-            // chua dang nhap thi bat dn
+            // chưa đăng nhập thì chuyển hướng về trang đăng nhập
             return "redirect:/login?action=checkout";
         }
+        if (cartService.isEmpty()) {
+            return "redirect:/cart?emptyCart=true";
+        }
+
         User user = (User) httpSession.getAttribute("user");
         UserCheckOutDTO userCheckOutDTO = new UserCheckOutDTO();
         userCheckOutDTO.setName(user.getUserName());
@@ -41,6 +45,10 @@ public class CheckoutController {
 
     @PostMapping("/checkout")
     public String handleCheckout(@ModelAttribute("user") UserCheckOutDTO userCheckOutDTO, HttpSession httpSession) {
+        if (cartService.isEmpty()) {
+            return "redirect:/cart?emptyCart=true";
+        }
+        // Xử lý thanh toán
         Order order = new Order();
         User user = (User) httpSession.getAttribute("user");
         order.setUser(user);
@@ -48,6 +56,7 @@ public class CheckoutController {
         order.setPhone(userCheckOutDTO.getPhone());
         order.setTotal(200.0);
         orderService.order(order);
+        cartService.clearCart();
         return "user/home";
     }
 }

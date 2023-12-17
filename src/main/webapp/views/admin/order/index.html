@@ -77,28 +77,30 @@
                                         <tr>
                                             <th scope="col" class="sort cursor-pointer" data-sort="category">ID</th>
                                             <th scope="col" class="sort cursor-pointer" data-sort="course_Name">Name</th>
-                                            <th scope="col" class="sort cursor-pointer" data-sort="instructor">Description</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="instructor">Date</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="lessons">Phone Number</th>
                                             <th scope="col" class="sort cursor-pointer" data-sort="lessons">Status</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                         </thead>
                                         <tbody class="list form-check-all">
-                                        <tr th:each="item : ${OrderList}">
-                                            <td th:text="${item.categoryId}"></td>
-                                            <td th:text="${item.categoryName}"></td>
-                                            <td th:text="${item.categoryDescription}"></td>
-                                            <td ><span class="label" th:classappend="${item.categoryStatus?'btn btn-success':'btn btn-danger'}" th:text="${item.categoryStatus?'Open':'Close'}"></span></td>
+                                        <tr th:each="item : ${orderList}">
+                                            <td th:text="${item.order_id}"></td>
+                                            <td th:text="${item.user.userName}"></td>
+                                            <td th:text="${item.order_date}"></td>
+                                            <td th:text="${item.phone}"></td>
+                                            <td th:text="${item.orderStatus}"></td>
                                             <td>
                                                 <!-------------------------------->
                                                 <ul class="d-flex gap-2 list-unstyled mb-0">
                                                     <li>
-                                                        <a th:href="@{/admin/category-edit/{id}(id=${item.categoryId})}"
+                                                        <a th:href="@{/admin/order-edit/{id}(id=${item.categoryId})}"
                                                            class="btn btn-subtle-secondary btn-icon btn-sm edit-item-btn">
                                                             <i class="ph-pencil"></i>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a th:href="@{/admin/category-change/{id}(id=${item.categoryId})}"
+                                                        <a th:href="@{/admin/order-change/{id}(id=${item.categoryId})}"
                                                            class="btn btn-subtle-danger btn-icon btn-sm remove-item-btn">
                                                             <i class="ph-lock-key"></i>
                                                         </a>
