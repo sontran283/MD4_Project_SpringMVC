@@ -45,11 +45,13 @@ CREATE TABLE orders (
                         order_date DATE NOT NULL default( CURDATE()),
                         FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
                         total DOUBLE NOT NULL,
-                        status enum('WAITING','CONFIRM','CANCEL') default('WAITING'),
+                        status int default 1,
                         phone varchar(25),
                         address text,
                         note varchar(255)
 );
+
+
 
 create table order_detail(
                              order_id int not null,

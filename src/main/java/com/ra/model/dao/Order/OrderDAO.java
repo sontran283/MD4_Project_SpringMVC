@@ -12,4 +12,5 @@ public interface OrderDAO  extends IGenericDAO<Order, Integer> {
     Integer getTotalPage();
     List<Order> findAll();
     int save(Order order);
+    void changeStatus(Integer id,Integer status);
 }

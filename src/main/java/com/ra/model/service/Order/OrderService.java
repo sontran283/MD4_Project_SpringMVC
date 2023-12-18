@@ -11,4 +11,5 @@ public interface OrderService  extends IGenericService<Order,Integer> {
     List<Order> paginater(Integer noPage);
     Integer getTotalPage();
     int order(Order order);
+    void changeStatus(Integer id,Integer status);
 }

@@ -40,6 +40,11 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
+    public void changeStatus(Integer id, Integer status) {
+        orderDAO.changeStatus(id, status);
+    }
+
+    @Override
     public List<Order> findAll() {
         return orderDAO.findAll();
     }

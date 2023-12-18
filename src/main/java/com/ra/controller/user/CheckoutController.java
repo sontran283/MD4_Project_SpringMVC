@@ -57,8 +57,7 @@ public class CheckoutController {
         order.setPhone(userCheckOutDTO.getPhone());
         order.setTotal(300.0);
         order.setNote(userCheckOutDTO.getNote());
-        StatusName status = StatusName.WAITING;
-        order.setOrderStatus(status);
+        order.setOrderStatus(userCheckOutDTO.getStatus());
         orderService.order(order);
         cartService.clearCart();
         return "user/home";

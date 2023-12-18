@@ -28,7 +28,6 @@
                                     <div class="col-xxl-8">
                                         <form th:action="@{/admin/add-category}" method="post" th:object="${category}">
                                             <div class="mb-3">
-                                                <label  class="form-label">Category ID<span class="text-danger">*</span></label>
                                                 <input th:field="*{categoryId}" type="hidden" class="form-control"  placeholder="Enter product title">
                                             </div>
                                             <div class="mb-3">

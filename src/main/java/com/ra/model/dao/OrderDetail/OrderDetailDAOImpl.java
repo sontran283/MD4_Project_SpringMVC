@@ -124,6 +124,32 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
     }
 
     @Override
+    public List<OrderDetail> findByOrderDetailName(String name) {
+        Connection connection = null;
+        connection = ConnectionDataBase.openConnection();
+        List<OrderDetail> orderDetailList = new ArrayList<>();
+        try {
+            CallableStatement callableStatement = connection.prepareCall("{CALL ORDERS_DETAIL_SEARCH_BY_NAME(?)}");
+            callableStatement.setString(1, name);
+            ResultSet resultSet = callableStatement.executeQuery();
+            while (resultSet.next()) {
+                OrderDetail orderDetail = new OrderDetail();
+                orderDetail.setOrderId(resultSet.getInt("order_id"));
+                Product product = productDAO.findById(resultSet.getInt("product_id"));
+                orderDetail.setProduct(product);
+                orderDetail.setQuantity(resultSet.getInt("quantity"));
+                orderDetail.setPrice(resultSet.getDouble("price"));
+                orderDetailList.add(orderDetail);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            ConnectionDataBase.closeConnection(connection);
+        }
+        return orderDetailList;
+    }
+
+    @Override
     public List<OrderDetail> findByName(String name) {
         return null;
     }
@@ -135,8 +161,28 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
 
     @Override
     public OrderDetail findById(Integer integer) {
-        return null;
+        Connection connection = null;
+        connection = ConnectionDataBase.openConnection();
+        OrderDetail orderDetail = new OrderDetail();
+        try {
+            CallableStatement callableStatement = connection.prepareCall("{CALL ORDER_DETAIL_FY_BY_ID(?)}");
+            callableStatement.setInt(1, integer);
+            ResultSet resultSet = callableStatement.executeQuery();
+            while (resultSet.next()) {
+                orderDetail.setOrderId(resultSet.getInt("order_id"));
+                Product product = productDAO.findById(resultSet.getInt("product_id"));
+                orderDetail.setProduct(product);
+                orderDetail.setQuantity(resultSet.getInt("quantity"));
+                orderDetail.setPrice(resultSet.getDouble("price"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            ConnectionDataBase.closeConnection(connection);
+        }
+        return orderDetail;
     }
+
 
     @Override
     public boolean saveOrUpDate(OrderDetail orderDetail) {

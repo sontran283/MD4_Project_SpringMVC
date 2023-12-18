@@ -92,8 +92,10 @@
                                             <td><img style="width:50px ; height: 50px; object-fit: cover" th:src="@{'http://localhost:8081/uploads/images/' + ${item.img}}" alt="img"></td>
                                             <td th:text="${item.category.categoryName}"></td>
                                             <td th:text="${item.productName}"></td>
-                                            <td th:text="${item.productDescription}"></td>
-                                            <td th:text="${item.productPrice}"></td>
+                                            <td>
+                                                <span th:text="${#strings.length(item.productDescription) &gt; 10 ? #strings.substring(item.productDescription, 0, 10) + '...' : item.productDescription}"></span>
+                                            </td>
+                                            <td th:text="${item.productPrice} + ' đ'"></td>
                                             <td th:text="${item.quantity}"></td>
                                             <td ><span class="label" th:classappend="${item.productStatus?'btn btn-success':'btn btn-danger'}" th:text="${item.productStatus?'Open':'Close'}"></span></td>
                                             <td>
@@ -150,7 +152,20 @@
         </div>
     </div>
 </div>
+<script>
+    var productPrice = 1000000; // Giả sử giá sản phẩm là 1.000.000 đồng
 
+    var formatter = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+    });
+
+    var formattedPrice = formatter.format(productPrice);
+
+    formattedPrice += ' VND'; // Thêm đơn vị tiền tệ "VND" vào cuối chuỗi định dạng
+
+    console.log(formattedPrice); // Kết quả: 1.000.000 VND
+</script>
 <!-- ============================================================== -->
 <th:block th:insert="admin/layout/footer.html"></th:block>
 <th:block th:insert="admin/layout/script.html"></th:block>

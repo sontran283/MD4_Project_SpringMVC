@@ -1,0 +1,85 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org/" lang="en" data-layout="vertical" data-sidebar="dark" data-sidebar-size="lg"
+      data-preloader="disable" data-theme="default" data-topbar="light" data-bs-theme="light">
+<th:block th:insert="admin/layout/head.html"></th:block>
+<body>
+<div id="layout-wrapper">
+    <div class="app-menu navbar-menu">
+        <th:block th:insert="admin/layout/sidebar.html"></th:block>
+        <th:block th:insert="admin/layout/header.html"></th:block>
+    </div>
+    <div class="vertical-overlay"></div>
+    <!-- ============================================================== -->
+    <div class="main-content">
+        <div class="page-content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                            <h4 class="mb-sm-0">Order Details</h4>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="row">
+                                    <table class="table table-centered align-middle table-custom-effect table-nowrap mb-0">
+                                        <thead class="text-muted">
+                                        <tr>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="category">ID</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="category">Image</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="course_Name">ProductName</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="instructor">Quantity</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="lessons">Price</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody class="list form-check-all">
+                                        <tr th:each="item : ${orderDetail}">
+                                            <td th:text="${item.orderId}"></td>
+                                            <td><img style="width:50px ; height: 50px; object-fit: cover" th:src="@{'http://localhost:8081/uploads/images/' + ${item.product.img}}" alt="img"></td>
+                                            <td th:text="${item.product.productName}"></td>
+                                            <td th:text="${item.product.quantity}"></td>
+                                            <td th:text="${item.product.productPrice}+ ' đ'"></td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ============================================================== -->
+</div>
+<script>
+    var loadFile = function(event) {
+        var reader = new FileReader();
+        reader.onload = function(){
+            var output = document.getElementById('output');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    };
+</script>
+<script>
+    var productPrice = 1000000; // Giả sử giá sản phẩm là 1.000.000 đồng
+
+    var formatter = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+    });
+
+    var formattedPrice = formatter.format(productPrice);
+
+    formattedPrice += ' VND'; // Thêm đơn vị tiền tệ "VND" vào cuối chuỗi định dạng
+
+    console.log(formattedPrice); // Kết quả: 1.000.000 VND
+</script>
+<th:block th:insert="admin/layout/footer.html"></th:block>
+<th:block th:insert="admin/layout/script.html"></th:block>
+</body>
+</html>

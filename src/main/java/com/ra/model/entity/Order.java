@@ -7,7 +7,7 @@ public class Order {
     private User user;
     private Date order_date;
     private double total;
-    private StatusName orderStatus;
+    private int orderStatus;
     private String phone;
     private String address;
     private String note;
@@ -15,7 +15,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(int order_id, User user, Date order_date, double total, StatusName orderStatus, String phone, String address, String note) {
+    public Order(int order_id, User user, Date order_date, double total, int orderStatus, String phone, String address, String note) {
         this.order_id = order_id;
         this.user = user;
         this.order_date = order_date;
@@ -58,11 +58,11 @@ public class Order {
         this.total = total;
     }
 
-    public StatusName getOrderStatus() {
+    public int getOrderStatus() {
         return orderStatus;
     }
 
-    public void setOrderStatus(StatusName orderStatus) {
+    public void setOrderStatus(int orderStatus) {
         this.orderStatus = orderStatus;
     }
 

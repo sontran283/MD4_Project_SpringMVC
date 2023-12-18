@@ -25,8 +25,8 @@ public class OrderDAOImpl implements OrderDAO {
         List<Order> orderList = new ArrayList<>();
         try {
             CallableStatement callableStatement = connection.prepareCall("{CALL ORDERS_PAGINATION(?,?,?)}");
-            callableStatement.setInt(1,LIMIT);
-            callableStatement.setInt(2,noPage);
+            callableStatement.setInt(1, LIMIT);
+            callableStatement.setInt(2, noPage);
             callableStatement.setInt(3, Types.INTEGER);
             ResultSet resultSet = callableStatement.executeQuery();
             while (resultSet.next()) {
@@ -36,14 +36,13 @@ public class OrderDAOImpl implements OrderDAO {
                 order.setUser(user);
                 order.setOrder_date(resultSet.getDate("order_date"));
                 order.setTotal(resultSet.getDouble("total"));
-                StatusName status = StatusName.valueOf(resultSet.getString("status"));
-                order.setOrderStatus(status);
+                order.setOrderStatus(resultSet.getInt("status"));
                 order.setPhone(resultSet.getString("phone"));
                 order.setAddress(resultSet.getString("address"));
                 order.setNote(resultSet.getString("note"));
                 orderList.add(order);
             }
-            this.totalPage= callableStatement.getInt(3);
+            this.totalPage = callableStatement.getInt(3);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         } finally {
@@ -71,8 +70,7 @@ public class OrderDAOImpl implements OrderDAO {
                 order.setUser(user);
                 order.setOrder_date(resultSet.getDate("order_date"));
                 order.setTotal(resultSet.getDouble("total"));
-                StatusName status = StatusName.valueOf(resultSet.getString("status"));
-                order.setOrderStatus(status);
+                order.setOrderStatus(resultSet.getInt("status"));
                 order.setPhone(resultSet.getString("phone"));
                 order.setAddress(resultSet.getString("address"));
                 order.setNote(resultSet.getString("note"));
@@ -102,8 +100,7 @@ public class OrderDAOImpl implements OrderDAO {
                 order.setUser(user);
                 order.setOrder_date(resultSet.getDate("order_date"));
                 order.setTotal(resultSet.getDouble("total"));
-                StatusName status = StatusName.valueOf(resultSet.getString("status"));
-                order.setOrderStatus(status);
+                order.setOrderStatus(resultSet.getInt("status"));
                 order.setPhone(resultSet.getString("phone"));
                 order.setAddress(resultSet.getString("address"));
                 order.setNote(resultSet.getString("note"));
@@ -132,8 +129,7 @@ public class OrderDAOImpl implements OrderDAO {
                 order.setUser(user);
                 order.setOrder_date(resultSet.getDate("order_date"));
                 order.setTotal(resultSet.getDouble("total"));
-                StatusName status = StatusName.valueOf(resultSet.getString("status"));
-                order.setOrderStatus(status);
+                order.setOrderStatus(resultSet.getInt("status"));
                 order.setPhone(resultSet.getString("phone"));
                 order.setAddress(resultSet.getString("address"));
                 order.setNote(resultSet.getString("note"));
@@ -162,8 +158,7 @@ public class OrderDAOImpl implements OrderDAO {
                 order.setUser(user);
                 order.setOrder_date(resultSet.getDate("order_date"));
                 order.setTotal(resultSet.getDouble("total"));
-                StatusName status = StatusName.valueOf(resultSet.getString("status"));
-                order.setOrderStatus(status);
+                order.setOrderStatus(resultSet.getInt("status"));
                 order.setPhone(resultSet.getString("phone"));
                 order.setAddress(resultSet.getString("address"));
                 order.setNote(resultSet.getString("note"));
@@ -206,12 +201,27 @@ public class OrderDAOImpl implements OrderDAO {
             callableStatement.setString(3, order.getPhone());
             callableStatement.setString(4, order.getAddress());
             callableStatement.setString(5, order.getNote());
-            callableStatement.setInt(6,Types.INTEGER);
+            callableStatement.setInt(6, Types.INTEGER);
             callableStatement.executeUpdate();
             return callableStatement.getInt(6);
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
+            ConnectionDataBase.closeConnection(connection);
+        }
+    }
+
+    @Override
+    public void changeStatus(Integer id, Integer status) {
+        Connection connection = ConnectionDataBase.openConnection();
+        try {
+            CallableStatement callableStatement = connection.prepareCall("{CALL proc_accept_or_deny_order(?,?)}");
+            callableStatement.setInt(1, id);
+            callableStatement.setInt(2, status);
+            callableStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
             ConnectionDataBase.closeConnection(connection);
         }
     }

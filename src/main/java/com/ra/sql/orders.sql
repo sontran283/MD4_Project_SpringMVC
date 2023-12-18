@@ -114,3 +114,9 @@ BEGIN
     SELECT * FROM orders LIMIT _limit OFFSET _offset;
 end;
 //
+delimiter //
+create
+    procedure proc_accept_or_deny_order(IN oId int, IN _status int)
+BEGIN
+    UPDATE orders SET status = _status WHERE order_id = oId;
+END;

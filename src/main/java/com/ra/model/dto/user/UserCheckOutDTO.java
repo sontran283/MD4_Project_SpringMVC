@@ -6,16 +6,18 @@ public class UserCheckOutDTO {
     private String address;
     private String phone;
     private String note;
+    private int status;
 
     public UserCheckOutDTO() {
     }
 
-    public UserCheckOutDTO(String name, String email, String address, String phone, String note) {
+    public UserCheckOutDTO(String name, String email, String address, String phone, String note, int status) {
         this.name = name;
         this.email = email;
         this.address = address;
         this.phone = phone;
         this.note = note;
+        this.status = status;
     }
 
     public String getName() {
@@ -56,5 +58,13 @@ public class UserCheckOutDTO {
 
     public void setNote(String note) {
         this.note = note;
+    }
+
+    public int getStatus() {
+        return status;
+    }
+
+    public void setStatus(int status) {
+        this.status = status;
     }
 }

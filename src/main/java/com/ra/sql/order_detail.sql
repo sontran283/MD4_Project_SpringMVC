@@ -52,11 +52,10 @@ END; //
 -- Lấy chi tiết đơn hàng theo ID
 DELIMITER //
 CREATE PROCEDURE ORDER_DETAIL_FY_BY_ID(
-    IN dt_order_id INT,
-    IN dt_product_id INT
+    IN dt_order_id INT
 )
 BEGIN
-SELECT * FROM order_detail WHERE order_id = dt_order_id AND product_id = dt_product_id;
+SELECT * FROM order_detail WHERE order_id = dt_order_id;
 END; //
 
 
@@ -92,3 +91,14 @@ BEGIN
     SELECT * FROM order_detail WHERE product_id = dt_product_id;
 END //
 DELIMITER ;
+
+
+DELIMITER //
+CREATE PROCEDURE ORDER_DETAIL_GET_PRODUCT_INFO_BY_PRODUCT_ID(IN pd_product_id INT)
+BEGIN
+    SELECT od.*, p.name, p.price
+    FROM order_detail od
+             JOIN product p ON od.product_id = p.product_id
+             JOIN orders o ON od.order_id = o.order_id
+    WHERE od.product_id = pd_product_id;
+END //;

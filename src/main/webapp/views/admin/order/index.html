@@ -39,7 +39,8 @@
                                     <div class="col-lg-3 me-auto">
                                         <form th:action="@{/admin/search-order}" method="get">
                                             <div class="search-box">
-                                                <input type="text" class="form-control search" placeholder="Search..." name="searchTerm">
+                                                <input type="text" class="form-control search" placeholder="Search..."
+                                                       name="searchTerm">
                                                 <i class="ri-search-line search-icon"></i>
                                             </div>
                                             <div class="search-box">
@@ -54,8 +55,8 @@
                                         <div class="hstack flex-wrap gap-2">
                                             <!--------------------------------------->
                                             <div>
-<!--                                                <a th:href="@{/admin/add-order}" class="btn btn-secondary " ><i-->
-<!--                                                        class="bi bi-plus-circle align-baseline me-1"></i> Add Order</a>-->
+                                                <!--                                                <a th:href="@{/admin/add-order}" class="btn btn-secondary " ><i-->
+                                                <!--                                                        class="bi bi-plus-circle align-baseline me-1"></i> Add Order</a>-->
                                             </div>
                                             <!--------------------------------------->
                                             <div>
@@ -76,31 +77,52 @@
                                         <thead class="text-muted">
                                         <tr>
                                             <th scope="col" class="sort cursor-pointer" data-sort="category">ID</th>
-                                            <th scope="col" class="sort cursor-pointer" data-sort="course_Name">Name</th>
-                                            <th scope="col" class="sort cursor-pointer" data-sort="instructor">Date</th>
-                                            <th scope="col" class="sort cursor-pointer" data-sort="lessons">Phone Number</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="course_Name">User
+                                                Name
+                                            </th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="instructor">Phone
+                                            </th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="lessons">Address</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="lessons">Note</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="lessons">Date</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="lessons">Status</th>
                                             <th scope="col">Action</th>
                                         </tr>
                                         </thead>
                                         <tbody class="list form-check-all">
-                                        <tr th:each="item : ${orderDetailList}">
-                                            <td th:text="${item.orderId}"></td>
-                                            <td th:text="${item.product.productName}"></td>
-                                            <td th:text="${item.quantity}"></td>
-                                            <td th:text="${item.price}"></td>
+                                        <tr th:each="item : ${orderList}">
+                                            <td th:text="${item.order_id}"></td>
+                                            <td th:text="${item.user.userName}"></td>
+                                            <td th:text="${item.user.userPhoneNumber}"></td>
+                                            <td th:text="${item.address}"></td>
+                                            <td>
+                                                <span th:text="${#strings.length(item.note) &gt; 10 ? #strings.substring(item.note, 0, 10) + '...' : item.note}"></span>
+                                            </td>
+                                            <td th:text="${item.order_date}"></td>
+                                            <td>
+                                                 <span th:text="${item.orderStatus == 1 ? 'WAITING...' : (item.orderStatus == 0 ? 'CANCEL' : 'CONFIRM')}"
+                                                       th:class="${item.orderStatus == 1 ? 'btn btn-outline-secondary' : (item.orderStatus == 0 ? 'btn btn-outline-danger' : 'btn btn-outline-success')}">
+                                                 </span>
+                                            </td>
                                             <td>
                                                 <!-------------------------------->
                                                 <ul class="d-flex gap-2 list-unstyled mb-0">
                                                     <li>
-                                                        <a th:href="@{/admin/order-edit/{id}(id=${item.orderId})}"
+                                                        <a th:href="@{/admin/view-order/{id}(id=${item.order_id})}"
                                                            class="btn btn-subtle-primary btn-icon btn-sm edit-item-btn">
                                                             <i class="ph-eye"></i>
                                                         </a>
                                                     </li>
                                                     <li>
-                                                        <a th:href="@{/admin/order-change/{id}(id=${item.orderId})}"
+                                                        <a th:href="@{/admin/confirm/{id}(id=${item.order_id})}"
+                                                           class="btn btn-subtle-success btn-icon btn-sm remove-item-btn">
+                                                            <i class="ri-check-double-line"></i>
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a th:href="@{/admin/cancel/{id}(id=${item.order_id})}"
                                                            class="btn btn-subtle-danger btn-icon btn-sm remove-item-btn">
-                                                            <i class="ph-lock-key"></i>
+                                                            <i class="ri-indeterminate-circle-fill"></i>
                                                         </a>
                                                     </li>
                                                 </ul>
@@ -109,7 +131,6 @@
                                         </tr>
                                         </tbody>
                                     </table>
-
                                     <div class="noresult" style="display: none">
                                         <div class="text-center py-4">
                                             <i class="ph-magnifying-glass fs-1 text-primary"></i>
@@ -127,8 +148,9 @@
                                             <a class="page-item pagination-prev disabled" href="javascript:void(0)">
                                                 Previous
                                             </a>
-                                            <div th:each="item : ${#numbers.sequence(1, totalPage, 1)}" >
-                                                <a th:href="@{/admin/order/{page}(page = ${item})}" th:text="${item}"></a>
+                                            <div th:each="item : ${#numbers.sequence(1, totalPage, 1)}">
+                                                <a th:href="@{/admin/order/{page}(page = ${item})}"
+                                                   th:text="${item}"></a>
                                             </div>
                                             <ul class="pagination listjs-pagination mb-0"></ul>
                                             <a class="page-item pagination-next" href="javascript:void(0)">

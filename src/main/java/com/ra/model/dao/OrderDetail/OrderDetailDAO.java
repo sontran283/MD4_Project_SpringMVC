@@ -13,4 +13,5 @@ public interface OrderDetailDAO extends IGenericDAO<OrderDetail, Integer> {
     List<OrderDetail> findAll();
     void create(OrderDetail orderDetail);
     List<OrderDetail> findByOrderId(Integer orderId);
+    List<OrderDetail> findByOrderDetailName(String name);
 }

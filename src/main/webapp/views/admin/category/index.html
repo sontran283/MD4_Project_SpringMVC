@@ -86,7 +86,9 @@
                                         <tr th:each="item : ${categoryList}">
                                             <td th:text="${item.categoryId}"></td>
                                             <td th:text="${item.categoryName}"></td>
-                                            <td th:text="${item.categoryDescription}"></td>
+                                            <td>
+                                                <span th:text="${#strings.length(item.categoryDescription) &gt; 10 ? #strings.substring(item.categoryDescription, 0, 10) + '...' : item.categoryDescription}"></span>
+                                            </td>
                                             <td ><span class="label" th:classappend="${item.categoryStatus?'btn btn-success':'btn btn-danger'}" th:text="${item.categoryStatus?'Open':'Close'}"></span></td>
                                             <td>
                                                 <!-------------------------------->

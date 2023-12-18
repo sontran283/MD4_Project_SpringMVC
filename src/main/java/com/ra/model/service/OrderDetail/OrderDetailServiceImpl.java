@@ -32,4 +32,39 @@ public class OrderDetailServiceImpl implements OrderDetailService{
     public List<OrderDetail> findByOrderId(Integer orderId) {
         return orderDetailDAO.findByOrderId(orderId);
     }
+
+    @Override
+    public List<OrderDetail> findByOrderDetailName(String name) {
+        return orderDetailDAO.findByOrderDetailName(name);
+    }
+
+    @Override
+    public List<OrderDetail> findAll() {
+        return orderDetailDAO.findAll();
+    }
+
+    @Override
+    public List<OrderDetail> findByName(String name) {
+        return orderDetailDAO.findByName(name);
+    }
+
+    @Override
+    public List<OrderDetail> sortByName() {
+        return orderDetailDAO.sortByName();
+    }
+
+    @Override
+    public OrderDetail findById(Integer integer) {
+        return orderDetailDAO.findById(integer);
+    }
+
+    @Override
+    public boolean saveOrUpDate(OrderDetail orderDetail) {
+        return orderDetailDAO.saveOrUpDate(orderDetail);
+    }
+
+    @Override
+    public void delete(Integer integer) {
+        orderDetailDAO.delete(integer);
+    }
 }

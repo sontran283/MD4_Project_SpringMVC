@@ -18,20 +18,22 @@ public class OrderController {
     private OrderService orderService;
     @Autowired
     private OrderDetailService orderDetailService;
+    @Autowired
+    private UserService userService;
 
-    //    @GetMapping("/order/{id}")
-//    public String index(@PathVariable("id")Integer id, Model model){
-//        List<Order> orderList = orderService.paginater(id);
-//        model.addAttribute("totalPage", orderService.getTotalPage());
-//        model.addAttribute("orderList",orderList);
+//    @GetMapping("/order/{id}")
+//    public String index(@PathVariable("id") Integer id, Model model) {
+//        List<OrderDetail> orderDetailList = orderDetailService.paginater(id);
+//        model.addAttribute("totalPage", orderDetailService.getTotalPage());
+//        model.addAttribute("orderDetailList", orderDetailList);
 //        return "admin/order/index";
 //    }
+
     @GetMapping("/order/{id}")
     public String index(@PathVariable("id") Integer id, Model model) {
-        Order order = orderService.findById(id);
-        List<OrderDetail> orderDetailList = orderDetailService.findByOrderId(id);
-        model.addAttribute("order", order);
-        model.addAttribute("orderDetailList", orderDetailList);
+        List<Order> orderList = orderService.paginater(id);
+        model.addAttribute("totalPage", orderService.getTotalPage());
+        model.addAttribute("orderList", orderList);
         return "admin/order/index";
     }
 
@@ -47,12 +49,18 @@ public class OrderController {
         orderService.saveOrUpDate(order);
         return "redirect:/admin/order/1";
     }
+    @GetMapping("/view-order/{id}")
+    public String orderview(@PathVariable("id")Integer id,Model model){
+        OrderDetail orderDetail = orderDetailService.findById(id);
+        model.addAttribute("orderDetail", orderDetail);
+        return "/admin/order/view-order";
+    }
 
     @GetMapping("/order-edit/{id}")
     public String edit(@PathVariable("id") Integer id, Model model) {
         Order order = orderService.findById(id);
         model.addAttribute("order", order);
-        return "/admin/order/edit-order";
+        return "/admin/order/view-order";
     }
 
     @PostMapping("/order-edit")
@@ -83,5 +91,15 @@ public class OrderController {
         model.addAttribute("orderList", searchResult);
         model.addAttribute("totalPage", (int) Math.ceil(orders.size() / 4.f));
         return "/admin/order/index";
+    }
+    @GetMapping("/confirm/{id}")
+    public String waiting(@PathVariable("id")Integer id){
+        orderService.changeStatus(id, 2);
+        return "redirect:/admin/order/1";
+    }
+    @GetMapping("/cancel/{id}")
+    public String cancel(@PathVariable("id")Integer id){
+        orderService.changeStatus(id, 0);
+        return "redirect:/admin/order/1";
     }
 }

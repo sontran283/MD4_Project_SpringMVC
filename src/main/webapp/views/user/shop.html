@@ -239,7 +239,7 @@
                                                 <a href="#"><i class="icon-star_outline1"></i></a>
                                             </div>
                                             <div class="tpproduct__price">
-                                                <span th:text="${item.productPrice}"></span>
+                                                <span th:text="${item.productPrice}+ ' đ'"></span>
                                                 <del>$19000.0</del>
                                             </div>
                                         </div>
@@ -274,6 +274,20 @@
         </div>
     </div>
 </section>
+<script>
+    var productPrice = 1000000; // Giả sử giá sản phẩm là 1.000.000 đồng
+
+    var formatter = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+    });
+
+    var formattedPrice = formatter.format(productPrice);
+
+    formattedPrice += ' VND'; // Thêm đơn vị tiền tệ "VND" vào cuối chuỗi định dạng
+
+    console.log(formattedPrice); // Kết quả: 1.000.000 VND
+</script>
 <th:block th:insert="user/layout/footer.html"></th:block>
 <th:block th:insert="user/layout/script.html"></th:block>
 </body>
