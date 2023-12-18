@@ -1,33 +1,150 @@
 package com.ra.model.dao.OrderDetail;
 
-import com.ra.model.entity.OrderDetail;
+import com.ra.model.dao.Order.OrderDAO;
+import com.ra.model.dao.Product.ProductDAO;
+import com.ra.model.dao.User.UserDAO;
+import com.ra.model.entity.*;
 import com.ra.util.ConnectionDataBase;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.sql.CallableStatement;
-import java.sql.Connection;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Repository
-public class OrderDetailDAOImpl  implements  OrderDetailDAO{
+public class OrderDetailDAOImpl implements OrderDetailDAO {
+    private int LIMIT = 4;
+    private int totalPage = 0;
+    @Autowired
+    private ProductDAO productDAO;
+    @Autowired
+    private OrderDAO orderDAO;
+
     @Override
-    public boolean save(OrderDetail orderDetail) {
-        Connection connection = ConnectionDataBase.openConnection();
+    public List<OrderDetail> paginater(Integer noPage) {
+        Connection connection = null;
+        connection = ConnectionDataBase.openConnection();
+        List<OrderDetail> orderDetailList = new ArrayList<>();
         try {
-            CallableStatement callableStatement = connection.prepareCall("{CALL ORDER_DETAIL_ADD(?,?,?,?)}");
-            callableStatement.setInt(1, orderDetail.getOrder().getOrder_id());
-            callableStatement.setInt(2, orderDetail.getProduct().getProductId());
-            callableStatement.setInt(3, orderDetail.getQuantity());
-            callableStatement.setDouble(4, orderDetail.getPrice());
-            int check= callableStatement.executeUpdate();
-            if (check>0){
-                return true;
+            CallableStatement callableStatement = connection.prepareCall("{CALL ORDER_DETAIL_PAGINATION(?,?,?)}");
+            callableStatement.setInt(1, LIMIT);
+            callableStatement.setInt(2, noPage);
+            callableStatement.setInt(3, Types.INTEGER);
+            ResultSet resultSet = callableStatement.executeQuery();
+            while (resultSet.next()) {
+                OrderDetail orderDetail = new OrderDetail();
+                orderDetail.setOrderId(resultSet.getInt("order_id"));
+                Product product = productDAO.findById(resultSet.getInt("product_id"));
+                orderDetail.setProduct(product);
+                orderDetail.setQuantity(resultSet.getInt("quantity"));
+                orderDetail.setPrice(resultSet.getDouble("price"));
+                orderDetailList.add(orderDetail);
+            }
+            this.totalPage = callableStatement.getInt(3);
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            ConnectionDataBase.closeConnection(connection);
+        }
+        return orderDetailList;
+    }
+
+    @Override
+    public Integer getTotalPage() {
+        return totalPage;
+    }
+
+    @Override
+    public List<OrderDetail> findAll() {
+        Connection connection = ConnectionDataBase.openConnection();
+        List<OrderDetail> orderDetailList = new ArrayList<>();
+        try {
+            CallableStatement callableStatement = connection.prepareCall("{CALL ORDER_DETAIL_FY_BY_ALL()}");
+            ResultSet resultSet = callableStatement.executeQuery();
+            while (resultSet.next()) {
+                OrderDetail order = new OrderDetail();
+                Order order1 = new Order();
+                order1.setOrder_id(resultSet.getInt("order_id"));
+                Product product = new Product();
+                product.setProductId(resultSet.getInt("product_id"));
+                order.setQuantity(resultSet.getInt("quantity"));
+                order.setPrice(resultSet.getDouble("double"));
+                orderDetailList.add(order);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
-        }finally {
+        } finally {
             ConnectionDataBase.closeConnection(connection);
         }
+        return orderDetailList;
+    }
+
+    @Override
+    public void create(OrderDetail orderDetail) {
+        Connection connection = ConnectionDataBase.openConnection();
+        try {
+            CallableStatement callableStatement = connection.prepareCall("{CALL ORDER_DETAIL_ADD(?,?,?,?)}");
+            callableStatement.setInt(1, orderDetail.getOrderId());
+            callableStatement.setInt(2, orderDetail.getProduct().getProductId());
+            callableStatement.setInt(3, orderDetail.getQuantity());
+            callableStatement.setDouble(4, orderDetail.getPrice());
+            callableStatement.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            ConnectionDataBase.closeConnection(connection);
+        }
+    }
+
+    @Override
+    public List<OrderDetail> findByOrderId(Integer orderId) {
+        Connection connection = null;
+        connection = ConnectionDataBase.openConnection();
+        List<OrderDetail> orderDetailList = new ArrayList<>();
+        try {
+            CallableStatement callableStatement = connection.prepareCall("{CALL ORDER_DETAIL_FIND_BY_ORDER_ID(?)}");
+            callableStatement.setInt(1, orderId);
+            ResultSet resultSet = callableStatement.executeQuery();
+            while (resultSet.next()) {
+                OrderDetail orderDetail = new OrderDetail();
+                orderDetail.setOrderId(resultSet.getInt("orderId"));
+                Product product = productDAO.findById(resultSet.getInt("product_id"));
+                orderDetail.setProduct(product);
+                orderDetail.setQuantity(resultSet.getInt("quantity"));
+                orderDetail.setPrice(resultSet.getInt("price"));
+                orderDetailList.add(orderDetail);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            ConnectionDataBase.closeConnection(connection);
+        }
+        return orderDetailList;
+    }
+
+    @Override
+    public List<OrderDetail> findByName(String name) {
+        return null;
+    }
+
+    @Override
+    public List<OrderDetail> sortByName() {
+        return null;
+    }
+
+    @Override
+    public OrderDetail findById(Integer integer) {
+        return null;
+    }
+
+    @Override
+    public boolean saveOrUpDate(OrderDetail orderDetail) {
         return false;
+    }
+
+    @Override
+    public void delete(Integer integer) {
+
     }
 }

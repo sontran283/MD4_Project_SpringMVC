@@ -2,6 +2,7 @@ package com.ra.controller.user;
 
 import com.ra.model.dto.user.UserCheckOutDTO;
 import com.ra.model.entity.Order;
+import com.ra.model.entity.StatusName;
 import com.ra.model.entity.User;
 import com.ra.model.service.Cart.CartService;
 import com.ra.model.service.Order.OrderService;
@@ -48,13 +49,16 @@ public class CheckoutController {
         if (cartService.isEmpty()) {
             return "redirect:/cart?emptyCart=true";
         }
-        // Xử lý thanh toán
+        // thanh toán
         Order order = new Order();
         User user = (User) httpSession.getAttribute("user");
         order.setUser(user);
         order.setAddress(userCheckOutDTO.getAddress());
         order.setPhone(userCheckOutDTO.getPhone());
-        order.setTotal(200.0);
+        order.setTotal(300.0);
+        order.setNote(userCheckOutDTO.getNote());
+        StatusName status = StatusName.WAITING;
+        order.setOrderStatus(status);
         orderService.order(order);
         cartService.clearCart();
         return "user/home";

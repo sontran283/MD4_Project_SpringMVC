@@ -85,3 +85,10 @@ BEGIN
     SET  total = CEIL((SELECT count(*) FROM order_detail) / _limit);
 SELECT * FROM order_detail LIMIT _limit OFFSET _offset;
 end; //
+
+DELIMITER //
+CREATE PROCEDURE ORDER_DETAIL_FIND_BY_ORDER_ID(IN dt_product_id INT)
+BEGIN
+    SELECT * FROM order_detail WHERE product_id = dt_product_id;
+END //
+DELIMITER ;

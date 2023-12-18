@@ -66,17 +66,17 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
         this.applicationContext = applicationContext;
     }
 
-//    @Override
-//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
-//        registry.addResourceHandler("/**").addResourceLocations("/resources/");
-//    }
-
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/bundles/**","/css/**","/fonts/**","/images/**","/plugin/**","/js/**","/vendor/**","/uploads/images/**")
-                .addResourceLocations( "file:"+path,"classpath:assets/bundles/","classpath:assets/css/", "classpath:assets/fonts/", "classpath:assets/images/", "classpath:assets/plugin/"
-                        , "classpath:asset/css/" , "classpath:asset/fonts/" , "classpath:asset/images/", "classpath:asset/js/" , "classpath:asset/vendor/");
+        registry.addResourceHandler("/**").addResourceLocations("/resources/");
     }
+
+//    @Override
+//    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+//        registry.addResourceHandler("/bundles/**","/css/**","/fonts/**","/images/**","/plugin/**","/js/**","/vendor/**","/uploads/images/**")
+//                .addResourceLocations( "file:"+path,"classpath:assets/bundles/","classpath:assets/css/", "classpath:assets/fonts/", "classpath:assets/images/", "classpath:assets/plugin/"
+//                        , "classpath:asset/css/" , "classpath:asset/fonts/" , "classpath:asset/images/", "classpath:asset/js/" , "classpath:asset/vendor/");
+//    }
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {

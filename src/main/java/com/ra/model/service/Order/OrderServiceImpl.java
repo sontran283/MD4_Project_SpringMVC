@@ -8,6 +8,7 @@ import com.ra.model.entity.Category;
 import com.ra.model.entity.Order;
 import com.ra.model.entity.OrderDetail;
 import com.ra.model.service.Cart.CartService;
+import com.ra.model.service.OrderDetail.OrderDetailService;
 import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,26 +22,21 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private CartService cartService;
     @Autowired
-    private OrderDetailDAO orderDetailDAO;
+    private OrderDetailService orderDetailService;
 
     @Override
-    public boolean order(Order order) {
-        try {
-            Order newOrder = orderDAO.save(order);
-            List<CartItem> cartItemList = cartService.getCartItems();
-            for (CartItem cartItem : cartItemList) {
-                OrderDetail orderDetail = new OrderDetail();
-                orderDetail.setOrder(newOrder);
-                orderDetail.setProduct(cartItem.getProduct());
-                orderDetail.setQuantity(cartItem.getQuantity());
-                orderDetail.setPrice(cartItem.getProduct().getProductPrice());
-                orderDetailDAO.save(orderDetail);
-            }
-            return true;
-        } catch (Exception e) {
-            e.printStackTrace();
+    public int order(Order order) {
+        int order_id = orderDAO.save(order);
+        List<CartItem> cartItemList = cartService.getCartItems();
+        for (CartItem cartItem : cartItemList) {
+            OrderDetail orderDetail = new OrderDetail();
+            orderDetail.setOrderId(order_id);
+            orderDetail.setProduct(cartItem.getProduct());
+            orderDetail.setQuantity(cartItem.getQuantity());
+            orderDetail.setPrice(cartItem.getProduct().getProductPrice());
+            orderDetailService.create(orderDetail);
         }
-        return false;
+        return order_id;
     }
 
     @Override

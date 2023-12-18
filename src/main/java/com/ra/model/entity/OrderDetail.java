@@ -1,7 +1,7 @@
 package com.ra.model.entity;
 
 public class OrderDetail {
-    private Order order;
+    private int orderId;
     private Product product;
     private int quantity;
     private double price;
@@ -9,19 +9,13 @@ public class OrderDetail {
     public OrderDetail() {
     }
 
-    public OrderDetail(Order order, Product product, int quantity, double price) {
-        this.order = order;
-        this.product = product;
-        this.quantity = quantity;
-        this.price = price;
+
+    public int getOrderId() {
+        return orderId;
     }
 
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOrderId(int orderId) {
+        this.orderId = orderId;
     }
 
     public Product getProduct() {

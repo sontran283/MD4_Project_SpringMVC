@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 @Controller
@@ -21,6 +22,8 @@ public class CartController {
     private CartService cartService;
     @Autowired
     ProductService productService;
+    @Autowired
+    HttpSession session;
 
     @RequestMapping("/cart")
     public String cart(Model model) {

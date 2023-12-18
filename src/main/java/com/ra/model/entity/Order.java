@@ -7,7 +7,7 @@ public class Order {
     private User user;
     private Date order_date;
     private double total;
-    private StatusName orderStatus = StatusName.WAITING;
+    private StatusName orderStatus;
     private String phone;
     private String address;
     private String note;

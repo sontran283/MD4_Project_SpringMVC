@@ -45,7 +45,7 @@ CREATE TABLE orders (
                         order_date DATE NOT NULL default( CURDATE()),
                         FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
                         total DOUBLE NOT NULL,
-                        status bit(1),
+                        status enum('WAITING','CONFIRM','CANCEL') default('WAITING'),
                         phone varchar(25),
                         address text,
                         note varchar(255)

@@ -197,24 +197,22 @@ public class OrderDAOImpl implements OrderDAO {
     }
 
     @Override
-    public Order save(Order order) {
+    public int save(Order order) {
         Connection connection = ConnectionDataBase.openConnection();
         try {
-            CallableStatement callableStatement = connection.prepareCall("{CALL ORDER_ADD(?,?,?,?,?)}");
+            CallableStatement callableStatement = connection.prepareCall("{CALL ORDER_ADD(?,?,?,?,?,?)}");
             callableStatement.setInt(1, order.getUser().getUserId());
             callableStatement.setDouble(2, order.getTotal());
             callableStatement.setString(3, order.getPhone());
             callableStatement.setString(4, order.getAddress());
             callableStatement.setString(5, order.getNote());
-            int check= callableStatement.executeUpdate();
-            if (check>0){
-                return order;
-            }
+            callableStatement.setInt(6,Types.INTEGER);
+            callableStatement.executeUpdate();
+            return callableStatement.getInt(6);
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }finally {
             ConnectionDataBase.closeConnection(connection);
         }
-        return null;
     }
 }
