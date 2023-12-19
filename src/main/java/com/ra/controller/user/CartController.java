@@ -28,6 +28,11 @@ public class CartController {
     @RequestMapping("/cart")
     public String cart(Model model) {
         List<CartItem> cartItems = cartService.getCartItems();
+        double total = 0;
+        for (CartItem cartItem : cartItems) {
+            total+= cartItem.getQuantity() * cartItem.getProduct().getProductPrice();
+        }
+        model.addAttribute("total",total);
         model.addAttribute("cartItems",cartItems);
         return "/user/cart";
     }

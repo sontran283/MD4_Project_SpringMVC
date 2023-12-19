@@ -1,6 +1,7 @@
 package com.ra.controller.user;
 
 import com.ra.model.dto.user.UserCheckOutDTO;
+import com.ra.model.entity.CartItem;
 import com.ra.model.entity.Order;
 import com.ra.model.entity.StatusName;
 import com.ra.model.entity.User;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 
 @Controller
 @RequestMapping("/")
@@ -34,6 +36,13 @@ public class CheckoutController {
             return "redirect:/cart?emptyCart=true";
         }
 
+        List<CartItem> cartItems = cartService.getCartItems();
+        double total = 0;
+        for (CartItem cartItem : cartItems) {
+            total+= cartItem.getQuantity() * cartItem.getProduct().getProductPrice();
+        }
+        model.addAttribute("total",total);
+
         User user = (User) httpSession.getAttribute("user");
         UserCheckOutDTO userCheckOutDTO = new UserCheckOutDTO();
         userCheckOutDTO.setName(user.getUserName());
@@ -49,13 +58,19 @@ public class CheckoutController {
         if (cartService.isEmpty()) {
             return "redirect:/cart?emptyCart=true";
         }
+        List<CartItem> cartItems = cartService.getCartItems();
+        double total = 0;
+        for (CartItem cartItem : cartItems) {
+            total+= cartItem.getQuantity() * cartItem.getProduct().getProductPrice();
+        }
+
         // thanh toán
         Order order = new Order();
         User user = (User) httpSession.getAttribute("user");
         order.setUser(user);
         order.setAddress(userCheckOutDTO.getAddress());
         order.setPhone(userCheckOutDTO.getPhone());
-        order.setTotal(300.0);
+        order.setTotal(total);
         order.setNote(userCheckOutDTO.getNote());
         order.setOrderStatus(userCheckOutDTO.getStatus());
         orderService.order(order);

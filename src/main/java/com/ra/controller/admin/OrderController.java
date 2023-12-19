@@ -4,6 +4,7 @@ import com.ra.model.entity.*;
 import com.ra.model.service.Order.OrderService;
 import com.ra.model.service.OrderDetail.OrderDetailService;
 import com.ra.model.service.User.UserService;
+import com.sun.org.apache.xpath.internal.operations.Or;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -93,15 +94,19 @@ public class OrderController {
 
     @GetMapping("/confirm/{id}")
     public String waiting(@PathVariable("id") Integer id) {
-        orderService.changeStatus(id, 2);
+        Order order = orderService.findById(id);
+        if (order.getOrderStatus() == 1) {
+            orderService.changeStatus(id, 2);
+        }
         return "redirect:/admin/order/1";
     }
 
     @GetMapping("/cancel/{id}")
     public String cancel(@PathVariable("id") Integer id) {
-        orderService.changeStatus(id, 0);
+        Order order = orderService.findById(id);
+        if (order.getOrderStatus() == 1) {
+            orderService.changeStatus(id, 0);
+        }
         return "redirect:/admin/order/1";
     }
-
-
 }

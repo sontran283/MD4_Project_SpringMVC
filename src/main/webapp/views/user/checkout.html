@@ -86,7 +86,7 @@
                                         <span class="product-quantity" th:text="${item.quantity}"></span>
                                     </td>
                                     <td class="product-total">
-                                        <span class="amount">$165.00</span>
+                                        <span class="amount" th:text="${item.quantity * item.product.productPrice}"></span>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -94,7 +94,7 @@
                                 <tr class="order-total">
                                     <th>Order Total</th>
                                     <td>
-                                        <strong><span class="amount">$215.00</span></strong>
+                                        <strong><span class="amount" th:text="${total}"></span></strong>
                                     </td>
                                 </tr>
                                 </tfoot>

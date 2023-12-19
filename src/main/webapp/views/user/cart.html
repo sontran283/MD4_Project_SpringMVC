@@ -58,8 +58,8 @@
                                 <thead>
                                 <tr>
                                     <th class="cart-product-name">Image</th>
-                                    <th class="product-price">Price</th>
                                     <th class="product-price">Name</th>
+                                    <th class="product-price">Price</th>
                                     <th class="product-quantity">Total Amount</th>
                                     <th class="product-quantity">Quantity</th>
                                     <th class="product-remove">Remove</th>
@@ -74,10 +74,10 @@
                                         </a>
                                     </td>
                                     <td class="product-price">
-                                        <span class="amount" th:text="${item.product.productPrice}+ ' đ'"></span>
+                                        <span class="amount" th:text="${item.product.productName}"></span>
                                     </td>
                                     <td class="product-price">
-                                        <span class="amount" th:text="${item.product.productName}"></span>
+                                        <span class="amount" th:text="${item.product.productPrice}+ ' đ'"></span>
                                     </td>
                                     <td class="product-price">
                                         <span class="amount" th:text="${item.product.productPrice* item.quantity}+ ' đ'"></span>
@@ -96,6 +96,10 @@
                                             <button type="submit"><i class="fa fa-times"></i></button>
                                         </form>
                                     </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5"><strong>Cart Total</strong></td>
+                                    <td th:text="${total}+ ' đ'"></td>
                                 </tr>
                                 </tbody>
                             </table>
