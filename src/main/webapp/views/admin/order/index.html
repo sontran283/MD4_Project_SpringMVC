@@ -95,12 +95,12 @@
                                             <td th:text="${item.user.userName}"></td>
                                             <td th:text="${item.user.userPhoneNumber}"></td>
                                             <td th:text="${item.address}"></td>
-                                            <td>
+                                            <td>,
                                                 <span th:text="${#strings.length(item.note) &gt; 10 ? #strings.substring(item.note, 0, 10) + '...' : item.note}"></span>
                                             </td>
                                             <td th:text="${item.order_date}"></td>
                                             <td>
-                                                 <span th:text="${item.orderStatus == 1 ? 'WAITING...' : (item.orderStatus == 0 ? 'CANCEL' : 'CONFIRM')}"
+                                                 <span th:text="${item.orderStatus == 1 ? 'WAITING' : (item.orderStatus == 0 ? 'CANCEL' : 'CONFIRM')}"
                                                        th:class="${item.orderStatus == 1 ? 'btn btn-outline-secondary' : (item.orderStatus == 0 ? 'btn btn-outline-danger' : 'btn btn-outline-success')}">
                                                  </span>
                                             </td>
@@ -116,7 +116,7 @@
                                                     <li>
                                                         <a th:href="@{/admin/confirm/{id}(id=${item.order_id})}"
                                                            class="btn btn-subtle-success btn-icon btn-sm remove-item-btn">
-                                                            <i class="ri-check-double-line"></i>
+                                                            <i class="ri-riding-fill"></i>
                                                         </a>
                                                     </li>
                                                     <li>

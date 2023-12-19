@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 
@@ -36,6 +37,20 @@ public class ShopController {
         List<Product> productList = productService.findByCategoryId(categoryId);
         model.addAttribute("categoryList", categoryList);
         model.addAttribute("productList", productList);
+        return "/user/shop";
+    }
+
+    @GetMapping("/search-product")
+    public String searchProduct(@RequestParam String search, Model model) {
+        List<Product> searchResult = productService.findByName(search);
+        model.addAttribute("productList", searchResult);
+        return "/user/shop";
+    }
+
+    @GetMapping("/sort-product")
+    public String sortProduct(Model model) {
+        List<Product> sortResult = productService.sortByName();
+        model.addAttribute("productList", sortResult);
         return "/user/shop";
     }
 }

@@ -74,7 +74,7 @@
                                                     th:text="${product.productPrice}+ ' đ'">VND</span>
                                             </h5>
                                             <ul class="product__details-info-list">
-                                                <li>Delicious non - dairy cheese sauce</li>
+                                                <li th:text="${product.productDescription}"></li>
                                                 <li>Vegan & Allergy friendly</li>
                                                 <li>Smooth, velvety dairy free cheese sauce</li>
                                                 <li>Fresh and clean products</li>
@@ -106,7 +106,7 @@
                                                     <a href="#"><i class="icon-layers"></i> Add to Compare</a>
                                                 </li>
                                                 <li>
-                                                    <a href="/shop"><i class="icon-skip-back"></i>Back Shop</a>
+                                                    <a href="/shop"><i class="icon-skip-back"></i> Back Shop</a>
                                                 </li>
                                             </ul>
                                         </div>

@@ -32,7 +32,7 @@
                                             <th scope="col" class="sort cursor-pointer" data-sort="category">Image</th>
                                             <th scope="col" class="sort cursor-pointer" data-sort="course_Name">ProductName</th>
                                             <th scope="col" class="sort cursor-pointer" data-sort="instructor">Quantity</th>
-                                            <th scope="col" class="sort cursor-pointer" data-sort="lessons">Price</th>
+                                            <th scope="col">Price</th>
                                         </tr>
                                         </thead>
                                         <tbody class="list form-check-all">
@@ -40,11 +40,32 @@
                                             <td th:text="${item.orderId}"></td>
                                             <td><img style="width:50px ; height: 50px; object-fit: cover" th:src="@{'http://localhost:8081/uploads/images/' + ${item.product.img}}" alt="img"></td>
                                             <td th:text="${item.product.productName}"></td>
-                                            <td th:text="${item.product.quantity}"></td>
+                                            <td th:text="${item.quantity}"></td>
                                             <td th:text="${item.product.productPrice}+ ' đ'"></td>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="3"></td>
+                                            <td><strong>Total:</strong></td>
+                                            <td th:text="${totalPrice}+ ' đ'"></td>
                                         </tr>
                                         </tbody>
                                     </table>
+                                </div>
+                                <div class="row align-items-center mt-4 pt-2" id="pagination-element">
+                                    <div class="col-sm">
+                                    </div>
+                                    <div class="col-sm-auto mt-3 mt-sm-0">
+                                        <div class="pagination-wrap hstack gap-2 justify-content-center">
+                                            <ul class="d-flex gap-2 list-unstyled mb-0">
+                                                <li>
+                                                    <a href="/admin/order/1"
+                                                       class="btn btn-subtle-secondary btn-icon btn-sm edit-item-btn">
+                                                        <i class="ri-reply-fill"></i>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

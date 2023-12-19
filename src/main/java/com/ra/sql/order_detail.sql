@@ -10,8 +10,8 @@ CREATE PROCEDURE ORDER_DETAIL_ADD(
     IN dt_price DOUBLE
 )
 BEGIN
-INSERT INTO order_detail (order_id, product_id, quantity, price)
-VALUES (dt_order_id, dt_product_id, dt_quantity, dt_price);
+    INSERT INTO order_detail (order_id, product_id, quantity, price)
+    VALUES (dt_order_id, dt_product_id, dt_quantity, dt_price);
 END; //
 
 
@@ -24,9 +24,9 @@ CREATE PROCEDURE ORDER_DETAIL_UPDATE(
     IN dt_price DECIMAL(10, 2)
 )
 BEGIN
-UPDATE order_detail
-SET quantity = dt_quantity, price = dt_price
-WHERE order_id = dt_order_id AND product_id = dt_product_id;
+    UPDATE order_detail
+    SET quantity = dt_quantity, price = dt_price
+    WHERE order_id = dt_order_id AND product_id = dt_product_id;
 END; //
 
 
@@ -37,7 +37,7 @@ CREATE PROCEDURE ORDER_DETAIL_DELETE(
     IN dt_product_id INT
 )
 BEGIN
-DELETE FROM order_detail WHERE order_id = dt_order_id AND product_id = dt_product_id;
+    DELETE FROM order_detail WHERE order_id = dt_order_id AND product_id = dt_product_id;
 END; //
 
 
@@ -45,7 +45,7 @@ END; //
 DELIMITER //
 CREATE PROCEDURE ORDER_DETAIL_FY_BY_ALL()
 BEGIN
-SELECT * FROM order_detail;
+    SELECT * FROM order_detail;
 END; //
 
 
@@ -55,23 +55,23 @@ CREATE PROCEDURE ORDER_DETAIL_FY_BY_ID(
     IN dt_order_id INT
 )
 BEGIN
-SELECT * FROM order_detail WHERE order_id = dt_order_id;
+    SELECT * FROM order_detail WHERE order_id = dt_order_id;
 END; //
 
 
 DELIMITER //
 CREATE PROCEDURE ORDER_DETAIL_SORT_BY_QUANTITY()
 BEGIN
-SELECT * FROM order_detail
-ORDER BY quantity;
+    SELECT * FROM order_detail
+    ORDER BY quantity;
 END //
 DELIMITER ;
 
 DELIMITER //
 CREATE PROCEDURE ORDER_DETAIL_SORT_BY_PRICE()
 BEGIN
-SELECT * FROM order_detail
-ORDER BY price;
+    SELECT * FROM order_detail
+    ORDER BY price;
 END //
 DELIMITER ;
 
@@ -82,13 +82,13 @@ BEGIN
     declare _offset int;
     SET _offset = (no_page - 1) * _limit;
     SET  total = CEIL((SELECT count(*) FROM order_detail) / _limit);
-SELECT * FROM order_detail LIMIT _limit OFFSET _offset;
+    SELECT * FROM order_detail LIMIT _limit OFFSET _offset;
 end; //
 
 DELIMITER //
-CREATE PROCEDURE ORDER_DETAIL_FIND_BY_ORDER_ID(IN dt_product_id INT)
+CREATE PROCEDURE ORDER_DETAIL_FIND_BY_ORDER_ID(IN dt_order_id INT)
 BEGIN
-    SELECT * FROM order_detail WHERE product_id = dt_product_id;
+    SELECT * FROM order_detail WHERE order_id = dt_order_id;
 END //
 DELIMITER ;
 

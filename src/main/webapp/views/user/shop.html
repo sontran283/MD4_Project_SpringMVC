@@ -3,6 +3,7 @@
 <th:block th:insert="user/layout/head.html"></th:block>
 <body>
 <th:block th:insert="user/layout/header.html"></th:block>
+<!----------------------------------------------->
 <div class="breadcrumb__area grey-bg pt-5 pb-5">
     <div class="container">
         <div class="row">
@@ -24,6 +25,7 @@
         <div class="row row-reverse">
             <div class="col-xl-2 col-lg-12 col-md-12 order-2">
                 <div class="tpshop__leftbar tpshop__leftbar-area">
+                    <!----------------------------------------------->
                     <ul class="tpshop__widget mb-30 pb-25" >
                         <h4 class="tpshop__widget-title">Product Categorie</h4>
                         <li class="form-check">
@@ -33,23 +35,18 @@
                             <a class="form-check-label" for="flexCheckDefault9" th:href="@{/shop/{id}(id=${item.categoryId})}" th:text="${item.categoryName}" ></a>
                         </li>
                     </ul>
-                    <!-------------------------------->
+                    <!----------------------------------------------->
                     <div class="tpshop__widget mb-30 pb-25">
-                        <h4 class="tpshop__widget-title mb-20">FILTER BY PRICE</h4>
-                        <div class="productsidebar">
-                            <div class="productsidebar__head">
-                            </div>
-                            <div class="productsidebar__range">
-                                <div id="slider-range"></div>
-                                <div class="price-filter mt-10"><input type="text" id="amount">
-                                </div>
-                            </div>
+                        <div class="productsidebar__btn mt-15 mb-15">
+                          <form th:action="@{/search-product}" method="get">
+                            <input type="text" class="form-control search" placeholder="Search product name..." name="search">
+                          </form>
                         </div>
                         <div class="productsidebar__btn mt-15 mb-15">
-                            <a href="#">FILTER</a>
+                            <a th:href="@{/sort-product}">Sort Product Name</a>
                         </div>
                     </div>
-                    <!-------------------------------->
+                    <!----------------------------------------------->
                     <div class="tpshop__widget mb-30 pb-25">
                         <h4 class="tpshop__widget-title mb-20">Filter by Color</h4>
                         <div class="tpshop__widget-color-box">
@@ -194,6 +191,7 @@
                             </label>
                         </div>
                     </div>
+                    <!----------------------------------------------->
                 </div>
             </div>
             <div class="col-xl-10 col-lg-12 col-md-12">
@@ -205,10 +203,8 @@
                                 <div class="col" th:each="item : ${productList}" th:if="${item.getProductStatus() == true}">
                                     <div class="tpproduct p-relative mb-20">
                                         <div class="tpproduct__thumb p-relative text-center">
-                                            <a th:href="@{/detail/{id}(id=${item.productId})}">
-                                                <img style="width:100%; height:100%; object-fit: cover" th:src="@{|/uploads/images/${item.img}|}" alt=""></a>
-                                            <a th:href="@{/detail/{id}(id=${item.productId})}" class="tpproduct__thumb-img">
-                                                <img style="width:100%; height:100%; object-fit: cover" th:src="@{|/uploads/images/${item.img}|}" alt=""></a>
+                                            <a th:href="@{/detail/{id}(id=${item.productId})}"> <img style="width:100%; height:100%; object-fit: cover" th:src="@{|/uploads/images/${item.img}|}" alt=""></a>
+                                            <a th:href="@{/detail/{id}(id=${item.productId})}" class="tpproduct__thumb-img"> <img style="width:100%; height:100%; object-fit: cover" th:src="@{|/uploads/images/${item.img}|}" alt=""></a>
                                             <div class="tpproduct__info bage">
                                                 <span class="tpproduct__info-discount bage__discount">-50%</span>
                                                 <span class="tpproduct__info-hot bage__hot">HOT</span>
@@ -275,18 +271,14 @@
     </div>
 </section>
 <script>
-    var productPrice = 1000000; // Giả sử giá sản phẩm là 1.000.000 đồng
-
+    var productPrice = 1000000;
     var formatter = new Intl.NumberFormat('vi-VN', {
         style: 'currency',
         currency: 'VND'
     });
-
     var formattedPrice = formatter.format(productPrice);
-
-    formattedPrice += ' VND'; // Thêm đơn vị tiền tệ "VND" vào cuối chuỗi định dạng
-
-    console.log(formattedPrice); // Kết quả: 1.000.000 VND
+    formattedPrice += ' VND';
+    console.log(formattedPrice);
 </script>
 <th:block th:insert="user/layout/footer.html"></th:block>
 <th:block th:insert="user/layout/script.html"></th:block>

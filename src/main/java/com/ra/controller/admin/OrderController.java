@@ -21,14 +21,6 @@ public class OrderController {
     @Autowired
     private UserService userService;
 
-//    @GetMapping("/order/{id}")
-//    public String index(@PathVariable("id") Integer id, Model model) {
-//        List<OrderDetail> orderDetailList = orderDetailService.paginater(id);
-//        model.addAttribute("totalPage", orderDetailService.getTotalPage());
-//        model.addAttribute("orderDetailList", orderDetailList);
-//        return "admin/order/index";
-//    }
-
     @GetMapping("/order/{id}")
     public String index(@PathVariable("id") Integer id, Model model) {
         List<Order> orderList = orderService.paginater(id);
@@ -49,10 +41,16 @@ public class OrderController {
         orderService.saveOrUpDate(order);
         return "redirect:/admin/order/1";
     }
+
     @GetMapping("/view-order/{id}")
-    public String orderview(@PathVariable("id")Integer id,Model model){
-        OrderDetail orderDetail = orderDetailService.findById(id);
+    public String orderview(@PathVariable("id") Integer id, Model model) {
+        List<OrderDetail> orderDetail = orderDetailService.findByOrderId(id);
         model.addAttribute("orderDetail", orderDetail);
+        double totalPrice = 0;
+        for (OrderDetail detail : orderDetail) {
+            totalPrice = totalPrice + detail.getPrice() * detail.getQuantity();
+        }
+        model.addAttribute("totalPrice", totalPrice);
         return "/admin/order/view-order";
     }
 
@@ -92,14 +90,18 @@ public class OrderController {
         model.addAttribute("totalPage", (int) Math.ceil(orders.size() / 4.f));
         return "/admin/order/index";
     }
+
     @GetMapping("/confirm/{id}")
-    public String waiting(@PathVariable("id")Integer id){
+    public String waiting(@PathVariable("id") Integer id) {
         orderService.changeStatus(id, 2);
         return "redirect:/admin/order/1";
     }
+
     @GetMapping("/cancel/{id}")
-    public String cancel(@PathVariable("id")Integer id){
+    public String cancel(@PathVariable("id") Integer id) {
         orderService.changeStatus(id, 0);
         return "redirect:/admin/order/1";
     }
+
+
 }

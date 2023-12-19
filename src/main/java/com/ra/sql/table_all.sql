@@ -52,16 +52,13 @@ CREATE TABLE orders (
 );
 
 
-
 create table order_detail(
                              order_id int not null,
                              product_id int not null,
                              foreign key (order_id) references orders(order_id),
                              foreign key (product_id) references product(product_id),
                              quantity int NOT NULL,
-                             price double NOT NULL,
-                             primary key (order_id, product_id)
-
+                             price double NOT NULL
 );
 
 create table cart(

@@ -215,7 +215,7 @@ public class OrderDAOImpl implements OrderDAO {
     public void changeStatus(Integer id, Integer status) {
         Connection connection = ConnectionDataBase.openConnection();
         try {
-            CallableStatement callableStatement = connection.prepareCall("{CALL proc_accept_or_deny_order(?,?)}");
+            CallableStatement callableStatement = connection.prepareCall("{CALL ORDER_CHANGE_DETAILS_STATUSS(?,?)}");
             callableStatement.setInt(1, id);
             callableStatement.setInt(2, status);
             callableStatement.executeUpdate();

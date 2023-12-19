@@ -108,7 +108,7 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
             ResultSet resultSet = callableStatement.executeQuery();
             while (resultSet.next()) {
                 OrderDetail orderDetail = new OrderDetail();
-                orderDetail.setOrderId(resultSet.getInt("orderId"));
+                orderDetail.setOrderId(resultSet.getInt("order_id"));
                 Product product = productDAO.findById(resultSet.getInt("product_id"));
                 orderDetail.setProduct(product);
                 orderDetail.setQuantity(resultSet.getInt("quantity"));
