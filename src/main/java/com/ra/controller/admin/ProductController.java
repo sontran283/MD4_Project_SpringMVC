@@ -1,5 +1,6 @@
 package com.ra.controller.admin;
 
+import com.ra.model.dao.Image.ImageDAOImpl;
 import com.ra.model.dto.product.ProductDTO;
 import com.ra.model.entity.Category;
 import com.ra.model.entity.Image;
@@ -33,6 +34,8 @@ public class ProductController {
     private CategoryService categoryService;
     @Autowired
     private ImageService imageService;
+    @Autowired
+    private ImageDAOImpl imageDAO;
 
     @GetMapping("/product/{id}")
     public String index(@PathVariable("id") Integer id, Model model) {
@@ -99,7 +102,7 @@ public class ProductController {
     }
 
     @PostMapping("/product-edit")
-    public String update(@ModelAttribute("product") Product product, Model model,
+    public String update(@ModelAttribute("product") Product product,
                          @RequestParam("images") MultipartFile file,
                          @RequestParam("fileName") MultipartFile[] files) {
         try {
@@ -110,11 +113,12 @@ public class ProductController {
                 productService.update(product);
                 file.transferTo(fileaaaa);
             }
+            imageService.delete(product.getProductId());
+
             for (MultipartFile multipartFile : files) {
                 String fileImg = multipartFile.getOriginalFilename();
                 File fileDescription = new File(path + fileImg);
                 multipartFile.transferTo(fileDescription);
-
                 Image image = new Image();
                 image.setImgUrl(fileImg);
                 imageService.addImage(image, product.getProductId());
@@ -123,7 +127,7 @@ public class ProductController {
             throw new RuntimeException(e);
         }
         return "redirect:/admin/product/1";
-    }
+    }   
 
     @GetMapping("/product-change/{id}")
     public String changeStatus(@PathVariable("id") Integer id) {

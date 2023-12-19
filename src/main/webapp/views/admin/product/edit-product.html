@@ -26,61 +26,83 @@
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-xxl-8">
-                                        <form th:action="@{/admin/product-edit}" method="post" th:object="${product}" enctype="multipart/form-data">
+                                        <form th:action="@{/admin/product-edit}" method="post" th:object="${product}"
+                                              enctype="multipart/form-data">
                                             <div class="mb-3">
-                                                <input th:field="*{productId}" type="hidden" class="form-control"  placeholder="Enter product name">
+                                                <input th:field="*{productId}" type="hidden" class="form-control" placeholder="Enter product name">
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Image<span class="text-danger">*</span></label>
-                                                <input name="images" type="file"  class="form-control" placeholder="Enter title" accept="image/*" onchange="loadFile(event)" >
+                                                <label class="form-label">Image<span
+                                                        class="text-danger">*</span></label>
+                                                <input name="images" type="file" class="form-control"
+                                                       placeholder="Enter title" accept="image/*"
+                                                       onchange="loadFile(event)">
                                                 <input type="hidden" th:field="*{img}">
-                                                <img width="50" height="50" id="output" th:src="@{|/uploads/images/${product.img}|}"/>
+                                                <img width="50" height="50" id="output"
+                                                     th:src="@{|/uploads/images/${product.img}|}"/>
                                             </div>
                                             <div class="col-md-12">
                                                 <label class="form-label">Other Image</label>
-                                                <input name="fileName" type="file" accept="image/*" multiple onchange="loadFiles(event)" class="form-control">
+                                                <input name="fileName" id="imgFiles" type="file" accept="image/*"
+                                                       multiple onchange="loadFiles()" class="form-control">
                                                 <div id="image-preview-container">
                                                     <div th:each="item,iterStat : ${imageList}">
                                                         <div class="image-container" style="display: flex">
-                                                           <div> <img th:src="@{|/uploads/images/${item.imgUrl}|}" alt="" width="50" height="50"/></div>
-                                                           <div> <a th:href="@{/admin/delete_image_product/{id}(id=${item.id})}" class="remove-image-btn" onclick="removeImage(event, ${image.id})">X</a></div>
+                                                            <div><img th:src="@{|/uploads/images/${item.imgUrl}|}"
+                                                                      width="50" height="50"/></div>
+                                                            <div>
+                                                                <a th:href="@{/admin/delete_image_product/{id}(id=${item.id})}"
+                                                                   class="remove-image-btn">X</a></div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             <div class="mb-3">
-                                                <label  class="form-label">Product Name<span class="text-danger">*</span></label>
-                                                <input th:field="*{productName}" type="text" class="form-control"  placeholder="Enter product name">
+                                                <label class="form-label">Product Name<span class="text-danger">*</span></label>
+                                                <input th:field="*{productName}" type="text" class="form-control"
+                                                       placeholder="Enter product name">
                                                 <small th:errors="*{productName}" class="text-danger"></small>
                                             </div>
                                             <div class="mb-3">
-                                                <label class="form-label">Category Name<span class="text-danger">*</span></label>
+                                                <label class="form-label">Category Name<span
+                                                        class="text-danger">*</span></label>
                                                 <select th:field="*{category.categoryId}" class="form-select">
-                                                    <option th:each="category : ${categoryList}" th:value="${category.categoryId}" th:text="${category.categoryName}"></option>
+                                                    <option th:each="category : ${categoryList}"
+                                                            th:value="${category.categoryId}"
+                                                            th:text="${category.categoryName}"></option>
                                                 </select>
                                                 <small th:errors="*{category.categoryName}" class="text-danger"></small>
                                             </div>
                                             <div class="mb-3">
-                                                <label  class="form-label">Description<span class="text-danger">*</span></label>
-                                                <input th:field="*{productDescription}" type="text" class="form-control" placeholder="Enter product description">
+                                                <label class="form-label">Description<span class="text-danger">*</span></label>
+                                                <input th:field="*{productDescription}" type="text" class="form-control"
+                                                       placeholder="Enter product description">
                                                 <small th:errors="*{productDescription}" class="text-danger"></small>
                                             </div>
                                             <div class="mb-3">
-                                                <label  class="form-label">Price<span class="text-danger">*</span></label>
-                                                <input th:field="*{productPrice}" type="number" class="form-control" placeholder="Enter product price">
+                                                <label class="form-label">Price<span
+                                                        class="text-danger">*</span></label>
+                                                <input th:field="*{productPrice}" type="number" class="form-control"
+                                                       placeholder="Enter product price">
                                                 <small th:errors="*{productPrice}" class="text-danger"></small>
                                             </div>
                                             <div class="mb-3">
-                                                <label  class="form-label">Quantity<span class="text-danger">*</span></label>
-                                                <input th:field="*{quantity}" type="text" class="form-control" placeholder="Enter product quantity">
+                                                <label class="form-label">Quantity<span
+                                                        class="text-danger">*</span></label>
+                                                <input th:field="*{quantity}" type="text" class="form-control"
+                                                       placeholder="Enter product quantity">
                                                 <small th:errors="*{quantity}" class="text-danger"></small>
                                             </div>
                                             <div class="mb-3">
-                                                <label  class="form-label">Status<span class="text-danger">*</span></label>
-                                                <input th:field="*{productStatus}" type="radio" value="1"> <span>open</span>
-                                                <input th:field="*{productStatus}" type="radio"  value="0"> <span>close</span>
+                                                <label class="form-label">Status<span
+                                                        class="text-danger">*</span></label>
+                                                <input th:field="*{productStatus}" type="radio" value="1">
+                                                <span>open</span>
+                                                <input th:field="*{productStatus}" type="radio" value="0">
+                                                <span>close</span>
                                             </div>
-                                            <a href="/admin/product/1" class="btn btn-danger"><i class="ph-x align-middle"></i> Cancel</a>
+                                            <a href="/admin/product/1" class="btn btn-danger"><i
+                                                    class="ph-x align-middle"></i> Cancel</a>
                                             <button class="btn btn-primary" type="submit">Submit</button>
                                         </form>
                                     </div>
@@ -92,17 +114,22 @@
             </div>
         </div>
     </div>
+    <div th:each="item,iterStat : ${imageList}">
+        <div class="" style="display: none">
+            <div name="imgUrls" th:value="${item.imgUrl}"/>
+        </div>
+    </div>
     <!-- ============================================================== -->
 </div>
 
-
-
 <script>
-    function loadFiles(event) {
+    function loadFiles() {
+        const files = document.getElementById("imgFiles").files
         var container = document.getElementById('image-preview-container');
         container.innerHTML = ''; // Xóa các hình ảnh trước khi thêm mới
 
-        var files = event.target.files;
+
+        console.log('loadFiles', files);
 
         for (var i = 0; i < files.length; i++) {
             var file = files[i];
@@ -127,41 +154,74 @@
             }
         }
     }
-</script>
-<script>
-    var loadFile = function(event) {
+
+    var loadFile = function (event) {
         var reader = new FileReader();
-        reader.onload = function(){
+        reader.onload = function () {
             var output = document.getElementById('output');
             output.src = reader.result;
         };
         reader.readAsDataURL(event.target.files[0]);
     };
+
+    setTimeout(function () {
+        loadURLToInputFiled()
+    }, 100)
+
+    function loadURLToInputFiled() {
+        let container = new DataTransfer();
+
+        document.getElementsByName("imgUrls").forEach(el => {
+            const img = el.getAttribute("value")
+            getImgURL("/uploads/images/" + img, (imgBlob) => {
+                // Load img blob to input
+                // WIP: UTF8 character error
+                let file = new File([imgBlob], img, {type: "image/jpeg", lastModified: new Date().getTime()}, 'utf-8');
+                container.items.add(file);
+
+            })
+        })
+
+        setTimeout(function() {
+            document.querySelector('#imgFiles').files = container.files;
+        }, 1000)
+
+    }
+
+    // xmlHTTP return blob respond
+    function getImgURL(url, callback) {
+        var xhr = new XMLHttpRequest();
+        xhr.onload = function () {
+            callback(xhr.response);
+        };
+        xhr.open('GET', url);
+        xhr.responseType = 'blob';
+        xhr.send();
+    }
 </script>
 
 
+<!--<script>-->
+<!--    var loadFiles = function(event) {-->
+<!--        var container = document.getElementById('image-preview-container');-->
 
-<script>
-    var loadFiles = function(event) {
-        var container = document.getElementById('image-preview-container');
+<!--        // Clear previous images-->
+<!--        container.innerHTML = '';-->
 
-        // Clear previous images
-        container.innerHTML = '';
-
-        var files = event.target.files;
-        for (var i = 0; i < files.length; i++) {
-            var reader = new FileReader();
-            reader.onload = function(e) {
-                var img = document.createElement('img');
-                img.src = e.target.result;
-                img.width = 40;
-                img.height = 40;
-                container.appendChild(img);
-            };
-            reader.readAsDataURL(files[i]);
-        }
-    };
-</script>
+<!--        var files = event.target.files;-->
+<!--        for (var i = 0; i < files.length; i++) {-->
+<!--            var reader = new FileReader();-->
+<!--            reader.onload = function(e) {-->
+<!--                var img = document.createElement('img');-->
+<!--                img.src = e.target.result;-->
+<!--                img.width = 40;-->
+<!--                img.height = 40;-->
+<!--                container.appendChild(img);-->
+<!--            };-->
+<!--            reader.readAsDataURL(files[i]);-->
+<!--        }-->
+<!--    };-->
+<!--</script>-->
 
 <th:block th:insert="admin/layout/footer.html"></th:block>
 <th:block th:insert="admin/layout/script.html"></th:block>

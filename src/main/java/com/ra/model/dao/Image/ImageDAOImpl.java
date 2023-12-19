@@ -49,8 +49,7 @@ public class ImageDAOImpl implements ImageDAO {
 
     @Override
     public Image findById(Integer integer) {
-        Connection connection = null;
-        connection = ConnectionDataBase.openConnection();
+        Connection connection = ConnectionDataBase.openConnection();
         Image image = new Image();
         try {
             CallableStatement callableStatement = connection.prepareCall("{CALL IMAGE_FIND_BY_ID(?)}");

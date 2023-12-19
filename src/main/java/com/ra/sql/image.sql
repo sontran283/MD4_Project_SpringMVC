@@ -31,10 +31,10 @@ END; //
 -- # Xóa một hình ảnh:
 DELIMITER //
 CREATE PROCEDURE IMAGE_DELETE(
-    IN i_id INT
+    IN i_product_id INT
 )
 BEGIN
-DELETE FROM image WHERE id = i_id;
+DELETE FROM image WHERE product_id = i_product_id;
 END; //
 
 

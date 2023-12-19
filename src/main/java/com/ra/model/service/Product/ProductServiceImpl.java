@@ -87,4 +87,9 @@ public class ProductServiceImpl implements ProductService {
     public List<Product> findByCategoryId(Integer categoryId) {
         return productDAO.findByCategoryId(categoryId);
     }
+
+    @Override
+    public List<Product> findByCategoryIdAndStatus(Integer categoryId, boolean status) {
+        return productDAO.findByCategoryIdAndStatus(categoryId, status);
+    }
 }

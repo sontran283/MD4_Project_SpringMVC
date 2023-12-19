@@ -229,6 +229,37 @@ public class ProductDAOImpl implements ProductDAO {
         return productList;
     }
 
+    @Override
+    public List<Product> findByCategoryIdAndStatus(Integer categoryId,boolean status) {
+        Connection connection = ConnectionDataBase.openConnection();
+        List<Product> productList = new ArrayList<Product>();
+        try {
+            PreparedStatement preparedStatement = connection.prepareStatement("SELECT p.* FROM  product p join category c on p.category_id = c.category_id where c.staus = ?1 and c.category_id = ?2");
+            preparedStatement.setBoolean(1,status);
+            preparedStatement.setInt(2,categoryId);
+            ResultSet resultSet=preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                Product product = new Product();
+                product.setProductId(resultSet.getInt("product_id"));
+                Category category = categoryDAO.findById(resultSet.getInt("category_id"));
+                product.setCategory(category);
+                product.setImg(resultSet.getString("img"));
+                product.setProductName(resultSet.getString("name"));
+                product.setProductDescription(resultSet.getString("description"));
+                product.setProductPrice(resultSet.getDouble("price"));
+                product.setQuantity(resultSet.getInt("quantity"));
+                product.setProductStatus(resultSet.getBoolean("status"));
+                productList.add(product);
+            }
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }finally {
+            ConnectionDataBase.closeConnection(connection);
+        }
+        return productList;
+    }
+
 
     @Override
     public void delete(Integer id) {
