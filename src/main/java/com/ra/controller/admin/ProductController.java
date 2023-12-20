@@ -110,9 +110,9 @@ public class ProductController {
                 String fileImgName = file.getOriginalFilename();
                 File fileaaaa = new File(path + fileImgName);
                 product.setImg(fileImgName);
-                productService.update(product);
                 file.transferTo(fileaaaa);
             }
+            productService.update(product);
             imageService.delete(product.getProductId());
 
             for (MultipartFile multipartFile : files) {

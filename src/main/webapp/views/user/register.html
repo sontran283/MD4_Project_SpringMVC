@@ -81,45 +81,53 @@
                 <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
                 <div class="card bg-glass">
                     <div class="card-body px-4 py-5 px-md-5">
-
                         <form th:action="@{/register}" method="post" th:object="${user}" enctype="multipart/form-data">
                             <!-- Email input -->
-                            <div class="form-outline mb-4">
-                                <label class="form-label">Name</label>
-                                <input th:field="*{userName}" th:classappend="${#fields.hasErrors('userName')} ? 'border-danger'" type="text" class="form-control" placeholder="Enter your name"/>
-                                <small class="form-text text-danger" th:errors="*{userName}"></small>
-                            </div>
-                            <div class="form-outline mb-4">
-                                <label class="form-label" >Email</label>
-                                <input th:field="*{userEmail}" th:classappend="${#fields.hasErrors('userEmail')} ? 'border-danger'" type="text"class="form-control" placeholder="Enter your email"/>
-                                <small class="form-text text-danger" th:errors="*{userEmail}"></small>
-                            </div>
-                            <div class="form-outline mb-4">
-                                <label class="form-label" >Address</label>
-                                <input th:field="*{userAddress}" th:classappend="${#fields.hasErrors('userAddress')} ? 'border-danger'" type="text"  class="form-control" placeholder="Enter your address"/>
-                                <small class="form-text text-danger" th:errors="*{userAddress}"></small>
-                            </div>
-                            <div class="form-outline mb-4">
-                                <label class="form-label" >PhoneNumber</label>
-                                <input th:field="*{userPhoneNumber}" th:classappend="${#fields.hasErrors('userPhoneNumber')} ? 'border-danger'" type="text"  class="form-control" placeholder="Enter your phonenumber"/>
-                                <small class="form-text text-danger" th:errors="*{userPhoneNumber}"></small>
-                            </div>
+                         <div style="display: flex; justify-content: space-between">
+                             <div class="form-outline mb-4">
+                                 <label class="form-label">Name</label>
+                                 <input th:field="*{userName}" th:classappend="${#fields.hasErrors('userName')} ? 'border-danger'" type="text" class="form-control" placeholder="Enter your name"/>
+                                 <small class="form-text text-danger" th:errors="*{userName}"></small>
+                             </div>
+                             <div class="form-outline mb-4">
+                                 <label class="form-label" >Email</label>
+                                 <input th:field="*{userEmail}" th:classappend="${#fields.hasErrors('userEmail')} ? 'border-danger'" type="text"class="form-control" placeholder="Enter your email"/>
+                                 <small class="form-text text-danger" th:errors="*{userEmail}"></small>
+                             </div>
+                         </div>
+
+                           <div style="display: flex; justify-content: space-between">
+                               <div class="form-outline mb-4">
+                                   <label class="form-label" >Address</label>
+                                   <input th:field="*{userAddress}" th:classappend="${#fields.hasErrors('userAddress')} ? 'border-danger'" type="text"  class="form-control" placeholder="Enter your address"/>
+                                   <small class="form-text text-danger" th:errors="*{userAddress}"></small>
+                               </div>
+                               <div class="form-outline mb-4">
+                                   <label class="form-label" >PhoneNumber</label>
+                                   <input th:field="*{userPhoneNumber}" th:classappend="${#fields.hasErrors('userPhoneNumber')} ? 'border-danger'" type="text"  class="form-control" placeholder="Enter your phone"/>
+                                   <small class="form-text text-danger" th:errors="*{userPhoneNumber}"></small>
+                               </div>
+                           </div>
+
                             <!-- Password input -->
-                            <div class="form-outline mb-4">
-                                <label class="form-label" >Password</label>
-                                <input th:field="*{userPassword}" th:classappend="${#fields.hasErrors('userPassword')} ? 'border-danger'"  type="password"  class="form-control"  placeholder="Enter your password"/>
-                                <small class="form-text text-danger" th:errors="*{userPassword}"></small>
-                            </div>
-                            <!-- Submit button -->
-                            <div class="form-outline mb-4">
-                                <label class="form-label" >Confirm Password</label>
-                                <input th:field="*{confirmPassword}" th:classappend="${#fields.hasErrors('confirmPassword')} ? 'border-danger'"  type="password"  class="form-control"  placeholder="Enter your password"/>
-                                <small class="form-text text-danger" th:errors="*{confirmPassword}"></small>
-                            </div>
+                           <div style="display: flex; justify-content: space-between">
+                               <div class="form-outline mb-4">
+                                   <label class="form-label" >Password</label>
+                                   <input th:field="*{userPassword}" th:classappend="${#fields.hasErrors('userPassword')} ? 'border-danger'"  type="password"  class="form-control"  placeholder="Enter your password"/>
+                                   <small class="form-text text-danger" th:errors="*{userPassword}"></small>
+                               </div>
+                               <!-- Submit button -->
+                               <div class="form-outline mb-4">
+                                   <label class="form-label" >Confirm Password</label>
+                                   <input th:field="*{confirmPassword}" th:classappend="${#fields.hasErrors('confirmPassword')} ? 'border-danger'"  type="password"  class="form-control"  placeholder="Enter your password"/>
+                                   <small class="form-text text-danger" th:errors="*{confirmPassword}"></small>
+                               </div>
+                           </div>
+
                             <!-- Image -->
                             <div class="form-outline mb-4">
                                 <label class="form-label">Image</label>
-                                <input type="file" name="files"  class="form-control"  placeholder="Enter your password" >
+                                <input type="file" name="files"  class="form-control" placeholder="Enter your password" >
                             </div>
                             <!-- Image -->
                             <button type="submit" class="btn btn-primary btn-block mb-4">

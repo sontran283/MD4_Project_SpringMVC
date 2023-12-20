@@ -89,12 +89,14 @@
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="form3Example3">Email</label>
                                 <input th:field="*{userEmail}" type="email" id="form3Example3" class="form-control" placeholder="Enter your email"/>
+                                <small class="form-text text-danger" th:errors="*{userEmail}"></small>
                             </div>
 
                             <!-- Password input -->
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="form3Example4">Password</label>
                                 <input th:field="*{userPassword}" type="password" id="form3Example4" class="form-control"  placeholder="Enter your password"/>
+                                <small class="form-text text-danger" th:errors="*{userPassword}"></small>
                             </div>
 
                             <!-- Checkbox -->
@@ -113,7 +115,6 @@
                             <!-- Register buttons -->
                             <div class="text-center">
                                 <a href="/register">Register</a>
-
                             </div>
                         </form>
                     </div>

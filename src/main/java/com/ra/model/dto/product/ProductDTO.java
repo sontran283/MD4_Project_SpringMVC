@@ -20,7 +20,6 @@ public class ProductDTO {
     private double productPrice;
     @Min(value = 1, message = "Quantity should not be less than 1")
     private int quantity;
-
     private boolean productStatus;
 
     public ProductDTO() {

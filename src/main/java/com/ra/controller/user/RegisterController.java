@@ -38,11 +38,11 @@ public class RegisterController {
             return "user/register";
         } else {
             if (userService.checkValidateEmail(user.getUserEmail())) {
-                result.rejectValue("userEmail", "userEmail.exits", "email da ton tai");
+                result.rejectValue("userEmail", "userEmail.exits", "Email already exists");
                 return "user/register";
             }
             if (!user.getUserPassword().equals(user.getConfirmPassword())) {
-                result.rejectValue("confirmPassword", "confirmPassword.mismatch", "Mật khẩu và xác nhận mật khẩu không khớp");
+                result.rejectValue("confirmPassword", "confirmPassword.mismatch", "Password and confirm password do not match");
                 return "user/register";
             }
             String fileName = files.getOriginalFilename();

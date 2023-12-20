@@ -27,7 +27,20 @@ public class LoginController {
     }
 
     @PostMapping("/login")
-    public String handleLogin(@ModelAttribute("user") User user, Model model, @RequestParam(value = "action",required = false)String action){
+    public String handleLogin(@ModelAttribute("user") User user, Model model,
+                              @RequestParam(value = "action",required = false)String action,
+                              BindingResult result){
+        if(result.hasErrors()){
+            return "user/login";
+        }
+
+        if (user.getUserEmail().isEmpty() || user.getUserPassword().isEmpty()) {
+            result.rejectValue("userEmail", "NotEmpty.userForm.email", "Email is required");
+            result.rejectValue("userPassword", "NotEmpty.userForm.password", "Password is required");
+            return "user/login";
+        }
+
+        // xử lý đăng nhập
         User authent = userService.checkLogin(user.getUserEmail(), user.getUserPassword());
         if (authent != null) {
             if (authent.getStatus() == false){
