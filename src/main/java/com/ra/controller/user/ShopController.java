@@ -53,8 +53,11 @@ public class ShopController {
     public String searchProduct(@RequestParam String search, Model model) {
         List<Product> searchResult = productService.findByName(search);
         model.addAttribute("productList", searchResult);
+        List<Product> products = productService.findAll();
+        model.addAttribute("totalPage", (int) Math.ceil(products.size() / 4.f));
         return "/user/shop";
     }
+
 
     @GetMapping("/sort-product")
     public String sortProduct(Model model) {

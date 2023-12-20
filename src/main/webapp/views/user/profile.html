@@ -1,42 +1,81 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <th:block th:insert="user/layout/head.html"></th:block>
+<style>
+    form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .form-group {
+        margin: 10px;
+    }
+
+    button {
+        margin-top: 10px;
+    }
+</style>
 <body>
 <th:block th:insert="user/layout/header.html"></th:block>
 <!------------------------------------------>
+<div class="breadcrumb__area pt-5 pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="tp-breadcrumb__content">
+                    <div class="tp-breadcrumb__list">
+                        <span class="tp-breadcrumb__active"><a href="/">Home</a></span>
+                        <span class="dvdr">/</span>
+                        <span>Profile</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <div class="container">
-    <h4>Change Profile</h4>
-    <form method="post" th:action="@{/profile-edit}" enctype="multipart/form-data">
+    <form method="post" th:action="@{/profile-edit}" enctype="multipart/form-data" style="align-items: center">
         <div class="form-group">
             <input type="hidden" class="form-control" id="userId" name="userId" th:value="${session.user.userId}" readonly>
         </div>
-        <div class="form-group">
-            <label for="profileImage">Profile Image:</label>
-            <input name="profileImage" type="file" class="form-control" id="profileImage" accept="image/*" onchange="loadFile(event)">
-            <img th:src="@{|/uploads/images/${session.user.userImg}|}" id="output" alt="Profile Image" width="40" height="40"/>
-        </div>
-        <div class="form-group">
-            <label for="userName">Name:</label>
-            <input type="text" class="form-control" id="userName" name="userName" th:value="${session.user.userName}" required>
-        </div>
-        <div class="form-group">
-            <label for="userName">Email:</label>
-            <input type="email" class="form-control" id="userEmail" name="userEmail" th:value="${session.user.userEmail}" required>
-        </div>
-        <div class="form-group">
-            <label for="userAddress">Address:</label>
-            <input type="text" class="form-control" id="userAddress" name="userAddress" th:value="${session.user.userAddress}" required>
-        </div>
-        <div class="form-group">
-            <label for="userPhoneNumber">Phone Number:</label>
-            <input type="text" class="form-control" id="userPhoneNumber" name="userPhoneNumber" th:value="${session.user.userPhoneNumber}" required>
-        </div>
+       <div style="display: flex">
+           <div class="form-group">
+               <label for="profileImage"></label>
+               <img th:src="@{|/uploads/images/${session.user.userImg}|}" id="output" alt="Profile Image" width="100" height="100" style="border-radius: 50px"/>
+           </div>
+           <div class="form-group">
+               <label for="profileImage">Avatar:</label>
+               <input name="profileImage" type="file" class="form-control" id="profileImage" accept="image/*" onchange="loadFile(event)">
+           </div>
+       </div><br>
+       <div style="display: flex">
+           <div class="form-group">
+               <label for="userName">Name:</label>
+               <input type="text" class="form-control" id="userName" name="userName" th:value="${session.user.userName}" required>
+           </div>
+           <div class="form-group">
+               <label for="userName">Email:</label>
+               <input type="email" class="form-control" id="userEmail" name="userEmail" th:value="${session.user.userEmail}" required>
+           </div>
+       </div><br>
+      <div style="display: flex">
+          <div class="form-group">
+              <label for="userAddress">Address:</label>
+              <input type="text" class="form-control" id="userAddress" name="userAddress" th:value="${session.user.userAddress}" required>
+          </div>
+          <div class="form-group">
+              <label for="userPhoneNumber">Phone Number:</label>
+              <input type="text" class="form-control" id="userPhoneNumber" name="userPhoneNumber" th:value="${session.user.userPhoneNumber}" required>
+          </div>
+      </div>
         <div class="form-group">
             <input type="hidden" class="form-control" id="userPassword" name="userPassword" th:value="${session.user.userPassword}" readonly >
         </div>
         <button type="submit" class="btn btn-primary">Save Changes</button>
     </form>
-</div>
+</div><br><br>
 
 <!------------------------------------------>
 <script>

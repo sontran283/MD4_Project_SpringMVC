@@ -103,7 +103,7 @@
                                    <small class="form-text text-danger" th:errors="*{userAddress}"></small>
                                </div>
                                <div class="form-outline mb-4">
-                                   <label class="form-label" >PhoneNumber</label>
+                                   <label class="form-label" >Phone Number</label>
                                    <input th:field="*{userPhoneNumber}" th:classappend="${#fields.hasErrors('userPhoneNumber')} ? 'border-danger'" type="text"  class="form-control" placeholder="Enter your phone"/>
                                    <small class="form-text text-danger" th:errors="*{userPhoneNumber}"></small>
                                </div>
@@ -126,7 +126,7 @@
 
                             <!-- Image -->
                             <div class="form-outline mb-4">
-                                <label class="form-label">Image</label>
+                                <label class="form-label">Avatar</label>
                                 <input type="file" name="files"  class="form-control" placeholder="Enter your password" >
                             </div>
                             <!-- Image -->

@@ -72,7 +72,7 @@
                                     <div th:if="${session.user != null}">
                                         <!-- Hiển thị tên và hình ảnh của người dùng khi đã đăng nhập -->
                                         <a href="#" id="userDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <img style="width:30px; height:30px; object-fit:cover; border-radius:50px;" th:src="@{'http://localhost:8081/uploads/images/' + ${session.user.userImg}}" alt="img">
+                                            <img style="width: 39px; height:39px; object-fit:cover; border-radius:50px;" th:src="@{'http://localhost:8081/uploads/images/' + ${session.user.userImg}}" alt="img">
                                             <span th:text='${session.user.userName}'></span>
                                         </a>
                                         <!-- Dropdown menu chứa Profile và Logout khi đã đăng nhập -->
