@@ -1,11 +1,12 @@
 package com.ra.model.entity;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 public class Order {
     private int order_id;
     private User user;
-    private Date order_date;
+    private LocalDateTime order_date;
     private double total;
     private int orderStatus;
     private String phone;
@@ -15,7 +16,7 @@ public class Order {
     public Order() {
     }
 
-    public Order(int order_id, User user, Date order_date, double total, int orderStatus, String phone, String address, String note) {
+    public Order(int order_id, User user, LocalDateTime order_date, double total, int orderStatus, String phone, String address, String note) {
         this.order_id = order_id;
         this.user = user;
         this.order_date = order_date;
@@ -42,11 +43,11 @@ public class Order {
         this.user = user;
     }
 
-    public Date getOrder_date() {
+    public LocalDateTime getOrder_date() {
         return order_date;
     }
 
-    public void setOrder_date(Date order_date) {
+    public void setOrder_date(LocalDateTime order_date) {
         this.order_date = order_date;
     }
 

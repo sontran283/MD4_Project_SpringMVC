@@ -42,7 +42,7 @@ create table customer(
 CREATE TABLE orders (
                         order_id  INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
                         customer_id INT NOT NULL,
-                        order_date DATE NOT NULL default( CURDATE()),
+                        order_date datetime NOT NULL default CURRENT_TIMESTAMP,
                         FOREIGN KEY (customer_id) REFERENCES customer(customer_id),
                         total DOUBLE NOT NULL,
                         status int default 1,

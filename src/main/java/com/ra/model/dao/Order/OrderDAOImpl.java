@@ -34,7 +34,11 @@ public class OrderDAOImpl implements OrderDAO {
                 order.setOrder_id(resultSet.getInt("order_id"));
                 User user = userDAO.findById(resultSet.getInt("customer_id"));
                 order.setUser(user);
-                order.setOrder_date(resultSet.getDate("order_date"));
+                Timestamp timestamp = resultSet.getTimestamp("order_date");
+                if (timestamp != null) {
+                    // Chuyển đổi Timestamp thành LocalDateTime (đối với Java 8+)
+                    order.setOrder_date(timestamp.toLocalDateTime());
+                }
                 order.setTotal(resultSet.getDouble("total"));
                 order.setOrderStatus(resultSet.getInt("status"));
                 order.setPhone(resultSet.getString("phone"));
@@ -68,7 +72,11 @@ public class OrderDAOImpl implements OrderDAO {
                 order.setOrder_id(resultSet.getInt("order_id"));
                 User user = userDAO.findById(resultSet.getInt("customer_id"));
                 order.setUser(user);
-                order.setOrder_date(resultSet.getDate("order_date"));
+                Timestamp timestamp = resultSet.getTimestamp("order_date");
+                if (timestamp != null) {
+                    // Chuyển đổi Timestamp thành LocalDateTime (đối với Java 8+)
+                    order.setOrder_date(timestamp.toLocalDateTime());
+                }
                 order.setTotal(resultSet.getDouble("total"));
                 order.setOrderStatus(resultSet.getInt("status"));
                 order.setPhone(resultSet.getString("phone"));
@@ -98,7 +106,11 @@ public class OrderDAOImpl implements OrderDAO {
                 order.setOrder_id(resultSet.getInt("order_id"));
                 User user = userDAO.findById(resultSet.getInt("customer_id"));
                 order.setUser(user);
-                order.setOrder_date(resultSet.getDate("order_date"));
+                Timestamp timestamp = resultSet.getTimestamp("order_date");
+                if (timestamp != null) {
+                    // Chuyển đổi Timestamp thành LocalDateTime (đối với Java 8+)
+                    order.setOrder_date(timestamp.toLocalDateTime());
+                }
                 order.setTotal(resultSet.getDouble("total"));
                 order.setOrderStatus(resultSet.getInt("status"));
                 order.setPhone(resultSet.getString("phone"));
@@ -127,7 +139,11 @@ public class OrderDAOImpl implements OrderDAO {
                 order.setOrder_id(resultSet.getInt("order_id"));
                 User user = userDAO.findById(resultSet.getInt("customer_id"));
                 order.setUser(user);
-                order.setOrder_date(resultSet.getDate("order_date"));
+                Timestamp timestamp = resultSet.getTimestamp("order_date");
+                if (timestamp != null) {
+                    // Chuyển đổi Timestamp thành LocalDateTime (đối với Java 8+)
+                    order.setOrder_date(timestamp.toLocalDateTime());
+                }
                 order.setTotal(resultSet.getDouble("total"));
                 order.setOrderStatus(resultSet.getInt("status"));
                 order.setPhone(resultSet.getString("phone"));
@@ -156,7 +172,11 @@ public class OrderDAOImpl implements OrderDAO {
                 order.setOrder_id(resultSet.getInt("order_id"));
                 User user = userDAO.findById(resultSet.getInt("customer_id"));
                 order.setUser(user);
-                order.setOrder_date(resultSet.getDate("order_date"));
+                Timestamp timestamp = resultSet.getTimestamp("order_date");
+                if (timestamp != null) {
+                    // Chuyển đổi Timestamp thành LocalDateTime (đối với Java 8+)
+                    order.setOrder_date(timestamp.toLocalDateTime());
+                }
                 order.setTotal(resultSet.getDouble("total"));
                 order.setOrderStatus(resultSet.getInt("status"));
                 order.setPhone(resultSet.getString("phone"));
@@ -238,7 +258,11 @@ public class OrderDAOImpl implements OrderDAO {
                 order.setOrder_id(resultSet.getInt("order_id"));
                 User user = userDAO.findById(resultSet.getInt("customer_id"));
                 order.setUser(user);
-                order.setOrder_date(resultSet.getDate("order_date"));
+                Timestamp timestamp = resultSet.getTimestamp("order_date");
+                if (timestamp != null) {
+                    // Chuyển đổi Timestamp thành LocalDateTime (đối với Java 8+)
+                    order.setOrder_date(timestamp.toLocalDateTime());
+                }
                 order.setTotal(resultSet.getDouble("total"));
                 order.setOrderStatus(resultSet.getInt("status"));
                 order.setPhone(resultSet.getString("phone"));
