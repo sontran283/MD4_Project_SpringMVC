@@ -22,10 +22,19 @@ public class ShopController {
     @Autowired
     private CategoryService categoryService;
 
+//    @GetMapping("/shop")
+//    public String shopList(Model model) {
+//        List<Product> productList = productService.findAll();
+//        List<Category> categoryList = categoryService.findAll();
+//        model.addAttribute("categoryList", categoryList);
+//        model.addAttribute("productList", productList);
+//        return "/user/shop";
+//    }
     @GetMapping("/shop")
-    public String shopList(Model model) {
-        List<Product> productList = productService.findAll();
+    public String shopList(Model model,@RequestParam(value = "page",defaultValue = "1") Integer id) {
+        List<Product> productList = productService.paginater(id);
         List<Category> categoryList = categoryService.findAll();
+        model.addAttribute("totalPage", productService.getTotalPage());
         model.addAttribute("categoryList", categoryList);
         model.addAttribute("productList", productList);
         return "/user/shop";

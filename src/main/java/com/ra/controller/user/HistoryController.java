@@ -50,4 +50,16 @@ public class HistoryController {
        }
        return "redirect:/login";
     }
+
+    @GetMapping("/view-order/{id}")
+    public String orderview(@PathVariable("id") Integer id, Model model) {
+        List<OrderDetail> orderDetail = orderDetailService.findByOrderId(id);
+        model.addAttribute("orderDetail", orderDetail);
+        double totalPrice = 0;
+        for (OrderDetail detail : orderDetail) {
+            totalPrice = totalPrice + detail.getPrice() * detail.getQuantity();
+        }
+        model.addAttribute("totalPrice", totalPrice);
+        return "user/history-detail";
+    }
 }

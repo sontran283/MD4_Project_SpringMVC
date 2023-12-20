@@ -1,6 +1,63 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <th:block th:insert="user/layout/head.html"></th:block>
+<style>
+    /* Phần phân trang chung */
+    .basic-pagination {
+        margin-top: 35px;
+    }
+
+    /* Phần nút phân trang */
+    .basic-pagination a {
+        display: inline-block;
+        padding: 8px 16px;
+        margin: 2px;
+        text-decoration: none;
+        color: #007bff; /* Màu chữ của nút */
+        background-color: #fff; /* Màu nền của nút */
+        border: 1px solid #007bff; /* Viền của nút */
+        border-radius: 4px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Khi đưa chuột vào nút phân trang */
+    .basic-pagination a:hover {
+        background-color: #007bff; /* Màu nền của nút khi hover */
+        color: #fff; /* Màu chữ của nút khi hover */
+    }
+
+    /* Phần nút phân trang được chọn */
+    .basic-pagination a.active {
+        background-color: #007bff; /* Màu nền của nút được chọn */
+        color: #fff; /* Màu chữ của nút được chọn */
+    }
+
+    /* Phần các nút và dấu chấm giữa các nút */
+    .basic-pagination .pagination-wrap a, .basic-pagination .pagination-wrap .ellipsis {
+        display: inline-block;
+        padding: 8px 12px;
+        margin: 2px;
+        text-decoration: none;
+        color: #007bff; /* Màu chữ của nút và dấu chấm */
+        background-color: #fff; /* Màu nền của nút và dấu chấm */
+        border: 1px solid #007bff; /* Viền của nút và dấu chấm */
+        border-radius: 4px;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* Khi đưa chuột vào nút hoặc dấu chấm */
+    .basic-pagination .pagination-wrap a:hover, .basic-pagination .pagination-wrap .ellipsis:hover {
+        background-color: #007bff; /* Màu nền của nút hoặc dấu chấm khi hover */
+        color: #fff; /* Màu chữ của nút hoặc dấu chấm khi hover */
+    }
+
+    /* Phần nút và dấu chấm được chọn */
+    .basic-pagination .pagination-wrap a.active, .basic-pagination .pagination-wrap .ellipsis.active {
+        background-color: #007bff; /* Màu nền của nút hoặc dấu chấm được chọn */
+        color: #fff; /* Màu chữ của nút hoặc dấu chấm được chọn */
+    }
+
+</style>
 <body>
 <th:block th:insert="user/layout/header.html"></th:block>
 <!----------------------------------------------->
@@ -246,24 +303,14 @@
                         </div>
                     </div>
                     <div class="basic-pagination text-center mt-35">
-                        <nav>
-                            <ul>
-                                <li>
-                                    <span class="current">1</span>
-                                </li>
-                                <li>
-                                    <a href="#">2</a>
-                                </li>
-                                <li>
-                                    <a href="#">3</a>
-                                </li>
-                                <li>
-                                    <a href="#">
-                                        <i class="icon-chevrons-right"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </nav>
+                        <div class="col-sm-auto mt-3 mt-sm-0">
+                            <div class="pagination-wrap hstack gap-2 justify-content-center">
+                                <div th:each="item : ${#numbers.sequence(1, totalPage, 1)}" >
+                                    <a th:href="@{/shop/(page=${item})}" th:text="${item}"></a>
+                                </div>
+                                <ul class="pagination listjs-pagination mb-0"></ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

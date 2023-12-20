@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<th:block th:insert="user/layout/head.html"></th:block>
+<body>
+<th:block th:insert="user/layout/header.html"></th:block>
+    <!-- ============================================================== -->
+<div class="breadcrumb__area pt-5 pb-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="tp-breadcrumb__content">
+                    <div class="tp-breadcrumb__list">
+                        <span class="tp-breadcrumb__active"><a href="/history">Order History</a></span>
+                        <span class="dvdr">/</span>
+                        <span>History Details</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!----------------------------------------------------->
+<div class="card-body">
+    <div class="row">
+        <table class="table table-centered align-middle table-custom-effect table-nowrap mb-0">
+            <thead class="text-muted">
+            <tr>
+                <th scope="col" class="sort cursor-pointer" data-sort="category"></th>
+                <th scope="col" class="sort cursor-pointer" data-sort="category"></th>
+                <th scope="col" class="sort cursor-pointer" data-sort="category"></th>
+                <th scope="col" class="sort cursor-pointer" data-sort="category">ID</th>
+                <th scope="col" class="sort cursor-pointer" data-sort="category">Image</th>
+                <th scope="col" class="sort cursor-pointer" data-sort="course_Name">ProductName</th>
+                <th scope="col" class="sort cursor-pointer" data-sort="course_Name">Detail</th>
+                <th scope="col" class="sort cursor-pointer" data-sort="instructor">Quantity</th>
+                <th scope="col">Price</th>
+            </tr>
+            </thead>
+            <tbody class="list form-check-all">
+            <tr th:each="item : ${orderDetail}">
+                <td></td>
+                <td></td>
+                <td></td>
+                <td th:text="${item.orderId}"></td>
+                <td><img style="width:50px ; height: 50px; object-fit: cover" th:src="@{'http://localhost:8081/uploads/images/' + ${item.product.img}}" alt="img"></td>
+                <td th:text="${item.product.productName}"></td>
+                <td>
+                    <span th:text="${#strings.length(item.product.productDescription) &gt; 10 ? #strings.substring(item.product.productDescription, 0, 10) + '...' : item.product.productDescription}"></span>
+                </td>
+                <td th:text="${item.quantity}"></td>
+                <td th:text="${item.product.productPrice}+ ' đ'"></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td colspan="5"><strong>Total</strong></td>
+                <td th:text="${totalPrice}+ ' đ'"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+    <!-- ============================================================== -->
+</div>
+<script>
+    var loadFile = function(event) {
+        var reader = new FileReader();
+        reader.onload = function(){
+            var output = document.getElementById('output');
+            output.src = reader.result;
+        };
+        reader.readAsDataURL(event.target.files[0]);
+    };
+</script>
+<script>
+    var productPrice = 1000000; // Giả sử giá sản phẩm là 1.000.000 đồng
+
+    var formatter = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+    });
+
+    var formattedPrice = formatter.format(productPrice);
+
+    formattedPrice += ' VND'; // Thêm đơn vị tiền tệ "VND" vào cuối chuỗi định dạng
+
+    console.log(formattedPrice); // Kết quả: 1.000.000 VND
+</script>
+<th:block th:insert="user/layout/footer.html"></th:block>
+<th:block th:insert="user/layout/script.html"></th:block>
+</body>
+</html>

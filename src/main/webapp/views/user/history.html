@@ -27,6 +27,7 @@
         <thead class="text-muted">
         <tr>
             <th scope="col" class="sort cursor-pointer" data-sort="category"></th>
+            <th scope="col" class="sort cursor-pointer" data-sort="category"></th>
             <th scope="col" class="sort cursor-pointer" data-sort="category">ID</th>
             <th scope="col" class="sort cursor-pointer" data-sort="course_Name">UserName</th>
             <th scope="col" class="sort cursor-pointer" data-sort="instructor">Phone</th>
@@ -34,11 +35,12 @@
             <th scope="col" class="sort cursor-pointer" data-sort="lessons">Price</th>
             <th scope="col" class="sort cursor-pointer" data-sort="lessons">Date</th>
             <th scope="col" class="sort cursor-pointer" data-sort="lessons">Status</th>
-            <th scope="col" class="sort cursor-pointer" data-sort="lessons">Details</th>
+            <th scope="col" class="sort cursor-pointer" data-sort="lessons">Order Details</th>
         </tr>
         </thead>
         <tbody class="list form-check-all">
-        <tr >
+        <tr>
+            <td></td>
             <td></td>
             <td th:text="${orderList.order_id}"></td>
             <td th:text="${orderList.user.userName}"></td>
@@ -51,8 +53,16 @@
                         th:class="${orderList.orderStatus == 1 ? 'btn btn-outline-secondary' : (orderList.orderStatus == 0 ? 'btn btn-outline-danger' : 'btn btn-outline-success')}">
                   </span>
             </td>
-            <td th:each="item : ${orderDetail}" th:if="${orderList.order_id == item.orderId}">
-                <span th:text="${item.orderId + ',' + item.product.productName}"></span>
+            <td>
+                <!-------------------------------->
+                <ul class="d-flex gap-2 list-unstyled mb-0">
+                    <li>
+                        <a th:href="@{/view-order/{id}(id=${orderList.order_id})}" class="btn btn-subtle-success">
+                            <span>View</span>
+                        </a>
+                    </li>
+                </ul>
+                <!-------------------------------->
             </td>
         </tr>
         </tbody>
@@ -97,7 +107,8 @@
                         <a class="rainbow__youtube" href="#"><i class="fab fa-youtube"></i></a>
                     </div>
                     <div class="tpsoon__copyright">
-                        <span>Copyright <a href="#">© ORFARM</a> all rights reserved. Powered by <a href="#">Theme_pure</a>.</span>
+                        <span>Copyright <a href="#">© ORFARM</a> all rights reserved. Powered by <a
+                                href="#">Theme_pure</a>.</span>
                     </div>
                 </div>
             </div>
