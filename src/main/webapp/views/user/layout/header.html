@@ -51,8 +51,11 @@
                     </div>
                     <div class="col-xl-3">
                         <div class="header__info d-flex align-items-center">
-                            <div class="header__info-cart tpcolor__oasis ml-10">
-                                <a href="/cart"><i class="icon-cart icons"></i></a>
+                            <div class="header__info-cart tpcolor__oasis ml-10" th:if="${session.cartItems != null}">
+                                <a href="/cart"><i class="icon-cart icons"></i><span th:text="${session.cartItems.size()}"></span></a>
+                            </div>
+                            <div class="header__info-cart tpcolor__oasis ml-10" th:unless="${session.cartItems != null}">
+                                <a href="/cart"><i class="icon-cart icons"></i><span></span></a>
                             </div>
                             <div class="header__info-search tpcolor__purple ml-10">
                                 <button class="tp-search-toggle"><i class="icon-search"></i></button>

@@ -32,8 +32,7 @@
             <input type="text" class="form-control" id="userPhoneNumber" name="userPhoneNumber" th:value="${session.user.userPhoneNumber}" required>
         </div>
         <div class="form-group">
-            <label for="userPassword">Password:</label>
-            <input type="password" class="form-control" id="userPassword" name="userPassword" th:value="${session.user.userPassword}" required >
+            <input type="hidden" class="form-control" id="userPassword" name="userPassword" th:value="${session.user.userPassword}" readonly >
         </div>
         <button type="submit" class="btn btn-primary">Save Changes</button>
     </form>

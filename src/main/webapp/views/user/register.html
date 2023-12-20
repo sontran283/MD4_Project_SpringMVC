@@ -108,7 +108,7 @@
                             <!-- Password input -->
                             <div class="form-outline mb-4">
                                 <label class="form-label" >Password</label>
-                                <input th:field="*{userPassword}" th:classappend="${#fields.hasErrors('userPassword')} ? 'border-danger'"  type="text"  class="form-control"  placeholder="Enter your password"/>
+                                <input th:field="*{userPassword}" th:classappend="${#fields.hasErrors('userPassword')} ? 'border-danger'"  type="password"  class="form-control"  placeholder="Enter your password"/>
                                 <small class="form-text text-danger" th:errors="*{userPassword}"></small>
                             </div>
                             <!-- Submit button -->

@@ -77,13 +77,11 @@ public class CategoryController {
         categoryService.saveOrUpDate(category);
 
         // Nếu trạng thái của danh mục là Close, cập nhật trạng thái của các sản phẩm thuộc danh mục
-//        if (!category.getCategoryStatus()) {
-            List<Product> products = productService.findByCategoryId(id);
+        List<Product> products = productService.findByCategoryId(id);
             for (Product product : products) {
-                product.setProductStatus(category.getCategoryStatus()); // Đặt trạng thái sản phẩm thành Close
+                product.setProductStatus(category.getCategoryStatus());
                 productService.saveOrUpDate(product);
-//            }
-        }
+            }
         return "redirect:/admin/category/1";
     }
 

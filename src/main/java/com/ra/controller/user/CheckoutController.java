@@ -25,6 +25,8 @@ public class CheckoutController {
     private OrderService orderService;
     @Autowired
     private CartService cartService;
+    @Autowired
+    HttpSession session;
 
     @RequestMapping("/checkout")
     public String checkout(HttpSession httpSession, Model model) {
@@ -59,6 +61,7 @@ public class CheckoutController {
             return "redirect:/cart?emptyCart=true";
         }
         List<CartItem> cartItems = cartService.getCartItems();
+        session.setAttribute("cartItems",cartItems);
         double total = 0;
         for (CartItem cartItem : cartItems) {
             total+= cartItem.getQuantity() * cartItem.getProduct().getProductPrice();
@@ -75,6 +78,8 @@ public class CheckoutController {
         order.setOrderStatus(userCheckOutDTO.getStatus());
         orderService.order(order);
         cartService.clearCart();
-        return "user/home";
+        session.removeAttribute("cart");
+        session.removeAttribute("cartItems");
+        return "user/thank";
     }
 }

@@ -85,7 +85,7 @@ public class ProductDAOImpl implements ProductDAO {
         connection = ConnectionDataBase.openConnection();
         List<Product> productList = new ArrayList<>();
         try {
-            CallableStatement callableStatement = connection.prepareCall("{CALL PRODUCT_SORT_BY_NAME()}");
+            CallableStatement callableStatement = connection.prepareCall("{CALL PRODUCT_SORT_BY_PRICE_DESC()}");
             ResultSet resultSet = callableStatement.executeQuery();
             while (resultSet.next()) {
                 Product product = new Product();

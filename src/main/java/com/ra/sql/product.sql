@@ -91,6 +91,16 @@ ORDER BY name;
 END //
 DELIMITER ;
 
+-- # Sắp xếp sản phẩm theo giá tiền từ cao xuống thấp
+DELIMITER //
+CREATE PROCEDURE PRODUCT_SORT_BY_PRICE_DESC()
+BEGIN
+    SELECT * FROM product
+    ORDER BY price DESC;
+END //
+DELIMITER ;
+
+
 -- # đổi trạng thái sp:
 DELIMITER //
 CREATE PROCEDURE PRODUCT_UPDATE_STATUS(
