@@ -120,3 +120,14 @@ create
 BEGIN
     UPDATE orders SET status = _status WHERE order_id = oId;
 END;
+
+-- Lấy đơn hàng theo ID
+DELIMITER //
+CREATE PROCEDURE ORDER_FY_BY_USER_ID(
+    IN or_id INT
+)
+BEGIN
+    SELECT * FROM orders WHERE customer_id = or_id;
+END //
+DELIMITER ;
+

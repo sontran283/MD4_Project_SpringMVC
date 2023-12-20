@@ -12,4 +12,5 @@ public interface OrderService  extends IGenericService<Order,Integer> {
     Integer getTotalPage();
     int order(Order order);
     void changeStatus(Integer id,Integer status);
+    Order findByUserId(Integer id);
 }

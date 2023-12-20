@@ -19,20 +19,9 @@ public class User {
     private String userPassword;
     private boolean role;
     private boolean status;
+    private String confirmPassword;
 
     public User() {
-    }
-
-    public User(int userId, String userImg, String userName, String userEmail, String userAddress, String userPhoneNumber, String userPassword, boolean role, boolean status) {
-        this.userId = userId;
-        this.userImg = userImg;
-        this.userName = userName;
-        this.userEmail = userEmail;
-        this.userAddress = userAddress;
-        this.userPhoneNumber = userPhoneNumber;
-        this.userPassword = userPassword;
-        this.role = role;
-        this.status = status;
     }
 
     public int getUserId() {
@@ -105,5 +94,13 @@ public class User {
 
     public void setStatus(boolean status) {
         this.status = status;
+    }
+
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 }

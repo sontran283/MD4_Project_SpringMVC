@@ -76,7 +76,6 @@
                     chairs wegner designed based on inspiration from antique armchairs.
                 </p>
             </div>
-
             <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
                 <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
                 <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
@@ -112,6 +111,11 @@
                                 <small class="form-text text-danger" th:errors="*{userPassword}"></small>
                             </div>
                             <!-- Submit button -->
+                            <div class="form-outline mb-4">
+                                <label class="form-label" >Confirm Password</label>
+                                <input th:field="*{confirmPassword}" th:classappend="${#fields.hasErrors('confirmPassword')} ? 'border-danger'"  type="password"  class="form-control"  placeholder="Enter your password"/>
+                                <small class="form-text text-danger" th:errors="*{confirmPassword}"></small>
+                            </div>
                             <!-- Image -->
                             <div class="form-outline mb-4">
                                 <label class="form-label">Image</label>

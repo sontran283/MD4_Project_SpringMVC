@@ -77,11 +77,8 @@
                                         <thead class="text-muted">
                                         <tr>
                                             <th scope="col" class="sort cursor-pointer" data-sort="category">ID</th>
-                                            <th scope="col" class="sort cursor-pointer" data-sort="course_Name">User
-                                                Name
-                                            </th>
-                                            <th scope="col" class="sort cursor-pointer" data-sort="instructor">Phone
-                                            </th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="course_Name">UserName</th>
+                                            <th scope="col" class="sort cursor-pointer" data-sort="instructor">Phone</th>
                                             <th scope="col" class="sort cursor-pointer" data-sort="lessons">Address</th>
                                             <th scope="col" class="sort cursor-pointer" data-sort="lessons">Note</th>
                                             <th scope="col" class="sort cursor-pointer" data-sort="lessons">Date</th>
@@ -95,7 +92,7 @@
                                             <td th:text="${item.user.userName}"></td>
                                             <td th:text="${item.user.userPhoneNumber}"></td>
                                             <td th:text="${item.address}"></td>
-                                            <td>,
+                                            <td>
                                                 <span th:text="${#strings.length(item.note) &gt; 10 ? #strings.substring(item.note, 0, 10) + '...' : item.note}"></span>
                                             </td>
                                             <td th:text="${item.order_date}"></td>

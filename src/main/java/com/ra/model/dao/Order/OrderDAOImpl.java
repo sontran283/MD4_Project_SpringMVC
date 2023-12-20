@@ -225,4 +225,31 @@ public class OrderDAOImpl implements OrderDAO {
             ConnectionDataBase.closeConnection(connection);
         }
     }
+
+    @Override
+    public Order findByUserId(Integer id) {
+        Connection connection = ConnectionDataBase.openConnection();
+        Order order = new Order();
+        try {
+            CallableStatement callableStatement = connection.prepareCall("{CALL ORDER_FY_BY_USER_ID(?)}");
+            callableStatement.setInt(1, id);
+            ResultSet resultSet = callableStatement.executeQuery();
+            while (resultSet.next()) {
+                order.setOrder_id(resultSet.getInt("order_id"));
+                User user = userDAO.findById(resultSet.getInt("customer_id"));
+                order.setUser(user);
+                order.setOrder_date(resultSet.getDate("order_date"));
+                order.setTotal(resultSet.getDouble("total"));
+                order.setOrderStatus(resultSet.getInt("status"));
+                order.setPhone(resultSet.getString("phone"));
+                order.setAddress(resultSet.getString("address"));
+                order.setNote(resultSet.getString("note"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        } finally {
+            ConnectionDataBase.closeConnection(connection);
+        }
+        return order;
+    }
 }

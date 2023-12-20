@@ -4,6 +4,7 @@ import com.ra.model.dao.Order.OrderDAO;
 import com.ra.model.dao.Product.ProductDAO;
 import com.ra.model.dao.User.UserDAO;
 import com.ra.model.entity.*;
+import com.ra.model.service.Product.ProductService;
 import com.ra.util.ConnectionDataBase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -20,6 +21,8 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
     private ProductDAO productDAO;
     @Autowired
     private OrderDAO orderDAO;
+    @Autowired
+    ProductService productService;
 
     @Override
     public List<OrderDetail> paginater(Integer noPage) {
@@ -63,14 +66,13 @@ public class OrderDetailDAOImpl implements OrderDetailDAO {
             CallableStatement callableStatement = connection.prepareCall("{CALL ORDER_DETAIL_FY_BY_ALL()}");
             ResultSet resultSet = callableStatement.executeQuery();
             while (resultSet.next()) {
-                OrderDetail order = new OrderDetail();
-                Order order1 = new Order();
-                order1.setOrder_id(resultSet.getInt("order_id"));
-                Product product = new Product();
-                product.setProductId(resultSet.getInt("product_id"));
-                order.setQuantity(resultSet.getInt("quantity"));
-                order.setPrice(resultSet.getDouble("double"));
-                orderDetailList.add(order);
+                OrderDetail orderDetail = new OrderDetail();
+                orderDetail.setOrderId(resultSet.getInt("order_id"));
+                Product product=productService.findById(resultSet.getInt("product_id"));
+                orderDetail.setProduct(product);
+                orderDetail.setQuantity(resultSet.getInt("quantity"));
+                orderDetail.setPrice(resultSet.getDouble("price"));
+                orderDetailList.add(orderDetail);
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);

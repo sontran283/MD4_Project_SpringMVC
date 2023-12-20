@@ -41,6 +41,10 @@ public class RegisterController {
                 result.rejectValue("userEmail", "userEmail.exits", "email da ton tai");
                 return "user/register";
             }
+            if (!user.getUserPassword().equals(user.getConfirmPassword())) {
+                result.rejectValue("confirmPassword", "confirmPassword.mismatch", "Mật khẩu và xác nhận mật khẩu không khớp");
+                return "user/register";
+            }
             String fileName = files.getOriginalFilename();
             File file1 = new File(path + fileName);
             try {
@@ -50,7 +54,7 @@ public class RegisterController {
                 throw new RuntimeException(e);
             }
             if (userService.saveOrUpDate(user)) {
-                return "user/login";
+                return "redirect:/login";
             }
         }
         return "redirect:user/register";
