@@ -77,10 +77,10 @@
                                         <span class="amount" th:text="${item.product.productName}"></span>
                                     </td>
                                     <td class="product-price">
-                                        <span class="amount" th:text="${item.product.productPrice}+ ' đ'"></span>
+                                        <span class="amount" th:text="${#numbers.formatDecimal(item.product.productPrice, 0, 'COMMA', 0, 'POINT') + ' VND'}"></span>
                                     </td>
                                     <td class="product-price">
-                                        <span class="amount" th:text="${item.product.productPrice* item.quantity}+ ' đ'"></span>
+                                        <span class="amount" th:text="${#numbers.formatDecimal(item.product.productPrice*item.quantity, 0, 'COMMA', 0, 'POINT') + ' VND'}"></span>
                                     </td>
                                     <td class="product-quantity1">
                                         <form th:action="@{/update-cart}" method="post">
@@ -99,7 +99,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="5"><strong>Cart Total</strong></td>
-                                    <td th:text="${total}+ ' đ'"></td>
+                                    <td th:text="${#numbers.formatDecimal(total, 0, 'COMMA', 0, 'POINT') + ' VND'}"></td>
                                 </tr>
                                 </tbody>
                             </table>

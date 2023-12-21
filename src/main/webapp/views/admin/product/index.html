@@ -95,7 +95,7 @@
                                             <td>
                                                 <span th:text="${#strings.length(item.productDescription) &gt; 10 ? #strings.substring(item.productDescription, 0, 10) + '...' : item.productDescription}"></span>
                                             </td>
-                                            <td th:text="${item.productPrice} + ' đ'"></td>
+                                            <td th:text="${#numbers.formatDecimal(item.productPrice, 0, 'COMMA', 0, 'POINT') + ' VND'}"></td>
                                             <td th:text="${item.quantity}"></td>
                                             <td ><span class="label" th:classappend="${item.productStatus?'btn btn-success':'btn btn-danger'}" th:text="${item.productStatus?'Open':'Close'}"></span></td>
                                             <td>

@@ -263,7 +263,7 @@
                                             <a th:href="@{/detail/{id}(id=${item.productId})}"> <img style="width:100%; height:100%; object-fit: cover" th:src="@{|/uploads/images/${item.img}|}" alt=""></a>
                                             <a th:href="@{/detail/{id}(id=${item.productId})}" class="tpproduct__thumb-img"> <img style="width:100%; height:100%; object-fit: cover" th:src="@{|/uploads/images/${item.img}|}" alt=""></a>
                                             <div class="tpproduct__info bage">
-                                                <span class="tpproduct__info-discount bage__discount">-50%</span>
+                                                <span class="tpproduct__info-discount bage__discount">NEW</span>
                                                 <span class="tpproduct__info-hot bage__hot">HOT</span>
                                             </div>
                                             <div class="tpproduct__shopping">
@@ -292,7 +292,7 @@
                                                 <a href="#"><i class="icon-star_outline1"></i></a>
                                             </div>
                                             <div class="tpproduct__price">
-                                                <span th:text="${item.productPrice}+ ' đ'"></span>
+                                                <span th:text="${#numbers.formatDecimal(item.productPrice, 0, 'COMMA', 0, 'POINT') + ' VND'}"></span>
 <!--                                                <del>$19000.0</del>-->
                                             </div>
                                         </div>
@@ -317,17 +317,6 @@
         </div>
     </div>
 </section>
-<script>
-    var productPrice = 1000000;
-    var formatter = new Intl.NumberFormat('vi-VN', {
-        style: 'currency',
-        currency: 'VND'
-    });
-    var formattedPrice = formatter.format(productPrice);
-    formattedPrice += ' VND';
-    console.log(formattedPrice);
-</script>
-
 <th:block th:insert="user/layout/footer.html"></th:block>
 <th:block th:insert="user/layout/script.html"></th:block>
 </body>

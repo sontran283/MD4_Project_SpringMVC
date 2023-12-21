@@ -46,7 +46,7 @@
             <td th:text="${orderList.user.userName}"></td>
             <td th:text="${orderList.user.userPhoneNumber}"></td>
             <td th:text="${orderList.address}"></td>
-            <td th:text="${totalPrice}"></td>
+            <td th:text="${#numbers.formatDecimal(totalPrice, 0, 'COMMA', 0, 'POINT') + ' VND'}"></td>
             <td th:text="${orderList.order_date}"></td>
             <td>
                   <span th:text="${orderList.orderStatus == 1 ? 'WAITING' : (orderList.orderStatus == 0 ? 'CANCEL' : 'CONFIRM')}"

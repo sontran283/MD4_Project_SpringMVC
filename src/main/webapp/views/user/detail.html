@@ -70,8 +70,8 @@
                                 <div class="col-lg-6">
                                     <div class="product__details">
                                         <div class="product__details-price-box">
-                                            <h5 class="product__details-price"><span
-                                                    th:text="${product.productPrice}+ ' đ'">VND</span>
+                                            <h5 class="product__details-price">
+                                                <span th:text="${#numbers.formatDecimal(product.productPrice, 0, 'COMMA', 0, 'POINT') + ' VND'}">VND</span>
                                             </h5>
                                             <ul class="product__details-info-list">
                                                 <li th:text="${product.productDescription}"></li>
@@ -797,20 +797,6 @@
         });
     });
 
-</script>
-<script>
-    var productPrice = 1000000; // Giả sử giá sản phẩm là 1.000.000 đồng
-
-    var formatter = new Intl.NumberFormat('vi-VN', {
-        style: 'currency',
-        currency: 'VND'
-    });
-
-    var formattedPrice = formatter.format(productPrice);
-
-    formattedPrice += ' VND'; // Thêm đơn vị tiền tệ "VND" vào cuối chuỗi định dạng
-
-    console.log(formattedPrice); // Kết quả: 1.000.000 VND
 </script>
 <!-- product-area-end -->
 <th:block th:insert="user/layout/footer.html"></th:block>

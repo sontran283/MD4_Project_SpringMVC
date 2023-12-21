@@ -100,11 +100,11 @@
 
 <script>
     var loadFiles = function(event) {
+        // Lấy ra một thẻ HTML có id là 'image-preview-container' và gán vào biến container
         var container = document.getElementById('image-preview-container');
-
         // Clear previous images
         container.innerHTML = '';
-
+        // Lấy danh sách các file được chọn thông qua sự kiện change. Biến files
         var files = event.target.files;
         for (var i = 0; i < files.length; i++) {
             var reader = new FileReader();

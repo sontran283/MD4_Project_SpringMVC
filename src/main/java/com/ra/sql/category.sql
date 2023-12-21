@@ -75,6 +75,21 @@ END; //
 
 
 DELIMITER //
+CREATE PROCEDURE SEARCH_CATEGORY_AND_PRODUCTS(IN search_param VARCHAR(255))
+BEGIN
+    SELECT * FROM category
+    WHERE LCASE(name) LIKE CONCAT('%', search_param, '%')
+       OR LCASE(description) LIKE CONCAT('%', search_param, '%');
+
+    SELECT p.* FROM product p
+                        INNER JOIN category c ON p.category_id = c.category_id
+    WHERE LCASE(c.name) LIKE CONCAT('%', search_param, '%')
+       OR LCASE(p.name) LIKE CONCAT('%', search_param, '%');
+END //
+DELIMITER ;
+
+
+DELIMITER //
 CREATE PROCEDURE CATEGORY_SORT_BY_NAME()
 BEGIN
 SELECT *FROM category ORDER BY name;

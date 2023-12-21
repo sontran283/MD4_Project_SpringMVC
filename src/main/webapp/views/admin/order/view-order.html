@@ -45,11 +45,11 @@
                                                 <span th:text="${#strings.length(item.product.productDescription) &gt; 10 ? #strings.substring(item.product.productDescription, 0, 10) + '...' : item.product.productDescription}"></span>
                                             </td>
                                             <td th:text="${item.quantity}"></td>
-                                            <td th:text="${item.product.productPrice}+ ' đ'"></td>
+                                            <td th:text="${#numbers.formatDecimal(item.product.productPrice, 0, 'COMMA', 0, 'POINT') + ' VND'}"></td>
                                         </tr>
                                         <tr>
                                             <td colspan="5"><strong>Total</strong></td>
-                                            <td th:text="${totalPrice}+ ' đ'"></td>
+                                            <td  th:text="${#numbers.formatDecimal(totalPrice, 0, 'COMMA', 0, 'POINT') + ' VND'}"></td>
                                         </tr>
                                         </tbody>
                                     </table>

@@ -77,7 +77,7 @@ public class ProductController {
                 for (MultipartFile multipartFile : files) {
                     String fileImgName = multipartFile.getOriginalFilename();
                     File fileDescription = new File(path + fileImgName);
-                    multipartFile.transferTo(fileDescription);
+                    multipartFile.transferTo(fileDescription); // chuyen du lieu
 
                     Image image = new Image();
                     image.setImgUrl(fileImgName);

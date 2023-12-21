@@ -86,7 +86,7 @@
                                         <span class="product-quantity" th:text="${item.quantity}"></span>
                                     </td>
                                     <td class="product-total">
-                                        <span class="amount" th:text="${item.quantity * item.product.productPrice}"></span>
+                                        <span class="amount" th:text="${#numbers.formatDecimal(item.quantity * item.product.productPrice, 0, 'COMMA', 0, 'POINT') + ' VND'}"></span>
                                     </td>
                                 </tr>
                                 </tbody>
@@ -94,7 +94,7 @@
                                 <tr class="order-total">
                                     <th>Order Total</th>
                                     <td>
-                                        <strong><span class="amount" th:text="${total}"></span></strong>
+                                        <strong><span class="amount" th:text="${#numbers.formatDecimal(total, 0, 'COMMA', 0, 'POINT') + ' VND'}"></span></strong>
                                     </td>
                                 </tr>
                                 </tfoot>
@@ -110,6 +110,20 @@
         </form>
     </div>
 </section>
+<script>
+    var productPrice = 1000000; // Giả sử giá sản phẩm là 1.000.000 đồng
+
+    var formatter = new Intl.NumberFormat('vi-VN', {
+        style: 'currency',
+        currency: 'VND'
+    });
+
+    var formattedPrice = formatter.format(productPrice);
+
+    formattedPrice += ' VND'; // Thêm đơn vị tiền tệ "VND" vào cuối chuỗi định dạng
+
+    console.log(formattedPrice); // Kết quả: 1.000.000 VND
+</script>
 <th:block th:insert="user/layout/footer.html"></th:block>
 <th:block th:insert="user/layout/script.html"></th:block>
 </body>
